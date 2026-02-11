@@ -62,7 +62,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
   def issue_channel_token(client, grant_type, client_id, client_secret, opts \\ []) do
     request_opts = [
       method: :post,
-      url: "/v2/oauth/accessToken"
+      url: "/v2/oauth/accessToken",
+      form:
+        Enum.reject(
+          [
+            {"grant_type", grant_type},
+            {"client_id", client_id},
+            {"client_secret", client_secret}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -93,7 +102,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
       ) do
     request_opts = [
       method: :post,
-      url: "/oauth2/v2.1/token"
+      url: "/oauth2/v2.1/token",
+      form:
+        Enum.reject(
+          [
+            {"grant_type", grant_type},
+            {"client_assertion_type", client_assertion_type},
+            {"client_assertion", client_assertion}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -118,9 +136,26 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def issue_stateless_channel_token(client, opts \\ []) do
+    grant_type = Keyword.get(opts, :grant_type)
+    client_assertion_type = Keyword.get(opts, :client_assertion_type)
+    client_assertion = Keyword.get(opts, :client_assertion)
+    client_id = Keyword.get(opts, :client_id)
+    client_secret = Keyword.get(opts, :client_secret)
+
     request_opts = [
       method: :post,
-      url: "/oauth2/v3/token"
+      url: "/oauth2/v3/token",
+      form:
+        Enum.reject(
+          [
+            {"grant_type", grant_type},
+            {"client_assertion_type", client_assertion_type},
+            {"client_assertion", client_assertion},
+            {"client_id", client_id},
+            {"client_secret", client_secret}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -143,7 +178,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
   def revoke_channel_token(client, access_token, opts \\ []) do
     request_opts = [
       method: :post,
-      url: "/v2/oauth/revoke"
+      url: "/v2/oauth/revoke",
+      form: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -168,7 +204,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
   def revoke_channel_token_by_jwt(client, client_id, client_secret, access_token, opts \\ []) do
     request_opts = [
       method: :post,
-      url: "/oauth2/v2.1/revoke"
+      url: "/oauth2/v2.1/revoke",
+      form:
+        Enum.reject(
+          [
+            {"client_id", client_id},
+            {"client_secret", client_secret},
+            {"access_token", access_token}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -191,7 +236,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
   def verify_channel_token(client, access_token, opts \\ []) do
     request_opts = [
       method: :post,
-      url: "/v2/oauth/verify"
+      url: "/v2/oauth/verify",
+      form: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))

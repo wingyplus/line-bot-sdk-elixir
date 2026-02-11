@@ -30,9 +30,33 @@ defmodule LINEBotSDK.LineModuleAttach do
   - `{:error, Exception.t()}` on failure
   """
   def attach_module(client, grant_type, code, redirect_uri, opts \\ []) do
+    code_verifier = Keyword.get(opts, :code_verifier)
+    client_id = Keyword.get(opts, :client_id)
+    client_secret = Keyword.get(opts, :client_secret)
+    region = Keyword.get(opts, :region)
+    basic_search_id = Keyword.get(opts, :basic_search_id)
+    scope = Keyword.get(opts, :scope)
+    brand_type = Keyword.get(opts, :brand_type)
+
     request_opts = [
       method: :post,
-      url: "/module/auth/v1/token"
+      url: "/module/auth/v1/token",
+      form:
+        Enum.reject(
+          [
+            {"grant_type", grant_type},
+            {"code", code},
+            {"redirect_uri", redirect_uri},
+            {"code_verifier", code_verifier},
+            {"client_id", client_id},
+            {"client_secret", client_secret},
+            {"region", region},
+            {"basic_search_id", basic_search_id},
+            {"scope", scope},
+            {"brand_type", brand_type}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))

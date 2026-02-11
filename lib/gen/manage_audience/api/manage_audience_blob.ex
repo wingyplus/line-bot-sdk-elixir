@@ -23,9 +23,21 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `{:error, Exception.t()}` on failure
   """
   def add_user_ids_to_audience(client, file, opts \\ []) do
+    audience_group_id = Keyword.get(opts, :audienceGroupId)
+    upload_description = Keyword.get(opts, :uploadDescription)
+
     request_opts = [
       method: :put,
-      url: "/v2/bot/audienceGroup/upload/byFile"
+      url: "/v2/bot/audienceGroup/upload/byFile",
+      form:
+        Enum.reject(
+          [
+            {"audienceGroupId", audience_group_id},
+            {"uploadDescription", upload_description},
+            {"file", file}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
@@ -49,9 +61,23 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `{:error, Exception.t()}` on failure
   """
   def create_audience_for_uploading_user_ids(client, file, opts \\ []) do
+    description = Keyword.get(opts, :description)
+    is_ifa_audience = Keyword.get(opts, :isIfaAudience)
+    upload_description = Keyword.get(opts, :uploadDescription)
+
     request_opts = [
       method: :post,
-      url: "/v2/bot/audienceGroup/upload/byFile"
+      url: "/v2/bot/audienceGroup/upload/byFile",
+      form:
+        Enum.reject(
+          [
+            {"description", description},
+            {"isIfaAudience", is_ifa_audience},
+            {"uploadDescription", upload_description},
+            {"file", file}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))
