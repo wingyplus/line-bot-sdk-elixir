@@ -402,8 +402,8 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Req.Response.t()}` on failure
   """
   def get_followers(client, opts \\ []) do
-    start = Keyword.get(opts, :start)
-    limit = Keyword.get(opts, :limit)
+    {start, opts} = Keyword.pop(opts, :start)
+    {limit, opts} = Keyword.pop(opts, :limit)
 
     request_opts = [
       method: :get,
@@ -491,7 +491,7 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Req.Response.t()}` on failure
   """
   def get_group_members_ids(client, group_id, opts \\ []) do
-    start = Keyword.get(opts, :start)
+    {start, opts} = Keyword.pop(opts, :start)
 
     request_opts = [
       method: :get,
@@ -1481,7 +1481,7 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Req.Response.t()}` on failure
   """
   def push_message(client, push_message_request, opts \\ []) do
-    x_line_retry_key = Keyword.get(opts, :x_line_retry_key)
+    {x_line_retry_key, opts} = Keyword.pop(opts, :x_line_retry_key)
 
     request_opts = [
       method: :post,

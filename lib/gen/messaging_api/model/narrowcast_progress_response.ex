@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.NarrowcastProgressResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :phase,
     :successCount,

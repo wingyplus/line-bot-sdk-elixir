@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.VideoPlayCompleteEvent do
   Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponseOverview do
   Statistics related to messages.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :uniqueImpression,
     :uniqueClick,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuAliasListResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :aliases
   ]

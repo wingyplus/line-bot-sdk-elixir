@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.UnfollowEvent do
   Event object for when your LINE Official Account is blocked.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

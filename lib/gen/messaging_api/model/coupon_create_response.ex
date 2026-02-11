@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponCreateResponse do
   Response object returned after creating a coupon. Contains the coupon ID.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :couponId
   ]

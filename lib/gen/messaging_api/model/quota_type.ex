@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.QuotaType do
   One of the following values to indicate whether a target limit is set or not.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

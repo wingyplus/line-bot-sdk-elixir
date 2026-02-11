@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.JoinedMembers do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :members
   ]

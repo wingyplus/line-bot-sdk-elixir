@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexTextFontSize do
   Font size in the `size` property of the Flex text component. You can specify the size in pixels or with a keyword. FlexTextFontSize just provides only keywords. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

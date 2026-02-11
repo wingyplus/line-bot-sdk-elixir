@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.GetMembershipSubscriptionResponse do
   A user's membership subscription status
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :subscriptions
   ]

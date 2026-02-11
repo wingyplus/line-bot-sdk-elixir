@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateClickBasedAudienceGroupRequest d
   Create audience for click-based retargeting
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :description,
     :requestId,

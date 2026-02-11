@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroup do
   Audience group
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroupId,
     :type,

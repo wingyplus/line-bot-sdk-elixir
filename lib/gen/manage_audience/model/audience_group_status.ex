@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroupStatus do
   Status
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

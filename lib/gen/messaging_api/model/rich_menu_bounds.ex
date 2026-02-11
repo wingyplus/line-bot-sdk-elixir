@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBounds do
   Rich menu bounds
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :x,
     :y,

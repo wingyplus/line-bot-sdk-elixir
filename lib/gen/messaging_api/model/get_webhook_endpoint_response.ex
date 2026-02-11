@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.GetWebhookEndpointResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :endpoint,
     :active

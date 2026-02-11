@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuSize do
   Rich menu size
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :width,
     :height

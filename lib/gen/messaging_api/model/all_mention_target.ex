@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.AllMentionTarget do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type
   ]

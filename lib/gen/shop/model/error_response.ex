@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Shop.Model.ErrorResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :message
   ]

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ShowLoadingAnimationRequest do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :chatId,
     :loadingSeconds

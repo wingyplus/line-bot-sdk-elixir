@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponseMessage do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :seq,
     :impression,

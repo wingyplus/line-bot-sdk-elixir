@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroupFailedType do
   Failed type
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

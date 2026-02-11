@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.MessageEvent do
   Webhook event object which contains the sent message.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

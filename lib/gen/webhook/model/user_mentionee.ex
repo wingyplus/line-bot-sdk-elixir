@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.UserMentionee do
   Mentioned target is user
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :index,

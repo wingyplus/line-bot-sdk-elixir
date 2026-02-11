@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBulkLinkRequest do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :richMenuId,
     :userIds

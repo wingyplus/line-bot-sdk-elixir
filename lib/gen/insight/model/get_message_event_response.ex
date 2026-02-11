@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetMessageEventResponse do
   Statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :overview,
     :messages,

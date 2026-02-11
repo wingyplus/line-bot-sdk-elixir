@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.ContentProvider do
   Provider of the media file.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :originalContentUrl,

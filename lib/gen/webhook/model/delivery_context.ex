@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.DeliveryContext do
   webhook's delivery context information
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :isRedelivery
   ]

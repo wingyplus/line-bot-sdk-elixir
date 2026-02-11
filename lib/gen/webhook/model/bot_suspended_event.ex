@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.BotSuspendedEvent do
   This event indicates that the LINE Official Account has been suspended (Suspend). Sent to the webhook URL server of the module channel.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

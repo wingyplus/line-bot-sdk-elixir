@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.DeactivatedEvent do
   This event indicates that the module channel has been switched to Standby Channel by calling Acquire Control API or Release Control API. Sent to the webhook URL server of the module channel.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

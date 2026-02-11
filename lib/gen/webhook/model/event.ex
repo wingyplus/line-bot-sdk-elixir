@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.Event do
   Webhook event
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

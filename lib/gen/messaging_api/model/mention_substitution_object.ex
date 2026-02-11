@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.MentionSubstitutionObject do
   An object representing a mention substitution.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :mentionee

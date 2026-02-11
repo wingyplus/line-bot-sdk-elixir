@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.Subscription do
   An array of memberships.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :membership,
     :user

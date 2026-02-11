@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.AreaTile do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :area,
     :percentage

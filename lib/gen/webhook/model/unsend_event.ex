@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.UnsendEvent do
   Event object for when the user unsends a message.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.MemberLeftEvent do
   Event object for when a user leaves a group chat or multi-person chat that the LINE Official Account is in.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

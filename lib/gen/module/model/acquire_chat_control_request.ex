@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Module.Model.AcquireChatControlRequest do
   Request entity of the Acquire Control API
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :expired,
     :ttl

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.EmojiSubstitutionObject do
   An object representing a emoji substitution.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :productId,

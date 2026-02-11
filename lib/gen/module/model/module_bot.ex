@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Module.Model.ModuleBot do
   basic information about the bot.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :userId,
     :basicId,

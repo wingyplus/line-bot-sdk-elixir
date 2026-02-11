@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBatchProgressResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :phase,
     :acceptedTime,

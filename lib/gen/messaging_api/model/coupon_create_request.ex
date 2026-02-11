@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponCreateRequest do
   Request object for creating a coupon. Contains all configurable coupon properties.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :acquisitionCondition,
     :barcodeImageUrl,

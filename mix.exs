@@ -24,7 +24,8 @@ defmodule LINEBotSDK.Mixfile do
   defp deps do
     [
       {:req, "~> 0.5"},
-      {:ex_doc, "~> 0.40", only: :docs, runtime: false, warn_if_outdated: true}
+      {:ex_doc, "~> 0.40", only: :docs, runtime: false, warn_if_outdated: true},
+      {:bypass, "~> 2.1", only: :test}
     ]
   end
 

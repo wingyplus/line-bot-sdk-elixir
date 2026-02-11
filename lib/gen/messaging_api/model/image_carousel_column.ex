@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ImageCarouselColumn do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :imageUrl,
     :action

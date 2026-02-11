@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroupJob do
   Audience group job
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroupJobId,
     :audienceGroupId,

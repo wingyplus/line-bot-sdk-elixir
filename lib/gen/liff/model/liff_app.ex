@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Liff.Model.LiffApp do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :liffId,
     :view,

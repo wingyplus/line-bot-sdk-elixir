@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapExternalLink do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :linkUri,
     :label

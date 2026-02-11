@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ChannelAccessToken.Model.IssueStatelessChannelAccessTokenRe
   Issued stateless channel access token
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :access_token,
     :expires_in,

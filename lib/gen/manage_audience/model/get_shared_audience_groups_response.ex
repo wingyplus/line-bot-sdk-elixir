@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.GetSharedAudienceGroupsResponse do
   Gets data for more than one audience.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroups,
     :hasNextPage,

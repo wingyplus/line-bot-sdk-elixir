@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.PnpDelivery do
   A delivery object containing a hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :data
   ]

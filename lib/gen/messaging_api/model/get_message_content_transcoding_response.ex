@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.GetMessageContentTranscodingResponse do
   Transcoding response
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :status
   ]

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexImageSize do
   You can set the width of an Flex image component with the `size` property, in pixels, as a percentage, or with a keyword. FlexImageSize just provides only keywords. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

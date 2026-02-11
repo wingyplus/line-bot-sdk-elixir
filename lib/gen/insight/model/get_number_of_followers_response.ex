@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetNumberOfFollowersResponse do
   Get number of followers
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :status,
     :followers,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetFriendsDemographicsResponse do
   Get friend demographics
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :available,
     :genders,

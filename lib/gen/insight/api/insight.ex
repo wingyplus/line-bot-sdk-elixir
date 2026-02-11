@@ -79,7 +79,7 @@ defmodule LINEBotSDK.Insight do
   - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_followers(client, opts \\ []) do
-    date = Keyword.get(opts, :date)
+    {date, opts} = Keyword.pop(opts, :date)
 
     request_opts = [
       method: :get,

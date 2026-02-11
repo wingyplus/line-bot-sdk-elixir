@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.CarouselColumn do
   Column object for carousel template.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :thumbnailImageUrl,
     :imageBackgroundColor,

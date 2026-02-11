@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.LinkContent do
   Content of the account link event.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :result,
     :nonce

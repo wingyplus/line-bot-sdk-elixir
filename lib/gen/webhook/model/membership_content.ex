@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.MembershipContent do
   Content of the membership event.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type
   ]

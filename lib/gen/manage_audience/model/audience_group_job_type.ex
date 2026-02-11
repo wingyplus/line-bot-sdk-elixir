@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroupJobType do
   Job Type
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.GetSharedAudienceDataResponse do
   Get audience data
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroup,
     :jobs,

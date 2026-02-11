@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateAudienceGroupRequest do
   Create audience for uploading user IDs (by JSON)
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :description,
     :isIfaAudience,

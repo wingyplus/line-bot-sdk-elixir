@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Module.Model.GetModulesResponse do
   List of bots to which the module is attached
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :bots,
     :next

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Liff.Model.LiffScope do
   Array of scopes required for some LIFF SDK methods to function. The default value is `[\"profile\", \"chat_message.write\"]`.  
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

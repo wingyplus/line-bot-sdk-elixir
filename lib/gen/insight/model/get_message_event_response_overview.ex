@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetMessageEventResponseOverview do
   Summary of message statistics.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :requestId,
     :timestamp,

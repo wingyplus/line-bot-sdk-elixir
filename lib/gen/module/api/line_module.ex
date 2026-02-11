@@ -86,8 +86,8 @@ defmodule LINEBotSDK.LineModule do
   - `{:error, Req.Response.t()}` on failure
   """
   def get_modules(client, opts \\ []) do
-    start = Keyword.get(opts, :start)
-    limit = Keyword.get(opts, :limit)
+    {start, opts} = Keyword.pop(opts, :start)
+    {limit, opts} = Keyword.pop(opts, :limit)
 
     request_opts = [
       method: :get,

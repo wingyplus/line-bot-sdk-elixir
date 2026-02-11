@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.PostbackEvent do
   Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexBoxBorderWidth do
   Width of box border. This is only for `borderWidth` in FlexBox. A value of none means that borders are not rendered; the other values are listed in order of increasing width. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.Adaccount do
   Adaccount
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :name
   ]

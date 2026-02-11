@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.SubstitutionObject do
   An object that defines the replacement value for a placeholder in the text.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type
   ]

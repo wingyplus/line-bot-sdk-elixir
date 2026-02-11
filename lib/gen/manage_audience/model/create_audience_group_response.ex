@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateAudienceGroupResponse do
   Create audience for uploading user IDs (by JSON)
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroupId,
     :createRoute,

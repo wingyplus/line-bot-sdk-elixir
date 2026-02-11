@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.DemographicFilter do
   Demographic filter
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type
   ]

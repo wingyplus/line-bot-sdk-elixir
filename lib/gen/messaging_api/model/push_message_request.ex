@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.PushMessageRequest do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :to,
     :messages,

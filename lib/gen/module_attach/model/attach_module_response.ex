@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ModuleAttach.Model.AttachModuleResponse do
   Attach by operation of the module channel provider
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :bot_id,
     :scopes

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.GroupUserProfileResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :displayName,
     :userId,

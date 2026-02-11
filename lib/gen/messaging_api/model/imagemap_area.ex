@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapArea do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :x,
     :y,

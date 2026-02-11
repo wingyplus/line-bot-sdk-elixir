@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.RenewedMembershipContent do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :membershipId

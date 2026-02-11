@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetMessageEventResponseClick do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :seq,
     :url,

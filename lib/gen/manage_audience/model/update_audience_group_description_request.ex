@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.UpdateAudienceGroupDescriptionRequest 
   Rename an audience
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :description
   ]

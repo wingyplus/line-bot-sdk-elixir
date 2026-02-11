@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.MessagingApiPagerCouponListResponse do
   Paginated response object containing a list of coupons.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :items,
     :next

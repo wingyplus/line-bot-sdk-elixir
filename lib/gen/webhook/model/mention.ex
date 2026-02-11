@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.Mention do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :mentionees
   ]

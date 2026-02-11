@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.MessageContent do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :id

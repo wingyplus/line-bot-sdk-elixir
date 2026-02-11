@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexOffset do
   You can specify the offset of a component with the `offset*` property, in pixels or with a keyword. You can also specify the percentage to the box width for `offsetStart` and `offsetEnd` and to the box height for `offsetTop` and `offsetBottom`. FlexOffset just provides only keywords. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

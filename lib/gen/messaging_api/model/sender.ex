@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.Sender do
   Change icon and display name
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :name,
     :iconUrl

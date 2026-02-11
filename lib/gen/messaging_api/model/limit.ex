@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.Limit do
   Limit of the Narrowcast
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :max,
     :upToRemainingQuota,

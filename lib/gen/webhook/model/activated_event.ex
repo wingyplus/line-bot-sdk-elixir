@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.ActivatedEvent do
   This event indicates that the module channel has been switched to Active Channel by calling the Acquire Control API. Sent to the webhook URL server of the module channel.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

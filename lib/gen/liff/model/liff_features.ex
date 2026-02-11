@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Liff.Model.LiffFeatures do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :ble,
     :qrCode

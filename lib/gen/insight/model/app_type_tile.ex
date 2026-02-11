@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.AppTypeTile do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :appType,
     :percentage

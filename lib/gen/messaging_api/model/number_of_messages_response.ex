@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :status,
     :success

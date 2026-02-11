@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ChannelAccessToken.Model.ChannelAccessTokenKeyIdsResponse d
   Channel access token key IDs
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :kids
   ]

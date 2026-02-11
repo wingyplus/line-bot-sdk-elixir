@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetNumberOfMessageDeliveriesResponse do
   Get number of message deliveries
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :status,
     :broadcast,

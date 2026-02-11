@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.FollowEvent do
   Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

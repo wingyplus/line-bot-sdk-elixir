@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponListResponse do
   Summary information about a coupon, used in coupon lists.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :couponId,
     :title

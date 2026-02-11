@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Liff.Model.LiffView do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :url,

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.AllMentionee do
   Mentioned target is entire group
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :index,

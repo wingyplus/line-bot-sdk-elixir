@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.GetJoinedMembershipUsersResponse do
   List of users who have joined the membership
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :userIds,
     :next

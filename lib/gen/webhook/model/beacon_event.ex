@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.BeaconEvent do
   Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

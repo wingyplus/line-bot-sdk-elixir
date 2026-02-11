@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.CallbackRequest do
   The request body contains a JSON object with the user ID of a bot that should receive webhook events and an array of webhook event objects. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :destination,
     :events

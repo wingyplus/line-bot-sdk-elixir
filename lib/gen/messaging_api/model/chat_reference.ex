@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ChatReference do
   Chat reference
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :userId
   ]

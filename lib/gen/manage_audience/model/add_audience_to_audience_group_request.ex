@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.AddAudienceToAudienceGroupRequest do
   Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :audienceGroupId,
     :uploadDescription,

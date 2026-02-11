@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.MarkMessagesAsReadByTokenRequest do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :markAsReadToken
   ]

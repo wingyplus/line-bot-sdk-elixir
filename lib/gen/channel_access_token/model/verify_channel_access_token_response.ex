@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ChannelAccessToken.Model.VerifyChannelAccessTokenResponse d
   Verification result
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :client_id,
     :expires_in,

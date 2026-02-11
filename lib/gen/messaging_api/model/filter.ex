@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.Filter do
   Filter for narrowcast
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :demographic
   ]

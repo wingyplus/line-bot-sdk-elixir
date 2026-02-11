@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.AgeTile do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :age,
     :percentage

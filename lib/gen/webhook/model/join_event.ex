@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.JoinEvent do
   Event object for when your LINE Official Account joins a group chat or multi-person chat. You can reply to join events.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

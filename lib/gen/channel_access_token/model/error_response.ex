@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ChannelAccessToken.Model.ErrorResponse do
   Error response of the Channel access token
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :error,
     :error_description

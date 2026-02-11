@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.PostbackContent do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :data,
     :params

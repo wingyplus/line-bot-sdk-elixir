@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateImpBasedAudienceGroupRequest do
   Create audience for impression-based retargeting
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :description,
     :requestId

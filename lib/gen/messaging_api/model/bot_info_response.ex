@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.BotInfoResponse do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :userId,
     :basicId,

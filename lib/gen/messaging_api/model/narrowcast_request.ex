@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.NarrowcastRequest do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :messages,
     :recipient,

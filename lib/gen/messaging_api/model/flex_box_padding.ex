@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexBoxPadding do
   Padding can be specified in pixels, percentage (to the parent box width) or with a keyword. FlexBoxPadding just provides only keywords. 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

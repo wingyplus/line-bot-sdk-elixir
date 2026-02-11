@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.Membership do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :membershipId,
     :title,

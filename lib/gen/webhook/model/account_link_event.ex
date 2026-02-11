@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.AccountLinkEvent do
   Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

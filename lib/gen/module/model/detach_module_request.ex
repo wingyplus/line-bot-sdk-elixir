@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Module.Model.DetachModuleRequest do
   Unlink (detach) the module channel by the operation of the module channel administrator
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :botId
   ]

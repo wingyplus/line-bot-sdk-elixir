@@ -6,7 +6,7 @@ defmodule LINEBotSDK.ManageAudience.Model.DetailedOwner do
   Owner of this audience group.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :serviceType,
     :id,

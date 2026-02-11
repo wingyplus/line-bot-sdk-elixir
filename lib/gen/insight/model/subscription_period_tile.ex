@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.SubscriptionPeriodTile do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :subscriptionPeriod,
     :percentage

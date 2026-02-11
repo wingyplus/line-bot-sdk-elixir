@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponResponse do
   Detailed information about a coupon, including all properties and current status.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :acquisitionCondition,
     :barcodeImageUrl,

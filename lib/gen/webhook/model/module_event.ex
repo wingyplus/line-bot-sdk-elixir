@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.ModuleEvent do
   This event indicates that the module channel has been attached to the LINE Official Account. Sent to the webhook URL server of the module channel.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

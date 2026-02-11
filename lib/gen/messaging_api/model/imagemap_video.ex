@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapVideo do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :originalContentUrl,
     :previewImageUrl,

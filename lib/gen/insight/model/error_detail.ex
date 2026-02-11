@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.ErrorDetail do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :message,
     :property

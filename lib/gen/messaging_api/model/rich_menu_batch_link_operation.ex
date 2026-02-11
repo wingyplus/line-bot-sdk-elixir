@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBatchLinkOperation do
   Replace the rich menu with the rich menu specified in the `to` property for all users linked to the rich menu specified in the `from` property.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :from,

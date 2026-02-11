@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Insight.Model.GetMessageEventResponseMessage do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :seq,
     :impression,

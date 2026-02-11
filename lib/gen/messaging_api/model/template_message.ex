@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.TemplateMessage do
 
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :quickReply,

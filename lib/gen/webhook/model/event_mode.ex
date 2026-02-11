@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.EventMode do
   Channel state.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct []
 
   @type t :: %__MODULE__{}

@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Webhook.Model.MembershipEvent do
   This event indicates that a user has subscribed (joined), unsubscribed (left), or renewed the bot's membership.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :type,
     :source,

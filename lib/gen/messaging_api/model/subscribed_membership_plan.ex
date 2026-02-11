@@ -6,7 +6,7 @@ defmodule LINEBotSDK.MessagingApi.Model.SubscribedMembershipPlan do
   Object containing information about the membership plan.
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :membershipId,
     :title,

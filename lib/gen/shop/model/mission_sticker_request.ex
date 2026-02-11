@@ -6,7 +6,7 @@ defmodule LINEBotSDK.Shop.Model.MissionStickerRequest do
   Send mission stickers (v3)
   """
 
-  @derive JSON.Encoder
+  @derive [Jason.Encoder, JSON.Encoder]
   defstruct [
     :to,
     :productId,
