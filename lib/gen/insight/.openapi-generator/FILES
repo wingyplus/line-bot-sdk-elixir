@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 api/insight.ex
 model/age_tile.ex
 model/app_type_tile.ex

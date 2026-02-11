@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 api/manage_audience.ex
 api/manage_audience_blob.ex
 model/adaccount.ex

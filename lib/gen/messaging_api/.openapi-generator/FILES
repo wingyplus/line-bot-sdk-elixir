@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 api/messaging_api.ex
 api/messaging_api_blob.ex
 model/acquisition_condition_request.ex
