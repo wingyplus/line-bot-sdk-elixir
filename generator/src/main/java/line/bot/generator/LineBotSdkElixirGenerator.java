@@ -44,6 +44,10 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
     public void preprocessOpenAPI(OpenAPI openAPI) {
         super.preprocessOpenAPI(openAPI);
 
+        // Force all generated modules under the LINEBotSDK namespace.
+        setModuleName("LINEBotSDK");
+        additionalProperties.put("moduleName", "LINEBotSDK");
+
         // preprocessOpenAPI adds connection.ex, request_builder.ex, deserializer.ex
         // to supportingFiles. Clear them again since we don't need them.
         supportingFiles.clear();

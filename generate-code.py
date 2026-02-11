@@ -57,7 +57,7 @@ def generate_clients():
     ]
 
     for sourceYaml in components:
-        output_path = 'lib/' + sourceYaml.replace('.yml', '').replace('-', '_')
+        output_path = 'lib/gen/' + sourceYaml.replace('.yml', '').replace('-', '_')
 
         orig_files = read_files_from_openapi_generator(output_path)
         for f in set(orig_files):
@@ -85,7 +85,7 @@ def generate_clients():
 
 def generate_webhook():
     source_yaml = "webhook.yml"
-    output_path = 'lib/webhook'
+    output_path = 'lib/gen/webhook'
 
     orig_files = read_files_from_openapi_generator(output_path)
     for f in set(orig_files):
