@@ -19,14 +19,14 @@ defmodule LINEBotSDK.Liff do
 
   - `client` (Req.Request.t()): Client to make request with
   - `add_liff_app_request` (AddLiffAppRequest): 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.AddLiffAppResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def add_liff_app(client, add_liff_app_request, opts \\ []) do
+  def add_liff_app(client, add_liff_app_request, client_opts \\ []) do
     request_opts = [
       method: :post,
       url: "/liff/v1/apps",
@@ -34,7 +34,7 @@ defmodule LINEBotSDK.Liff do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Liff.Model.AddLiffAppResponse},
       {400, false},
@@ -50,14 +50,14 @@ defmodule LINEBotSDK.Liff do
 
   - `client` (Req.Request.t()): Client to make request with
   - `liff_id` (String.t): ID of the LIFF app to be updated
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def delete_liff_app(client, liff_id, opts \\ []) do
+  def delete_liff_app(client, liff_id, client_opts \\ []) do
     request_opts = [
       method: :delete,
       url: "/liff/v1/apps/:liff_id",
@@ -65,7 +65,7 @@ defmodule LINEBotSDK.Liff do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false},
       {401, false},
@@ -80,21 +80,21 @@ defmodule LINEBotSDK.Liff do
   ### Parameters
 
   - `client` (Req.Request.t()): Client to make request with
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetAllLiffAppsResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_all_liff_apps(client, opts \\ []) do
+  def get_all_liff_apps(client, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/liff/v1/apps"
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Liff.Model.GetAllLiffAppsResponse},
       {401, false},
@@ -111,14 +111,14 @@ defmodule LINEBotSDK.Liff do
   - `client` (Req.Request.t()): Client to make request with
   - `liff_id` (String.t): ID of the LIFF app to be updated
   - `update_liff_app_request` (UpdateLiffAppRequest): 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def update_liff_app(client, liff_id, update_liff_app_request, opts \\ []) do
+  def update_liff_app(client, liff_id, update_liff_app_request, client_opts \\ []) do
     request_opts = [
       method: :put,
       url: "/liff/v1/apps/:liff_id",
@@ -127,7 +127,7 @@ defmodule LINEBotSDK.Liff do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false},
       {400, false},

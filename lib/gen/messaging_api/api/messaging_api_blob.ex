@@ -18,14 +18,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `message_id` (String.t): Message ID of video or audio
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_message_content(client, message_id, opts \\ []) do
+  def get_message_content(client, message_id, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content",
@@ -33,7 +33,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
@@ -46,14 +46,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `message_id` (String.t): Message ID of image or video
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_message_content_preview(client, message_id, opts \\ []) do
+  def get_message_content_preview(client, message_id, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content/preview",
@@ -61,7 +61,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
@@ -74,14 +74,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `message_id` (String.t): Message ID of video or audio
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetMessageContentTranscodingResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_message_content_transcoding_by_message_id(client, message_id, opts \\ []) do
+  def get_message_content_transcoding_by_message_id(client, message_id, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content/transcoding",
@@ -89,7 +89,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.MessagingApi.Model.GetMessageContentTranscodingResponse}
     ])
@@ -102,14 +102,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `rich_menu_id` (String.t): ID of the rich menu with the image to be downloaded
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_rich_menu_image(client, rich_menu_id, opts \\ []) do
+  def get_rich_menu_image(client, rich_menu_id, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/:rich_menu_id/content",
@@ -117,7 +117,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
@@ -130,16 +130,17 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `rich_menu_id` (String.t): The ID of the rich menu to attach the image to
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:body` (String.t): 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def set_rich_menu_image(client, rich_menu_id, opts \\ []) do
-    body = Keyword.get(opts, :body)
+  def set_rich_menu_image(client, rich_menu_id, optional_args \\ [], client_opts \\ []) do
+    body = Keyword.get(optional_args, :body)
 
     request_opts = [
       method: :post,
@@ -149,7 +150,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])

@@ -18,18 +18,19 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:audience_group_id` (integer()): The audience ID.
     - `:upload_description` (String.t): The description to register with the job
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def add_user_ids_to_audience(client, file, opts \\ []) do
-    audience_group_id = Keyword.get(opts, :audience_group_id)
-    upload_description = Keyword.get(opts, :upload_description)
+  def add_user_ids_to_audience(client, file, optional_args \\ [], client_opts \\ []) do
+    audience_group_id = Keyword.get(optional_args, :audience_group_id)
+    upload_description = Keyword.get(optional_args, :upload_description)
 
     request_opts = [
       method: :put,
@@ -46,7 +47,7 @@ defmodule LINEBotSDK.ManageAudienceBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {202, false}
     ])
@@ -59,20 +60,21 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   - `client` (Req.Request.t()): Client to make request with
   - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:description` (String.t): The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
     - `:is_ifa_audience` (boolean()): To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
     - `:upload_description` (String.t): The description to register for the job (in `jobs[].description`). 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.CreateAudienceGroupResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def create_audience_for_uploading_user_ids(client, file, opts \\ []) do
-    description = Keyword.get(opts, :description)
-    is_ifa_audience = Keyword.get(opts, :is_ifa_audience)
-    upload_description = Keyword.get(opts, :upload_description)
+  def create_audience_for_uploading_user_ids(client, file, optional_args \\ [], client_opts \\ []) do
+    description = Keyword.get(optional_args, :description)
+    is_ifa_audience = Keyword.get(optional_args, :is_ifa_audience)
+    upload_description = Keyword.get(optional_args, :upload_description)
 
     request_opts = [
       method: :post,
@@ -90,7 +92,7 @@ defmodule LINEBotSDK.ManageAudienceBlob do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {202, LINEBotSDK.ManageAudience.Model.CreateAudienceGroupResponse}
     ])

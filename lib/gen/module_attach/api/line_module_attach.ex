@@ -20,7 +20,7 @@ defmodule LINEBotSDK.LineModuleAttach do
   - `grant_type` (String.t): authorization_code
   - `code` (String.t): Authorization code received from the LINE Platform.
   - `redirect_uri` (String.t): Specify the redirect_uri specified in the URL for authentication and authorization.
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:code_verifier` (String.t): Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
     - `:client_id` (String.t): Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
     - `:client_secret` (String.t): Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
@@ -28,20 +28,28 @@ defmodule LINEBotSDK.LineModuleAttach do
     - `:basic_search_id` (String.t): If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
     - `:scope` (String.t): If you specified a value for scope in the URL for authentication and authorization, specify the same value.
     - `:brand_type` (String.t): If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.AttachModuleResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def attach_module(client, grant_type, code, redirect_uri, opts \\ []) do
-    code_verifier = Keyword.get(opts, :code_verifier)
-    client_id = Keyword.get(opts, :client_id)
-    client_secret = Keyword.get(opts, :client_secret)
-    region = Keyword.get(opts, :region)
-    basic_search_id = Keyword.get(opts, :basic_search_id)
-    scope = Keyword.get(opts, :scope)
-    brand_type = Keyword.get(opts, :brand_type)
+  def attach_module(
+        client,
+        grant_type,
+        code,
+        redirect_uri,
+        optional_args \\ [],
+        client_opts \\ []
+      ) do
+    code_verifier = Keyword.get(optional_args, :code_verifier)
+    client_id = Keyword.get(optional_args, :client_id)
+    client_secret = Keyword.get(optional_args, :client_secret)
+    region = Keyword.get(optional_args, :region)
+    basic_search_id = Keyword.get(optional_args, :basic_search_id)
+    scope = Keyword.get(optional_args, :scope)
+    brand_type = Keyword.get(optional_args, :brand_type)
 
     request_opts = [
       method: :post,
@@ -65,7 +73,7 @@ defmodule LINEBotSDK.LineModuleAttach do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.ModuleAttach.Model.AttachModuleResponse}
     ])

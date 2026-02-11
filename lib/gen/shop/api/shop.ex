@@ -18,14 +18,14 @@ defmodule LINEBotSDK.Shop do
 
   - `client` (Req.Request.t()): Client to make request with
   - `mission_sticker_request` (MissionStickerRequest): 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def mission_sticker_v3(client, mission_sticker_request, opts \\ []) do
+  def mission_sticker_v3(client, mission_sticker_request, client_opts \\ []) do
     request_opts = [
       method: :post,
       url: "/shop/v3/mission",
@@ -33,7 +33,7 @@ defmodule LINEBotSDK.Shop do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])

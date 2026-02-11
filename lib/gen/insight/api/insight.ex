@@ -17,21 +17,21 @@ defmodule LINEBotSDK.Insight do
   ### Parameters
 
   - `client` (Req.Request.t()): Client to make request with
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetFriendsDemographicsResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_friends_demographics(client, opts \\ []) do
+  def get_friends_demographics(client, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/insight/demographic"
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Insight.Model.GetFriendsDemographicsResponse}
     ])
@@ -45,14 +45,14 @@ defmodule LINEBotSDK.Insight do
 
   - `client` (Req.Request.t()): Client to make request with
   - `request_id` (String.t): Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetMessageEventResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_message_event(client, request_id, opts \\ []) do
+  def get_message_event(client, request_id, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/event",
@@ -60,7 +60,7 @@ defmodule LINEBotSDK.Insight do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Insight.Model.GetMessageEventResponse}
     ])
@@ -73,16 +73,17 @@ defmodule LINEBotSDK.Insight do
   ### Parameters
 
   - `client` (Req.Request.t()): Client to make request with
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:date` (String.t): Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetNumberOfFollowersResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_number_of_followers(client, opts \\ []) do
-    date = Keyword.get(opts, :date)
+  def get_number_of_followers(client, optional_args \\ [], client_opts \\ []) do
+    date = Keyword.get(optional_args, :date)
 
     request_opts = [
       method: :get,
@@ -91,7 +92,7 @@ defmodule LINEBotSDK.Insight do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Insight.Model.GetNumberOfFollowersResponse}
     ])
@@ -105,14 +106,14 @@ defmodule LINEBotSDK.Insight do
 
   - `client` (Req.Request.t()): Client to make request with
   - `date` (String.t): Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_number_of_message_deliveries(client, date, opts \\ []) do
+  def get_number_of_message_deliveries(client, date, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/delivery",
@@ -120,7 +121,7 @@ defmodule LINEBotSDK.Insight do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Insight.Model.GetNumberOfMessageDeliveriesResponse}
     ])
@@ -135,14 +136,14 @@ defmodule LINEBotSDK.Insight do
   - `custom_aggregation_unit` (String.t): Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
   - `from` (String.t): Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
   - `to` (String.t): End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetStatisticsPerUnitResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_statistics_per_unit(client, custom_aggregation_unit, from, to, opts \\ []) do
+  def get_statistics_per_unit(client, custom_aggregation_unit, from, to, client_opts \\ []) do
     request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/event/aggregation",
@@ -154,7 +155,7 @@ defmodule LINEBotSDK.Insight do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponse}
     ])

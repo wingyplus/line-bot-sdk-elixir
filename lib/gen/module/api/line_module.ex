@@ -18,16 +18,17 @@ defmodule LINEBotSDK.LineModule do
 
   - `client` (Req.Request.t()): Client to make request with
   - `chat_id` (String.t): The `userId`, `roomId`, or `groupId`
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:body` (AcquireChatControlRequest): 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def acquire_chat_control(client, chat_id, opts \\ []) do
-    body = Keyword.get(opts, :body)
+  def acquire_chat_control(client, chat_id, optional_args \\ [], client_opts \\ []) do
+    body = Keyword.get(optional_args, :body)
 
     request_opts = [
       method: :post,
@@ -37,7 +38,7 @@ defmodule LINEBotSDK.LineModule do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
@@ -49,16 +50,17 @@ defmodule LINEBotSDK.LineModule do
   ### Parameters
 
   - `client` (Req.Request.t()): Client to make request with
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:body` (DetachModuleRequest): 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def detach_module(client, opts \\ []) do
-    body = Keyword.get(opts, :body)
+  def detach_module(client, optional_args \\ [], client_opts \\ []) do
+    body = Keyword.get(optional_args, :body)
 
     request_opts = [
       method: :post,
@@ -67,7 +69,7 @@ defmodule LINEBotSDK.LineModule do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
@@ -79,18 +81,19 @@ defmodule LINEBotSDK.LineModule do
   ### Parameters
 
   - `client` (Req.Request.t()): Client to make request with
-  - `opts` (keyword): Optional parameters
+  - `optional_args` (keyword): Optional parameters
     - `:start` (String.t): Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
     - `:limit` (integer()): Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetModulesResponse.t}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def get_modules(client, opts \\ []) do
-    start = Keyword.get(opts, :start)
-    limit = Keyword.get(opts, :limit)
+  def get_modules(client, optional_args \\ [], client_opts \\ []) do
+    start = Keyword.get(optional_args, :start)
+    limit = Keyword.get(optional_args, :limit)
 
     request_opts = [
       method: :get,
@@ -99,7 +102,7 @@ defmodule LINEBotSDK.LineModule do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, LINEBotSDK.Module.Model.GetModulesResponse}
     ])
@@ -112,14 +115,14 @@ defmodule LINEBotSDK.LineModule do
 
   - `client` (Req.Request.t()): Client to make request with
   - `chat_id` (String.t): The `userId`, `roomId`, or `groupId`
-  - `opts` (keyword): Optional parameters
+  - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t()}` on failure
   """
-  def release_chat_control(client, chat_id, opts \\ []) do
+  def release_chat_control(client, chat_id, client_opts \\ []) do
     request_opts = [
       method: :post,
       url: "/v2/bot/chat/:chat_id/control/release",
@@ -127,7 +130,7 @@ defmodule LINEBotSDK.LineModule do
     ]
 
     client
-    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false}
     ])
