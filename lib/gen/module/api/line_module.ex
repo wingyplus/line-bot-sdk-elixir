@@ -98,7 +98,7 @@ defmodule LINEBotSDK.LineModule do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetModulesResponse}
+      {200, LINEBotSDK.Module.Model.GetModulesResponse}
     ])
   end
 

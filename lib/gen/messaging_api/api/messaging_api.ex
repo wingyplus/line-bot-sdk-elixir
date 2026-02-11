@@ -37,10 +37,10 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, %{}},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {403, LINEBotSDK.Model.ErrorResponse},
-      {409, LINEBotSDK.Model.ErrorResponse},
-      {429, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {403, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {409, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {429, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -95,9 +95,9 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {404, LINEBotSDK.Model.ErrorResponse},
-      {410, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {410, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -127,8 +127,8 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.CouponCreateResponse},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.CouponCreateResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -156,7 +156,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuIdResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuIdResponse}
     ])
   end
 
@@ -185,7 +185,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -242,7 +242,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -274,7 +274,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetAggregationUnitNameListResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetAggregationUnitNameListResponse}
     ])
   end
 
@@ -300,7 +300,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetAggregationUnitUsageResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetAggregationUnitUsageResponse}
     ])
   end
 
@@ -326,7 +326,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.BotInfoResponse}
+      {200, LINEBotSDK.MessagingApi.Model.BotInfoResponse}
     ])
   end
 
@@ -354,9 +354,9 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.CouponResponse},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {404, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.CouponResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -382,7 +382,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuIdResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuIdResponse}
     ])
   end
 
@@ -414,7 +414,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetFollowersResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetFollowersResponse}
     ])
   end
 
@@ -442,7 +442,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GroupMemberCountResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GroupMemberCountResponse}
     ])
   end
 
@@ -471,7 +471,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GroupUserProfileResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GroupUserProfileResponse}
     ])
   end
 
@@ -503,7 +503,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.MembersIdsResponse}
+      {200, LINEBotSDK.MessagingApi.Model.MembersIdsResponse}
     ])
   end
 
@@ -531,7 +531,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GroupSummaryResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GroupSummaryResponse}
     ])
   end
 
@@ -565,9 +565,9 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetJoinedMembershipUsersResponse},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {404, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetJoinedMembershipUsersResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -593,8 +593,8 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.MembershipListResponse},
-      {404, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.MembershipListResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -622,9 +622,9 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetMembershipSubscriptionResponse},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {404, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetMembershipSubscriptionResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -650,7 +650,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.MessageQuotaResponse}
+      {200, LINEBotSDK.MessagingApi.Model.MessageQuotaResponse}
     ])
   end
 
@@ -676,7 +676,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.QuotaConsumptionResponse}
+      {200, LINEBotSDK.MessagingApi.Model.QuotaConsumptionResponse}
     ])
   end
 
@@ -704,7 +704,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NarrowcastProgressResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NarrowcastProgressResponse}
     ])
   end
 
@@ -732,7 +732,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse}
     ])
   end
 
@@ -760,7 +760,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse}
     ])
   end
 
@@ -788,7 +788,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse}
     ])
   end
 
@@ -816,7 +816,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse}
     ])
   end
 
@@ -844,7 +844,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+      {200, LINEBotSDK.MessagingApi.Model.NumberOfMessagesResponse}
     ])
   end
 
@@ -872,7 +872,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.UserProfileResponse}
+      {200, LINEBotSDK.MessagingApi.Model.UserProfileResponse}
     ])
   end
 
@@ -900,7 +900,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuResponse}
     ])
   end
 
@@ -928,7 +928,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuAliasResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuAliasResponse}
     ])
   end
 
@@ -954,7 +954,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuAliasListResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuAliasListResponse}
     ])
   end
 
@@ -982,7 +982,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuBatchProgressResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuBatchProgressResponse}
     ])
   end
 
@@ -1010,7 +1010,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuIdResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuIdResponse}
     ])
   end
 
@@ -1036,7 +1036,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RichMenuListResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RichMenuListResponse}
     ])
   end
 
@@ -1064,7 +1064,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RoomMemberCountResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RoomMemberCountResponse}
     ])
   end
 
@@ -1093,7 +1093,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.RoomUserProfileResponse}
+      {200, LINEBotSDK.MessagingApi.Model.RoomUserProfileResponse}
     ])
   end
 
@@ -1125,7 +1125,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.MembersIdsResponse}
+      {200, LINEBotSDK.MessagingApi.Model.MembersIdsResponse}
     ])
   end
 
@@ -1151,7 +1151,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetWebhookEndpointResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetWebhookEndpointResponse}
     ])
   end
 
@@ -1179,7 +1179,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.IssueLinkTokenResponse}
+      {200, LINEBotSDK.MessagingApi.Model.IssueLinkTokenResponse}
     ])
   end
 
@@ -1208,8 +1208,8 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {404, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {404, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1331,8 +1331,8 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.MessagingApiPagerCouponListResponse},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.MessagingApiPagerCouponListResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1389,7 +1389,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1422,10 +1422,10 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, %{}},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {403, LINEBotSDK.Model.ErrorResponse},
-      {409, LINEBotSDK.Model.ErrorResponse},
-      {429, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {403, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {409, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {429, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1458,10 +1458,10 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {202, %{}},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {403, LINEBotSDK.Model.ErrorResponse},
-      {409, LINEBotSDK.Model.ErrorResponse},
-      {429, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {403, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {409, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {429, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1493,11 +1493,11 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.PushMessageResponse},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {403, LINEBotSDK.Model.ErrorResponse},
-      {409, LINEBotSDK.Model.ErrorResponse},
-      {429, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.PushMessageResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {403, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {409, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {429, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1531,7 +1531,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {422, LINEBotSDK.Model.ErrorResponse}
+      {422, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1559,9 +1559,9 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.ReplyMessageResponse},
-      {400, LINEBotSDK.Model.ErrorResponse},
-      {429, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.MessagingApi.Model.ReplyMessageResponse},
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse},
+      {429, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1674,7 +1674,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {202, %{}},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 
@@ -1704,7 +1704,7 @@ defmodule LINEBotSDK.MessagingApi do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.TestWebhookEndpointResponse}
+      {200, LINEBotSDK.MessagingApi.Model.TestWebhookEndpointResponse}
     ])
   end
 
@@ -1796,7 +1796,7 @@ defmodule LINEBotSDK.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
       {200, false},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {400, LINEBotSDK.MessagingApi.Model.ErrorResponse}
     ])
   end
 

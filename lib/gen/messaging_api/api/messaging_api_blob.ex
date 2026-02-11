@@ -88,7 +88,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetMessageContentTranscodingResponse}
+      {200, LINEBotSDK.MessagingApi.Model.GetMessageContentTranscodingResponse}
     ])
   end
 

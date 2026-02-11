@@ -33,7 +33,7 @@ defmodule LINEBotSDK.Liff do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.AddLiffAppResponse},
+      {200, LINEBotSDK.Liff.Model.AddLiffAppResponse},
       {400, false},
       {401, false}
     ])
@@ -93,7 +93,7 @@ defmodule LINEBotSDK.Liff do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetAllLiffAppsResponse},
+      {200, LINEBotSDK.Liff.Model.GetAllLiffAppsResponse},
       {401, false},
       {404, false}
     ])

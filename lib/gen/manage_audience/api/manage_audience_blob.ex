@@ -89,7 +89,7 @@ defmodule LINEBotSDK.ManageAudienceBlob do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {202, LINEBotSDK.Model.CreateAudienceGroupResponse}
+      {202, LINEBotSDK.ManageAudience.Model.CreateAudienceGroupResponse}
     ])
   end
 end

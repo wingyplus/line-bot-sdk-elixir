@@ -30,7 +30,7 @@ defmodule LINEBotSDK.Insight do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetFriendsDemographicsResponse}
+      {200, LINEBotSDK.Insight.Model.GetFriendsDemographicsResponse}
     ])
   end
 
@@ -59,7 +59,7 @@ defmodule LINEBotSDK.Insight do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetMessageEventResponse}
+      {200, LINEBotSDK.Insight.Model.GetMessageEventResponse}
     ])
   end
 
@@ -90,7 +90,7 @@ defmodule LINEBotSDK.Insight do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetNumberOfFollowersResponse}
+      {200, LINEBotSDK.Insight.Model.GetNumberOfFollowersResponse}
     ])
   end
 
@@ -119,7 +119,7 @@ defmodule LINEBotSDK.Insight do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse}
+      {200, LINEBotSDK.Insight.Model.GetNumberOfMessageDeliveriesResponse}
     ])
   end
 
@@ -153,7 +153,7 @@ defmodule LINEBotSDK.Insight do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetStatisticsPerUnitResponse}
+      {200, LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponse}
     ])
   end
 end

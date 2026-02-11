@@ -45,7 +45,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.ChannelAccessTokenKeyIdsResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.ChannelAccessTokenKeyIdsResponse}
     ])
   end
 
@@ -83,8 +83,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.IssueShortLivedChannelAccessTokenResponse},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.IssueShortLivedChannelAccessTokenResponse},
+      {400, LINEBotSDK.ChannelAccessToken.Model.ErrorResponse}
     ])
   end
 
@@ -128,7 +128,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.IssueChannelAccessTokenResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.IssueChannelAccessTokenResponse}
     ])
   end
 
@@ -176,7 +176,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.IssueStatelessChannelAccessTokenResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.IssueStatelessChannelAccessTokenResponse}
     ])
   end
 
@@ -270,7 +270,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.VerifyChannelAccessTokenResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.VerifyChannelAccessTokenResponse}
     ])
   end
 
@@ -298,7 +298,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.VerifyChannelAccessTokenResponse}
+      {200, LINEBotSDK.ChannelAccessToken.Model.VerifyChannelAccessTokenResponse}
     ])
   end
 end

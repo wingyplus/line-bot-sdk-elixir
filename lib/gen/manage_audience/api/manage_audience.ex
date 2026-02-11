@@ -60,7 +60,7 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {202, LINEBotSDK.Model.CreateAudienceGroupResponse}
+      {202, LINEBotSDK.ManageAudience.Model.CreateAudienceGroupResponse}
     ])
   end
 
@@ -92,7 +92,7 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {202, LINEBotSDK.Model.CreateClickBasedAudienceGroupResponse}
+      {202, LINEBotSDK.ManageAudience.Model.CreateClickBasedAudienceGroupResponse}
     ])
   end
 
@@ -120,7 +120,7 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {202, LINEBotSDK.Model.CreateImpBasedAudienceGroupResponse}
+      {202, LINEBotSDK.ManageAudience.Model.CreateImpBasedAudienceGroupResponse}
     ])
   end
 
@@ -176,8 +176,8 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetAudienceDataResponse},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.ManageAudience.Model.GetAudienceDataResponse},
+      {400, LINEBotSDK.ManageAudience.Model.ErrorResponse}
     ])
   end
 
@@ -227,7 +227,7 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetAudienceGroupsResponse}
+      {200, LINEBotSDK.ManageAudience.Model.GetAudienceGroupsResponse}
     ])
   end
 
@@ -255,8 +255,8 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetSharedAudienceDataResponse},
-      {400, LINEBotSDK.Model.ErrorResponse}
+      {200, LINEBotSDK.ManageAudience.Model.GetSharedAudienceDataResponse},
+      {400, LINEBotSDK.ManageAudience.Model.ErrorResponse}
     ])
   end
 
@@ -306,7 +306,7 @@ defmodule LINEBotSDK.ManageAudience do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.GetSharedAudienceGroupsResponse}
+      {200, LINEBotSDK.ManageAudience.Model.GetSharedAudienceGroupsResponse}
     ])
   end
 

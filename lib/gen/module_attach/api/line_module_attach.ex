@@ -64,7 +64,7 @@ defmodule LINEBotSDK.LineModuleAttach do
     client
     |> Req.request(Keyword.merge(request_opts, opts))
     |> Deserializer.evaluate_response([
-      {200, LINEBotSDK.Model.AttachModuleResponse}
+      {200, LINEBotSDK.ModuleAttach.Model.AttachModuleResponse}
     ])
   end
 end
