@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.AudienceGroupJob do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroupJobId => integer() | nil,
-    :audienceGroupId => integer() | nil,
-    :description => String.t | nil,
-    :type => LINEBotSDK.Model.AudienceGroupJobType.t | nil,
-    :jobStatus => LINEBotSDK.Model.AudienceGroupJobStatus.t | nil,
-    :failedType => LINEBotSDK.Model.AudienceGroupJobFailedType.t | nil,
-    :audienceCount => integer() | nil,
-    :created => integer() | nil
-  }
+          :audienceGroupJobId => integer() | nil,
+          :audienceGroupId => integer() | nil,
+          :description => String.t() | nil,
+          :type => LINEBotSDK.Model.AudienceGroupJobType.t() | nil,
+          :jobStatus => LINEBotSDK.Model.AudienceGroupJobStatus.t() | nil,
+          :failedType => LINEBotSDK.Model.AudienceGroupJobFailedType.t() | nil,
+          :audienceCount => integer() | nil,
+          :created => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

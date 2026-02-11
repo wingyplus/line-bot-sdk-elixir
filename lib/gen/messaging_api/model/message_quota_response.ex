@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.MessageQuotaResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.MessageQuotaResponse do
   ]
 
   @type t :: %__MODULE__{
-    :type => LINEBotSDK.Model.QuotaType.t,
-    :value => integer() | nil
-  }
+          :type => LINEBotSDK.Model.QuotaType.t(),
+          :value => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImagemapExternalLink do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.ImagemapExternalLink do
   ]
 
   @type t :: %__MODULE__{
-    :linkUri => Uri | nil,
-    :label => String.t | nil
-  }
+          :linkUri => Uri | nil,
+          :label => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

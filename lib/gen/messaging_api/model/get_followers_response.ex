@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetFollowersResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.GetFollowersResponse do
   ]
 
   @type t :: %__MODULE__{
-    :userIds => [String.t],
-    :next => String.t | nil
-  }
+          :userIds => [String.t()],
+          :next => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

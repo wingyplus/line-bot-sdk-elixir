@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ClipboardAction do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.ClipboardAction do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :label => String.t | nil,
-    :clipboardText => String.t
-  }
+          :type => String.t() | nil,
+          :label => String.t() | nil,
+          :clipboardText => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

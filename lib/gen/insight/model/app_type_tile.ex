@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AppTypeTile do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.AppTypeTile do
   ]
 
   @type t :: %__MODULE__{
-    :appType => String.t | nil,
-    :percentage => float() | nil
-  }
+          :appType => String.t() | nil,
+          :percentage => float() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

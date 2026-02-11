@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.MembershipContent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t
-  }
+          :type => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

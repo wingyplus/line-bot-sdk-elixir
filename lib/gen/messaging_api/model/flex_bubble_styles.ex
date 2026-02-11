@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexBubbleStyles do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.FlexBubbleStyles do
   ]
 
   @type t :: %__MODULE__{
-    :header => LINEBotSDK.Model.FlexBlockStyle.t | nil,
-    :hero => LINEBotSDK.Model.FlexBlockStyle.t | nil,
-    :body => LINEBotSDK.Model.FlexBlockStyle.t | nil,
-    :footer => LINEBotSDK.Model.FlexBlockStyle.t | nil
-  }
+          :header => LINEBotSDK.Model.FlexBlockStyle.t() | nil,
+          :hero => LINEBotSDK.Model.FlexBlockStyle.t() | nil,
+          :body => LINEBotSDK.Model.FlexBlockStyle.t() | nil,
+          :footer => LINEBotSDK.Model.FlexBlockStyle.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

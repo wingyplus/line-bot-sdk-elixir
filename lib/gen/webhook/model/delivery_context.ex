@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.DeliveryContext do
   ]
 
   @type t :: %__MODULE__{
-    :isRedelivery => boolean()
-  }
+          :isRedelivery => boolean()
+        }
 
   def decode(value) do
     value
   end
 end
-

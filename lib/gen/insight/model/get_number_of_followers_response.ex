@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.GetNumberOfFollowersResponse do
   ]
 
   @type t :: %__MODULE__{
-    :status => String.t | nil,
-    :followers => integer() | nil,
-    :targetedReaches => integer() | nil,
-    :blocks => integer() | nil
-  }
+          :status => String.t() | nil,
+          :followers => integer() | nil,
+          :targetedReaches => integer() | nil,
+          :blocks => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

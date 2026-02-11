@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.VideoPlayComplete do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.VideoPlayComplete do
   ]
 
   @type t :: %__MODULE__{
-    :trackingId => String.t
-  }
+          :trackingId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

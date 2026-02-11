@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.Adaccount do
   ]
 
   @type t :: %__MODULE__{
-    :name => String.t | nil
-  }
+          :name => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

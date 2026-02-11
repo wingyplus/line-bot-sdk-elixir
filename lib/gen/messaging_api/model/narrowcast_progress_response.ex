@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.NarrowcastProgressResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.NarrowcastProgressResponse do
   ]
 
   @type t :: %__MODULE__{
-    :phase => String.t,
-    :successCount => integer() | nil,
-    :failureCount => integer() | nil,
-    :targetCount => integer() | nil,
-    :failedDescription => String.t | nil,
-    :errorCode => integer() | nil,
-    :acceptedTime => DateTime.t,
-    :completedTime => DateTime.t | nil
-  }
+          :phase => String.t(),
+          :successCount => integer() | nil,
+          :failureCount => integer() | nil,
+          :targetCount => integer() | nil,
+          :failedDescription => String.t() | nil,
+          :errorCode => integer() | nil,
+          :acceptedTime => DateTime.t(),
+          :completedTime => DateTime.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

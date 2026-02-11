@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImageSet do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.ImageSet do
   ]
 
   @type t :: %__MODULE__{
-    :id => String.t,
-    :index => integer() | nil,
-    :total => integer() | nil
-  }
+          :id => String.t(),
+          :index => integer() | nil,
+          :total => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.Recipient do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil
-  }
+          :type => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.AllMentionee do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :index => integer(),
-    :length => integer()
-  }
+          :type => String.t(),
+          :index => integer(),
+          :length => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

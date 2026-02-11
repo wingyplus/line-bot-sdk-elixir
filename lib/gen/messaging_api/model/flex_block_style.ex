@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexBlockStyle do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.FlexBlockStyle do
   ]
 
   @type t :: %__MODULE__{
-    :backgroundColor => String.t | nil,
-    :separator => boolean() | nil,
-    :separatorColor => String.t | nil
-  }
+          :backgroundColor => String.t() | nil,
+          :separator => boolean() | nil,
+          :separatorColor => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

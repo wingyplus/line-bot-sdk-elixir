@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.Filter do
   ]
 
   @type t :: %__MODULE__{
-    :demographic => LINEBotSDK.Model.DemographicFilter.t | nil
-  }
+          :demographic => LINEBotSDK.Model.DemographicFilter.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

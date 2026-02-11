@@ -24,23 +24,22 @@ defmodule LINEBotSDK.Model.CouponCreateRequest do
   ]
 
   @type t :: %__MODULE__{
-    :acquisitionCondition => LINEBotSDK.Model.AcquisitionConditionRequest.t,
-    :barcodeImageUrl => String.t | nil,
-    :couponCode => String.t | nil,
-    :description => String.t | nil,
-    :endTimestamp => integer(),
-    :imageUrl => String.t | nil,
-    :maxUseCountPerTicket => integer(),
-    :startTimestamp => integer(),
-    :title => String.t,
-    :usageCondition => String.t | nil,
-    :reward => LINEBotSDK.Model.CouponRewardRequest.t | nil,
-    :visibility => String.t,
-    :timezone => String.t
-  }
+          :acquisitionCondition => LINEBotSDK.Model.AcquisitionConditionRequest.t(),
+          :barcodeImageUrl => String.t() | nil,
+          :couponCode => String.t() | nil,
+          :description => String.t() | nil,
+          :endTimestamp => integer(),
+          :imageUrl => String.t() | nil,
+          :maxUseCountPerTicket => integer(),
+          :startTimestamp => integer(),
+          :title => String.t(),
+          :usageCondition => String.t() | nil,
+          :reward => LINEBotSDK.Model.CouponRewardRequest.t() | nil,
+          :visibility => String.t(),
+          :timezone => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

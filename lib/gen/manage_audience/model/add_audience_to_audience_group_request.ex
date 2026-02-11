@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.AddAudienceToAudienceGroupRequest do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroupId => integer() | nil,
-    :uploadDescription => String.t | nil,
-    :audiences => [LINEBotSDK.Model.Audience.t] | nil
-  }
+          :audienceGroupId => integer() | nil,
+          :uploadDescription => String.t() | nil,
+          :audiences => [LINEBotSDK.Model.Audience.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

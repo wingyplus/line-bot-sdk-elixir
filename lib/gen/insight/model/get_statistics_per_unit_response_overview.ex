@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.GetStatisticsPerUnitResponseOverview do
   ]
 
   @type t :: %__MODULE__{
-    :uniqueImpression => integer() | nil,
-    :uniqueClick => integer() | nil,
-    :uniqueMediaPlayed => integer() | nil,
-    :uniqueMediaPlayed100Percent => integer() | nil
-  }
+          :uniqueImpression => integer() | nil,
+          :uniqueClick => integer() | nil,
+          :uniqueMediaPlayed => integer() | nil,
+          :uniqueMediaPlayed100Percent => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

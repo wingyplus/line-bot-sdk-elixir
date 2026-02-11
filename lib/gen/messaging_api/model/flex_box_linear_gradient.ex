@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexBoxLinearGradient do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.FlexBoxLinearGradient do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :angle => String.t | nil,
-    :startColor => String.t | nil,
-    :endColor => String.t | nil,
-    :centerColor => String.t | nil,
-    :centerPosition => String.t | nil
-  }
+          :type => String.t(),
+          :angle => String.t() | nil,
+          :startColor => String.t() | nil,
+          :endColor => String.t() | nil,
+          :centerColor => String.t() | nil,
+          :centerPosition => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

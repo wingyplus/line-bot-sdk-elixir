@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.GetMessageEventResponse do
   ]
 
   @type t :: %__MODULE__{
-    :overview => LINEBotSDK.Model.GetMessageEventResponseOverview.t | nil,
-    :messages => [LINEBotSDK.Model.GetMessageEventResponseMessage.t] | nil,
-    :clicks => [LINEBotSDK.Model.GetMessageEventResponseClick.t] | nil
-  }
+          :overview => LINEBotSDK.Model.GetMessageEventResponseOverview.t() | nil,
+          :messages => [LINEBotSDK.Model.GetMessageEventResponseMessage.t()] | nil,
+          :clicks => [LINEBotSDK.Model.GetMessageEventResponseClick.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

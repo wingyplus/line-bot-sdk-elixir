@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.ChatReference do
   ]
 
   @type t :: %__MODULE__{
-    :userId => String.t
-  }
+          :userId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.DetachModuleRequest do
   ]
 
   @type t :: %__MODULE__{
-    :botId => String.t | nil
-  }
+          :botId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

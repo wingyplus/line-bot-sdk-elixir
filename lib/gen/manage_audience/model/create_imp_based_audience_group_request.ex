@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.CreateImpBasedAudienceGroupRequest do
   ]
 
   @type t :: %__MODULE__{
-    :description => String.t | nil,
-    :requestId => String.t | nil
-  }
+          :description => String.t() | nil,
+          :requestId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

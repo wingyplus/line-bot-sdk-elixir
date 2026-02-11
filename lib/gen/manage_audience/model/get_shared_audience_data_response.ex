@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.GetSharedAudienceDataResponse do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroup => LINEBotSDK.Model.AudienceGroup.t | nil,
-    :jobs => [LINEBotSDK.Model.AudienceGroupJob.t] | nil,
-    :owner => LINEBotSDK.Model.DetailedOwner.t | nil
-  }
+          :audienceGroup => LINEBotSDK.Model.AudienceGroup.t() | nil,
+          :jobs => [LINEBotSDK.Model.AudienceGroupJob.t()] | nil,
+          :owner => LINEBotSDK.Model.DetailedOwner.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

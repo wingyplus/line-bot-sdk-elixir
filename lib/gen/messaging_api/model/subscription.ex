@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.Subscription do
   ]
 
   @type t :: %__MODULE__{
-    :membership => LINEBotSDK.Model.SubscribedMembershipPlan.t,
-    :user => LINEBotSDK.Model.SubscribedMembershipUser.t
-  }
+          :membership => LINEBotSDK.Model.SubscribedMembershipPlan.t(),
+          :user => LINEBotSDK.Model.SubscribedMembershipUser.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

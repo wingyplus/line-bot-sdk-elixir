@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.CouponCreateResponse do
   ]
 
   @type t :: %__MODULE__{
-    :couponId => String.t
-  }
+          :couponId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

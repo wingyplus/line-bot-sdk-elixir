@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ConfirmTemplate do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.ConfirmTemplate do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :text => String.t,
-    :actions => [LINEBotSDK.Model.Action.t]
-  }
+          :type => String.t(),
+          :text => String.t(),
+          :actions => [LINEBotSDK.Model.Action.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexBox do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -39,38 +39,37 @@ defmodule LINEBotSDK.Model.FlexBox do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :layout => String.t,
-    :flex => integer() | nil,
-    :contents => [LINEBotSDK.Model.FlexComponent.t],
-    :spacing => String.t | nil,
-    :margin => String.t | nil,
-    :position => String.t | nil,
-    :offsetTop => String.t | nil,
-    :offsetBottom => String.t | nil,
-    :offsetStart => String.t | nil,
-    :offsetEnd => String.t | nil,
-    :backgroundColor => String.t | nil,
-    :borderColor => String.t | nil,
-    :borderWidth => String.t | nil,
-    :cornerRadius => String.t | nil,
-    :width => String.t | nil,
-    :maxWidth => String.t | nil,
-    :height => String.t | nil,
-    :maxHeight => String.t | nil,
-    :paddingAll => String.t | nil,
-    :paddingTop => String.t | nil,
-    :paddingBottom => String.t | nil,
-    :paddingStart => String.t | nil,
-    :paddingEnd => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil,
-    :justifyContent => String.t | nil,
-    :alignItems => String.t | nil,
-    :background => LINEBotSDK.Model.FlexBoxBackground.t | nil
-  }
+          :type => String.t(),
+          :layout => String.t(),
+          :flex => integer() | nil,
+          :contents => [LINEBotSDK.Model.FlexComponent.t()],
+          :spacing => String.t() | nil,
+          :margin => String.t() | nil,
+          :position => String.t() | nil,
+          :offsetTop => String.t() | nil,
+          :offsetBottom => String.t() | nil,
+          :offsetStart => String.t() | nil,
+          :offsetEnd => String.t() | nil,
+          :backgroundColor => String.t() | nil,
+          :borderColor => String.t() | nil,
+          :borderWidth => String.t() | nil,
+          :cornerRadius => String.t() | nil,
+          :width => String.t() | nil,
+          :maxWidth => String.t() | nil,
+          :height => String.t() | nil,
+          :maxHeight => String.t() | nil,
+          :paddingAll => String.t() | nil,
+          :paddingTop => String.t() | nil,
+          :paddingBottom => String.t() | nil,
+          :paddingStart => String.t() | nil,
+          :paddingEnd => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil,
+          :justifyContent => String.t() | nil,
+          :alignItems => String.t() | nil,
+          :background => LINEBotSDK.Model.FlexBoxBackground.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

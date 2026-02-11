@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.SubscriptionPeriodTile do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.SubscriptionPeriodTile do
   ]
 
   @type t :: %__MODULE__{
-    :subscriptionPeriod => String.t | nil,
-    :percentage => float() | nil
-  }
+          :subscriptionPeriod => String.t() | nil,
+          :percentage => float() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

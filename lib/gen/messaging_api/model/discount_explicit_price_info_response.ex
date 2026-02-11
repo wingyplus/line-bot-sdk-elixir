@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.DiscountExplicitPriceInfoResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.DiscountExplicitPriceInfoResponse do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :currency => String.t | nil,
-    :priceAfterDiscount => integer() | nil,
-    :originalPrice => integer() | nil
-  }
+          :type => String.t(),
+          :currency => String.t() | nil,
+          :priceAfterDiscount => integer() | nil,
+          :originalPrice => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

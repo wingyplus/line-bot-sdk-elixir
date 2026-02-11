@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.AcquireChatControlRequest do
   ]
 
   @type t :: %__MODULE__{
-    :expired => boolean() | nil,
-    :ttl => integer() | nil
-  }
+          :expired => boolean() | nil,
+          :ttl => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

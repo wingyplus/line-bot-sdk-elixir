@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuBulkUnlinkRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.RichMenuBulkUnlinkRequest do
   ]
 
   @type t :: %__MODULE__{
-    :userIds => [String.t]
-  }
+          :userIds => [String.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

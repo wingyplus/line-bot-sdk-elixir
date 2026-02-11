@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.CreateAudienceGroupRequest do
   ]
 
   @type t :: %__MODULE__{
-    :description => String.t | nil,
-    :isIfaAudience => boolean() | nil,
-    :uploadDescription => String.t | nil,
-    :audiences => [LINEBotSDK.Model.Audience.t] | nil
-  }
+          :description => String.t() | nil,
+          :isIfaAudience => boolean() | nil,
+          :uploadDescription => String.t() | nil,
+          :audiences => [LINEBotSDK.Model.Audience.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

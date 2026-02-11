@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.PushMessageRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.PushMessageRequest do
   ]
 
   @type t :: %__MODULE__{
-    :to => String.t,
-    :messages => [LINEBotSDK.Model.Message.t],
-    :notificationDisabled => boolean() | nil,
-    :customAggregationUnits => [String.t] | nil
-  }
+          :to => String.t(),
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :notificationDisabled => boolean() | nil,
+          :customAggregationUnits => [String.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

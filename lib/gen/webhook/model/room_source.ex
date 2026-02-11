@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RoomSource do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.RoomSource do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :userId => String.t | nil,
-    :roomId => String.t
-  }
+          :type => String.t(),
+          :userId => String.t() | nil,
+          :roomId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

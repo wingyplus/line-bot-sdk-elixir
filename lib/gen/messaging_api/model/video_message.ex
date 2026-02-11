@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.VideoMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.VideoMessage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :quickReply => LINEBotSDK.Model.QuickReply.t | nil,
-    :sender => LINEBotSDK.Model.Sender.t | nil,
-    :originalContentUrl => Uri,
-    :previewImageUrl => Uri,
-    :trackingId => String.t | nil
-  }
+          :type => String.t(),
+          :quickReply => LINEBotSDK.Model.QuickReply.t() | nil,
+          :sender => LINEBotSDK.Model.Sender.t() | nil,
+          :originalContentUrl => Uri,
+          :previewImageUrl => Uri,
+          :trackingId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

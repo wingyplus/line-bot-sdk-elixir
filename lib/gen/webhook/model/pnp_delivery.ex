@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.PnpDelivery do
   ]
 
   @type t :: %__MODULE__{
-    :data => String.t
-  }
+          :data => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

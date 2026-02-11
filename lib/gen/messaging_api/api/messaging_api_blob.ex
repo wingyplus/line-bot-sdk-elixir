@@ -111,6 +111,7 @@ defmodule LINEBotSDK.MessagingApiBlob do
   """
   def set_rich_menu_image(client, rich_menu_id, opts \\ []) do
     body = Keyword.get(opts, :body)
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/richmenu/:rich_menu_id/content",

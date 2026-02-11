@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetStatisticsPerUnitResponseClick do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.GetStatisticsPerUnitResponseClick do
   ]
 
   @type t :: %__MODULE__{
-    :seq => integer(),
-    :url => String.t,
-    :click => integer() | nil,
-    :uniqueClick => integer() | nil,
-    :uniqueClickOfRequest => integer() | nil
-  }
+          :seq => integer(),
+          :url => String.t(),
+          :click => integer() | nil,
+          :uniqueClick => integer() | nil,
+          :uniqueClickOfRequest => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImageMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.ImageMessage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :quickReply => LINEBotSDK.Model.QuickReply.t | nil,
-    :sender => LINEBotSDK.Model.Sender.t | nil,
-    :originalContentUrl => Uri,
-    :previewImageUrl => Uri
-  }
+          :type => String.t(),
+          :quickReply => LINEBotSDK.Model.QuickReply.t() | nil,
+          :sender => LINEBotSDK.Model.Sender.t() | nil,
+          :originalContentUrl => Uri,
+          :previewImageUrl => Uri
+        }
 
   def decode(value) do
     value
   end
 end
-

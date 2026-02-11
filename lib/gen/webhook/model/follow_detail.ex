@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FollowDetail do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.FollowDetail do
   ]
 
   @type t :: %__MODULE__{
-    :isUnblocked => boolean()
-  }
+          :isUnblocked => boolean()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.GetFriendsDemographicsResponse do
   ]
 
   @type t :: %__MODULE__{
-    :available => boolean() | nil,
-    :genders => [LINEBotSDK.Model.GenderTile.t] | nil,
-    :ages => [LINEBotSDK.Model.AgeTile.t] | nil,
-    :areas => [LINEBotSDK.Model.AreaTile.t] | nil,
-    :appTypes => [LINEBotSDK.Model.AppTypeTile.t] | nil,
-    :subscriptionPeriods => [LINEBotSDK.Model.SubscriptionPeriodTile.t] | nil
-  }
+          :available => boolean() | nil,
+          :genders => [LINEBotSDK.Model.GenderTile.t()] | nil,
+          :ages => [LINEBotSDK.Model.AgeTile.t()] | nil,
+          :areas => [LINEBotSDK.Model.AreaTile.t()] | nil,
+          :appTypes => [LINEBotSDK.Model.AppTypeTile.t()] | nil,
+          :subscriptionPeriods => [LINEBotSDK.Model.SubscriptionPeriodTile.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

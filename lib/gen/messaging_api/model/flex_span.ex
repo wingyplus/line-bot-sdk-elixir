@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexSpan do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.FlexSpan do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :text => String.t | nil,
-    :size => String.t | nil,
-    :color => String.t | nil,
-    :weight => String.t | nil,
-    :style => String.t | nil,
-    :decoration => String.t | nil
-  }
+          :type => String.t(),
+          :text => String.t() | nil,
+          :size => String.t() | nil,
+          :color => String.t() | nil,
+          :weight => String.t() | nil,
+          :style => String.t() | nil,
+          :decoration => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

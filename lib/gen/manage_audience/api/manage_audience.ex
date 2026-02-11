@@ -64,7 +64,11 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:ok, Req.Response.t()}` on success
   - `{:error, Exception.t()}` on failure
   """
-  def create_click_based_audience_group(client, create_click_based_audience_group_request, opts \\ []) do
+  def create_click_based_audience_group(
+        client,
+        create_click_based_audience_group_request,
+        opts \\ []
+      ) do
     Req.request(client,
       method: :post,
       url: "/v2/bot/audienceGroup/click",
@@ -163,10 +167,22 @@ defmodule LINEBotSDK.ManageAudience do
     size = Keyword.get(opts, :size)
     includes_external_public_groups = Keyword.get(opts, :includesExternalPublicGroups)
     create_route = Keyword.get(opts, :createRoute)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/audienceGroup/list",
-      params: Enum.filter([:page: page, :description: description, :status: status, :size: size, :includesExternalPublicGroups: includes_external_public_groups, :createRoute: create_route], fn {_k, v} -> v != nil end)
+      params:
+        Enum.reject(
+          [
+            {"page", page},
+            {"description", description},
+            {"status", status},
+            {"size", size},
+            {"includesExternalPublicGroups", includes_external_public_groups},
+            {"createRoute", create_route}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     )
   end
 
@@ -217,10 +233,22 @@ defmodule LINEBotSDK.ManageAudience do
     size = Keyword.get(opts, :size)
     create_route = Keyword.get(opts, :createRoute)
     includes_owned_audience_groups = Keyword.get(opts, :includesOwnedAudienceGroups)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/audienceGroup/shared/list",
-      params: Enum.filter([:page: page, :description: description, :status: status, :size: size, :createRoute: create_route, :includesOwnedAudienceGroups: includes_owned_audience_groups], fn {_k, v} -> v != nil end)
+      params:
+        Enum.reject(
+          [
+            {"page", page},
+            {"description", description},
+            {"status", status},
+            {"size", size},
+            {"createRoute", create_route},
+            {"includesOwnedAudienceGroups", includes_owned_audience_groups}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     )
   end
 
@@ -239,7 +267,12 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:ok, Req.Response.t()}` on success
   - `{:error, Exception.t()}` on failure
   """
-  def update_audience_group_description(client, audience_group_id, update_audience_group_description_request, opts \\ []) do
+  def update_audience_group_description(
+        client,
+        audience_group_id,
+        update_audience_group_description_request,
+        opts \\ []
+      ) do
     Req.request(client,
       method: :put,
       url: "/v2/bot/audienceGroup/:audience_group_id/updateDescription",

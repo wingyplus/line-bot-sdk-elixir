@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetAggregationUnitUsageResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.GetAggregationUnitUsageResponse do
   ]
 
   @type t :: %__MODULE__{
-    :numOfCustomAggregationUnits => integer()
-  }
+          :numOfCustomAggregationUnits => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

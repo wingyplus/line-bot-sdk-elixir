@@ -23,22 +23,21 @@ defmodule LINEBotSDK.Model.AudienceGroup do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroupId => integer() | nil,
-    :type => LINEBotSDK.Model.AudienceGroupType.t | nil,
-    :description => String.t | nil,
-    :status => LINEBotSDK.Model.AudienceGroupStatus.t | nil,
-    :failedType => LINEBotSDK.Model.AudienceGroupFailedType.t | nil,
-    :audienceCount => integer() | nil,
-    :created => integer() | nil,
-    :requestId => String.t | nil,
-    :clickUrl => Uri | nil,
-    :isIfaAudience => boolean() | nil,
-    :permission => LINEBotSDK.Model.AudienceGroupPermission.t | nil,
-    :createRoute => LINEBotSDK.Model.AudienceGroupCreateRoute.t | nil
-  }
+          :audienceGroupId => integer() | nil,
+          :type => LINEBotSDK.Model.AudienceGroupType.t() | nil,
+          :description => String.t() | nil,
+          :status => LINEBotSDK.Model.AudienceGroupStatus.t() | nil,
+          :failedType => LINEBotSDK.Model.AudienceGroupFailedType.t() | nil,
+          :audienceCount => integer() | nil,
+          :created => integer() | nil,
+          :requestId => String.t() | nil,
+          :clickUrl => Uri | nil,
+          :isIfaAudience => boolean() | nil,
+          :permission => LINEBotSDK.Model.AudienceGroupPermission.t() | nil,
+          :createRoute => LINEBotSDK.Model.AudienceGroupCreateRoute.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

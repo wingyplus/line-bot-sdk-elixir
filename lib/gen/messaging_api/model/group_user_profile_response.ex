@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GroupUserProfileResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.GroupUserProfileResponse do
   ]
 
   @type t :: %__MODULE__{
-    :displayName => String.t,
-    :userId => String.t,
-    :pictureUrl => Uri | nil
-  }
+          :displayName => String.t(),
+          :userId => String.t(),
+          :pictureUrl => Uri | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

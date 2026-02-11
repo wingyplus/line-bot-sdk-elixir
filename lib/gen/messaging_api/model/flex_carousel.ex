@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexCarousel do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.FlexCarousel do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :contents => [LINEBotSDK.Model.FlexBubble.t]
-  }
+          :type => String.t(),
+          :contents => [LINEBotSDK.Model.FlexBubble.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

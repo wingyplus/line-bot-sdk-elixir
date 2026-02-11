@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.Mentionee do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.Mentionee do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :index => integer(),
-    :length => integer()
-  }
+          :type => String.t(),
+          :index => integer(),
+          :length => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GroupMemberCountResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.GroupMemberCountResponse do
   ]
 
   @type t :: %__MODULE__{
-    :count => integer()
-  }
+          :count => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

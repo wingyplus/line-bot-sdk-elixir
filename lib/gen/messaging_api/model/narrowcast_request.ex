@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.NarrowcastRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.NarrowcastRequest do
   ]
 
   @type t :: %__MODULE__{
-    :messages => [LINEBotSDK.Model.Message.t],
-    :recipient => LINEBotSDK.Model.Recipient.t | nil,
-    :filter => LINEBotSDK.Model.Filter.t | nil,
-    :limit => LINEBotSDK.Model.Limit.t | nil,
-    :notificationDisabled => boolean() | nil
-  }
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :recipient => LINEBotSDK.Model.Recipient.t() | nil,
+          :filter => LINEBotSDK.Model.Filter.t() | nil,
+          :limit => LINEBotSDK.Model.Limit.t() | nil,
+          :notificationDisabled => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

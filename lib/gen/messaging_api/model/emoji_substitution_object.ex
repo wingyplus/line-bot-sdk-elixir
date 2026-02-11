@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.EmojiSubstitutionObject do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :productId => String.t,
-    :emojiId => String.t
-  }
+          :type => String.t(),
+          :productId => String.t(),
+          :emojiId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

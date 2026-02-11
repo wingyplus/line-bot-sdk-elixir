@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AgeTile do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.AgeTile do
   ]
 
   @type t :: %__MODULE__{
-    :age => String.t | nil,
-    :percentage => float() | nil
-  }
+          :age => String.t() | nil,
+          :percentage => float() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

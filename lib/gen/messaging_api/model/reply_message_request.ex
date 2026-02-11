@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ReplyMessageRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.ReplyMessageRequest do
   ]
 
   @type t :: %__MODULE__{
-    :replyToken => String.t,
-    :messages => [LINEBotSDK.Model.Message.t],
-    :notificationDisabled => boolean() | nil
-  }
+          :replyToken => String.t(),
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :notificationDisabled => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

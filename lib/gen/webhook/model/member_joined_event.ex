@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.MemberJoinedEvent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :source => LINEBotSDK.Model.Source.t | nil,
-    :timestamp => integer(),
-    :mode => LINEBotSDK.Model.EventMode.t,
-    :webhookEventId => String.t,
-    :deliveryContext => LINEBotSDK.Model.DeliveryContext.t,
-    :replyToken => String.t,
-    :joined => LINEBotSDK.Model.JoinedMembers.t
-  }
+          :type => String.t(),
+          :source => LINEBotSDK.Model.Source.t() | nil,
+          :timestamp => integer(),
+          :mode => LINEBotSDK.Model.EventMode.t(),
+          :webhookEventId => String.t(),
+          :deliveryContext => LINEBotSDK.Model.DeliveryContext.t(),
+          :replyToken => String.t(),
+          :joined => LINEBotSDK.Model.JoinedMembers.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

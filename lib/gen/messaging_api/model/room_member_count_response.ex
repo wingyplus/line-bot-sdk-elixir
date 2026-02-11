@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RoomMemberCountResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.RoomMemberCountResponse do
   ]
 
   @type t :: %__MODULE__{
-    :count => integer()
-  }
+          :count => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

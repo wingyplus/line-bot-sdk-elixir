@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuBatchRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RichMenuBatchRequest do
   ]
 
   @type t :: %__MODULE__{
-    :operations => [LINEBotSDK.Model.RichMenuBatchOperation.t],
-    :resumeRequestKey => String.t | nil
-  }
+          :operations => [LINEBotSDK.Model.RichMenuBatchOperation.t()],
+          :resumeRequestKey => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

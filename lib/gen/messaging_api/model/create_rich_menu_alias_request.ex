@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.CreateRichMenuAliasRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.CreateRichMenuAliasRequest do
   ]
 
   @type t :: %__MODULE__{
-    :richMenuAliasId => String.t,
-    :richMenuId => String.t
-  }
+          :richMenuAliasId => String.t(),
+          :richMenuId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

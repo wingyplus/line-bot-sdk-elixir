@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.MarkMessagesAsReadByTokenRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.MarkMessagesAsReadByTokenRequest do
   ]
 
   @type t :: %__MODULE__{
-    :markAsReadToken => String.t
-  }
+          :markAsReadToken => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

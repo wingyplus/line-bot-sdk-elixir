@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.GetMessageContentTranscodingResponse do
   ]
 
   @type t :: %__MODULE__{
-    :status => String.t
-  }
+          :status => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

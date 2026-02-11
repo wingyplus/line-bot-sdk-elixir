@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexBubble do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -20,19 +20,18 @@ defmodule LINEBotSDK.Model.FlexBubble do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :direction => String.t | nil,
-    :styles => LINEBotSDK.Model.FlexBubbleStyles.t | nil,
-    :header => LINEBotSDK.Model.FlexBox.t | nil,
-    :hero => LINEBotSDK.Model.FlexComponent.t | nil,
-    :body => LINEBotSDK.Model.FlexBox.t | nil,
-    :footer => LINEBotSDK.Model.FlexBox.t | nil,
-    :size => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil
-  }
+          :type => String.t(),
+          :direction => String.t() | nil,
+          :styles => LINEBotSDK.Model.FlexBubbleStyles.t() | nil,
+          :header => LINEBotSDK.Model.FlexBox.t() | nil,
+          :hero => LINEBotSDK.Model.FlexComponent.t() | nil,
+          :body => LINEBotSDK.Model.FlexBox.t() | nil,
+          :footer => LINEBotSDK.Model.FlexBox.t() | nil,
+          :size => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

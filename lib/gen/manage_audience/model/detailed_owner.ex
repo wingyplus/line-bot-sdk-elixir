@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.DetailedOwner do
   ]
 
   @type t :: %__MODULE__{
-    :serviceType => String.t | nil,
-    :id => String.t | nil,
-    :name => String.t | nil
-  }
+          :serviceType => String.t() | nil,
+          :id => String.t() | nil,
+          :name => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

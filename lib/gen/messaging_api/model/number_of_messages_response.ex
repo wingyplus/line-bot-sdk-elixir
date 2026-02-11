@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.NumberOfMessagesResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.NumberOfMessagesResponse do
   ]
 
   @type t :: %__MODULE__{
-    :status => String.t,
-    :success => integer() | nil
-  }
+          :status => String.t(),
+          :success => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

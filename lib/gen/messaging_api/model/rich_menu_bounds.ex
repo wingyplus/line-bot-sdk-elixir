@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.RichMenuBounds do
   ]
 
   @type t :: %__MODULE__{
-    :x => integer() | nil,
-    :y => integer() | nil,
-    :width => integer() | nil,
-    :height => integer() | nil
-  }
+          :x => integer() | nil,
+          :y => integer() | nil,
+          :width => integer() | nil,
+          :height => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

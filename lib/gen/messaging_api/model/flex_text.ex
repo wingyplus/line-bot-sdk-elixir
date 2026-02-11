@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexText do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -34,33 +34,32 @@ defmodule LINEBotSDK.Model.FlexText do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :flex => integer() | nil,
-    :text => String.t | nil,
-    :size => String.t | nil,
-    :align => String.t | nil,
-    :gravity => String.t | nil,
-    :color => String.t | nil,
-    :weight => String.t | nil,
-    :style => String.t | nil,
-    :decoration => String.t | nil,
-    :wrap => boolean() | nil,
-    :lineSpacing => String.t | nil,
-    :margin => String.t | nil,
-    :position => String.t | nil,
-    :offsetTop => String.t | nil,
-    :offsetBottom => String.t | nil,
-    :offsetStart => String.t | nil,
-    :offsetEnd => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil,
-    :maxLines => integer() | nil,
-    :contents => [LINEBotSDK.Model.FlexSpan.t] | nil,
-    :adjustMode => String.t | nil,
-    :scaling => boolean() | nil
-  }
+          :type => String.t(),
+          :flex => integer() | nil,
+          :text => String.t() | nil,
+          :size => String.t() | nil,
+          :align => String.t() | nil,
+          :gravity => String.t() | nil,
+          :color => String.t() | nil,
+          :weight => String.t() | nil,
+          :style => String.t() | nil,
+          :decoration => String.t() | nil,
+          :wrap => boolean() | nil,
+          :lineSpacing => String.t() | nil,
+          :margin => String.t() | nil,
+          :position => String.t() | nil,
+          :offsetTop => String.t() | nil,
+          :offsetBottom => String.t() | nil,
+          :offsetStart => String.t() | nil,
+          :offsetEnd => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil,
+          :maxLines => integer() | nil,
+          :contents => [LINEBotSDK.Model.FlexSpan.t()] | nil,
+          :adjustMode => String.t() | nil,
+          :scaling => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

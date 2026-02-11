@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.CouponCashBackRewardRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.CouponCashBackRewardRequest do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :priceInfo => LINEBotSDK.Model.CashBackPriceInfoRequest.t | nil
-  }
+          :type => String.t(),
+          :priceInfo => LINEBotSDK.Model.CashBackPriceInfoRequest.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

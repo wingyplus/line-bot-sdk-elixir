@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.ContentProvider do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :originalContentUrl => Uri | nil,
-    :previewImageUrl => Uri | nil
-  }
+          :type => String.t(),
+          :originalContentUrl => Uri | nil,
+          :previewImageUrl => Uri | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

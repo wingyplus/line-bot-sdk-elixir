@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuListResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.RichMenuListResponse do
   ]
 
   @type t :: %__MODULE__{
-    :richmenus => [LINEBotSDK.Model.RichMenuResponse.t]
-  }
+          :richmenus => [LINEBotSDK.Model.RichMenuResponse.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

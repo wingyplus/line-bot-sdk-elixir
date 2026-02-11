@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.GetModulesResponse do
   ]
 
   @type t :: %__MODULE__{
-    :bots => [LINEBotSDK.Model.ModuleBot.t],
-    :next => String.t | nil
-  }
+          :bots => [LINEBotSDK.Model.ModuleBot.t()],
+          :next => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

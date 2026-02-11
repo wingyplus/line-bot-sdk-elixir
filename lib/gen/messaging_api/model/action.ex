@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.Action do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :label => String.t | nil
-  }
+          :type => String.t() | nil,
+          :label => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

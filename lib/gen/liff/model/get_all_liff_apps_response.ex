@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetAllLiffAppsResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.GetAllLiffAppsResponse do
   ]
 
   @type t :: %__MODULE__{
-    :apps => [LINEBotSDK.Model.LiffApp.t] | nil
-  }
+          :apps => [LINEBotSDK.Model.LiffApp.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

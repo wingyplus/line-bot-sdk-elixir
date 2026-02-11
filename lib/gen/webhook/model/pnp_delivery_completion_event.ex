@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.PnpDeliveryCompletionEvent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :source => LINEBotSDK.Model.Source.t | nil,
-    :timestamp => integer(),
-    :mode => LINEBotSDK.Model.EventMode.t,
-    :webhookEventId => String.t,
-    :deliveryContext => LINEBotSDK.Model.DeliveryContext.t,
-    :delivery => LINEBotSDK.Model.PnpDelivery.t
-  }
+          :type => String.t(),
+          :source => LINEBotSDK.Model.Source.t() | nil,
+          :timestamp => integer(),
+          :mode => LINEBotSDK.Model.EventMode.t(),
+          :webhookEventId => String.t(),
+          :deliveryContext => LINEBotSDK.Model.DeliveryContext.t(),
+          :delivery => LINEBotSDK.Model.PnpDelivery.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

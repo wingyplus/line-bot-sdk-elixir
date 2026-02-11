@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.CarouselTemplate do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.CarouselTemplate do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :columns => [LINEBotSDK.Model.CarouselColumn.t],
-    :imageAspectRatio => String.t | nil,
-    :imageSize => String.t | nil
-  }
+          :type => String.t(),
+          :columns => [LINEBotSDK.Model.CarouselColumn.t()],
+          :imageAspectRatio => String.t() | nil,
+          :imageSize => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FileMessageContent do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.FileMessageContent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :id => String.t,
-    :fileName => String.t,
-    :fileSize => integer(),
-    :markAsReadToken => String.t | nil
-  }
+          :type => String.t(),
+          :id => String.t(),
+          :fileName => String.t(),
+          :fileSize => integer(),
+          :markAsReadToken => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

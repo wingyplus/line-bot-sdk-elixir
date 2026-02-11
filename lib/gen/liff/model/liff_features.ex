@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.LiffFeatures do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.LiffFeatures do
   ]
 
   @type t :: %__MODULE__{
-    :ble => boolean() | nil,
-    :qrCode => boolean() | nil
-  }
+          :ble => boolean() | nil,
+          :qrCode => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

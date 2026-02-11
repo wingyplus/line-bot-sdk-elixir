@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.MulticastRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.MulticastRequest do
   ]
 
   @type t :: %__MODULE__{
-    :messages => [LINEBotSDK.Model.Message.t],
-    :to => [String.t],
-    :notificationDisabled => boolean() | nil,
-    :customAggregationUnits => [String.t] | nil
-  }
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :to => [String.t()],
+          :notificationDisabled => boolean() | nil,
+          :customAggregationUnits => [String.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

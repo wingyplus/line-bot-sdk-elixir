@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.UpdateLiffView do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.UpdateLiffView do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :url => Uri | nil,
-    :moduleMode => boolean() | nil
-  }
+          :type => String.t() | nil,
+          :url => Uri | nil,
+          :moduleMode => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

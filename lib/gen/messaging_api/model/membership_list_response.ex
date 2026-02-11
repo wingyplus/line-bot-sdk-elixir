@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.MembershipListResponse do
   ]
 
   @type t :: %__MODULE__{
-    :memberships => [LINEBotSDK.Model.Membership.t]
-  }
+          :memberships => [LINEBotSDK.Model.Membership.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

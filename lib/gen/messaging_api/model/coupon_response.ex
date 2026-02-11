@@ -29,28 +29,27 @@ defmodule LINEBotSDK.Model.CouponResponse do
   ]
 
   @type t :: %__MODULE__{
-    :acquisitionCondition => LINEBotSDK.Model.AcquisitionConditionResponse.t | nil,
-    :barcodeImageUrl => Uri | nil,
-    :couponCode => String.t | nil,
-    :description => String.t | nil,
-    :endTimestamp => integer() | nil,
-    :imageUrl => Uri | nil,
-    :maxAcquireCount => integer() | nil,
-    :maxUseCountPerTicket => integer() | nil,
-    :maxTicketPerUser => integer() | nil,
-    :startTimestamp => integer() | nil,
-    :title => String.t | nil,
-    :usageCondition => String.t | nil,
-    :reward => LINEBotSDK.Model.CouponRewardResponse.t | nil,
-    :visibility => String.t | nil,
-    :timezone => String.t | nil,
-    :couponId => String.t | nil,
-    :createdTimestamp => integer() | nil,
-    :status => String.t | nil
-  }
+          :acquisitionCondition => LINEBotSDK.Model.AcquisitionConditionResponse.t() | nil,
+          :barcodeImageUrl => Uri | nil,
+          :couponCode => String.t() | nil,
+          :description => String.t() | nil,
+          :endTimestamp => integer() | nil,
+          :imageUrl => Uri | nil,
+          :maxAcquireCount => integer() | nil,
+          :maxUseCountPerTicket => integer() | nil,
+          :maxTicketPerUser => integer() | nil,
+          :startTimestamp => integer() | nil,
+          :title => String.t() | nil,
+          :usageCondition => String.t() | nil,
+          :reward => LINEBotSDK.Model.CouponRewardResponse.t() | nil,
+          :visibility => String.t() | nil,
+          :timezone => String.t() | nil,
+          :couponId => String.t() | nil,
+          :createdTimestamp => integer() | nil,
+          :status => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

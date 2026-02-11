@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.Membership do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -21,20 +21,19 @@ defmodule LINEBotSDK.Model.Membership do
   ]
 
   @type t :: %__MODULE__{
-    :membershipId => integer(),
-    :title => String.t,
-    :description => String.t,
-    :benefits => [String.t],
-    :price => float(),
-    :currency => String.t,
-    :memberCount => integer(),
-    :memberLimit => integer() | nil,
-    :isInAppPurchase => boolean(),
-    :isPublished => boolean()
-  }
+          :membershipId => integer(),
+          :title => String.t(),
+          :description => String.t(),
+          :benefits => [String.t()],
+          :price => float(),
+          :currency => String.t(),
+          :memberCount => integer(),
+          :memberLimit => integer() | nil,
+          :isInAppPurchase => boolean(),
+          :isPublished => boolean()
+        }
 
   def decode(value) do
     value
   end
 end
-

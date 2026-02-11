@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImagemapVideo do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.ImagemapVideo do
   ]
 
   @type t :: %__MODULE__{
-    :originalContentUrl => Uri | nil,
-    :previewImageUrl => Uri | nil,
-    :area => LINEBotSDK.Model.ImagemapArea.t | nil,
-    :externalLink => LINEBotSDK.Model.ImagemapExternalLink.t | nil
-  }
+          :originalContentUrl => Uri | nil,
+          :previewImageUrl => Uri | nil,
+          :area => LINEBotSDK.Model.ImagemapArea.t() | nil,
+          :externalLink => LINEBotSDK.Model.ImagemapExternalLink.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

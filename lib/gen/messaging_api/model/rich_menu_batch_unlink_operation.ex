@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RichMenuBatchUnlinkOperation do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :from => String.t
-  }
+          :type => String.t(),
+          :from => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

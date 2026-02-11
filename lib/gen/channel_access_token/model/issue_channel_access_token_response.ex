@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.IssueChannelAccessTokenResponse do
   ]
 
   @type t :: %__MODULE__{
-    :access_token => String.t,
-    :expires_in => integer(),
-    :token_type => String.t,
-    :key_id => String.t
-  }
+          :access_token => String.t(),
+          :expires_in => integer(),
+          :token_type => String.t(),
+          :key_id => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.CreateAudienceGroupResponse do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroupId => integer() | nil,
-    :createRoute => String.t | nil,
-    :type => LINEBotSDK.Model.AudienceGroupType.t | nil,
-    :description => String.t | nil,
-    :created => integer() | nil,
-    :permission => String.t | nil,
-    :expireTimestamp => integer() | nil,
-    :isIfaAudience => boolean() | nil
-  }
+          :audienceGroupId => integer() | nil,
+          :createRoute => String.t() | nil,
+          :type => LINEBotSDK.Model.AudienceGroupType.t() | nil,
+          :description => String.t() | nil,
+          :created => integer() | nil,
+          :permission => String.t() | nil,
+          :expireTimestamp => integer() | nil,
+          :isIfaAudience => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

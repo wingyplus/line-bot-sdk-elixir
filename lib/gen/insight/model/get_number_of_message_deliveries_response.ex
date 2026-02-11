@@ -22,21 +22,20 @@ defmodule LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse do
   ]
 
   @type t :: %__MODULE__{
-    :status => String.t | nil,
-    :broadcast => integer() | nil,
-    :targeting => integer() | nil,
-    :autoResponse => integer() | nil,
-    :welcomeResponse => integer() | nil,
-    :chat => integer() | nil,
-    :apiBroadcast => integer() | nil,
-    :apiPush => integer() | nil,
-    :apiMulticast => integer() | nil,
-    :apiNarrowcast => integer() | nil,
-    :apiReply => integer() | nil
-  }
+          :status => String.t() | nil,
+          :broadcast => integer() | nil,
+          :targeting => integer() | nil,
+          :autoResponse => integer() | nil,
+          :welcomeResponse => integer() | nil,
+          :chat => integer() | nil,
+          :apiBroadcast => integer() | nil,
+          :apiPush => integer() | nil,
+          :apiMulticast => integer() | nil,
+          :apiNarrowcast => integer() | nil,
+          :apiReply => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.QuotaConsumptionResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.QuotaConsumptionResponse do
   ]
 
   @type t :: %__MODULE__{
-    :totalUsage => integer()
-  }
+          :totalUsage => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.CarouselColumn do
   ]
 
   @type t :: %__MODULE__{
-    :thumbnailImageUrl => Uri | nil,
-    :imageBackgroundColor => String.t | nil,
-    :title => String.t | nil,
-    :text => String.t,
-    :defaultAction => LINEBotSDK.Model.Action.t | nil,
-    :actions => [LINEBotSDK.Model.Action.t]
-  }
+          :thumbnailImageUrl => Uri | nil,
+          :imageBackgroundColor => String.t() | nil,
+          :title => String.t() | nil,
+          :text => String.t(),
+          :defaultAction => LINEBotSDK.Model.Action.t() | nil,
+          :actions => [LINEBotSDK.Model.Action.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.MentionSubstitutionObject do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :mentionee => LINEBotSDK.Model.MentionTarget.t
-  }
+          :type => String.t(),
+          :mentionee => LINEBotSDK.Model.MentionTarget.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

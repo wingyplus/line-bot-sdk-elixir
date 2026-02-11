@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ChatControl do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.ChatControl do
   ]
 
   @type t :: %__MODULE__{
-    :expireAt => integer()
-  }
+          :expireAt => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

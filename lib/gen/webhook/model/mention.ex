@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.Mention do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.Mention do
   ]
 
   @type t :: %__MODULE__{
-    :mentionees => [LINEBotSDK.Model.Mentionee.t]
-  }
+          :mentionees => [LINEBotSDK.Model.Mentionee.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

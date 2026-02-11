@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImagemapArea do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.ImagemapArea do
   ]
 
   @type t :: %__MODULE__{
-    :x => integer(),
-    :y => integer(),
-    :width => integer(),
-    :height => integer()
-  }
+          :x => integer(),
+          :y => integer(),
+          :width => integer(),
+          :height => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

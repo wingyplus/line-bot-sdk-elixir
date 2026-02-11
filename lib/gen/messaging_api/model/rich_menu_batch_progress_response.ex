@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuBatchProgressResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.RichMenuBatchProgressResponse do
   ]
 
   @type t :: %__MODULE__{
-    :phase => LINEBotSDK.Model.RichMenuBatchProgressPhase.t,
-    :acceptedTime => DateTime.t,
-    :completedTime => DateTime.t | nil
-  }
+          :phase => LINEBotSDK.Model.RichMenuBatchProgressPhase.t(),
+          :acceptedTime => DateTime.t(),
+          :completedTime => DateTime.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

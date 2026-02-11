@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.CallbackRequest do
   ]
 
   @type t :: %__MODULE__{
-    :destination => String.t,
-    :events => [LINEBotSDK.Model.Event.t]
-  }
+          :destination => String.t(),
+          :events => [LINEBotSDK.Model.Event.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

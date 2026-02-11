@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexImage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -28,27 +28,26 @@ defmodule LINEBotSDK.Model.FlexImage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :url => Uri,
-    :flex => integer() | nil,
-    :margin => String.t | nil,
-    :position => String.t | nil,
-    :offsetTop => String.t | nil,
-    :offsetBottom => String.t | nil,
-    :offsetStart => String.t | nil,
-    :offsetEnd => String.t | nil,
-    :align => String.t | nil,
-    :gravity => String.t | nil,
-    :size => String.t | nil,
-    :aspectRatio => String.t | nil,
-    :aspectMode => String.t | nil,
-    :backgroundColor => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil,
-    :animated => boolean() | nil
-  }
+          :type => String.t(),
+          :url => Uri,
+          :flex => integer() | nil,
+          :margin => String.t() | nil,
+          :position => String.t() | nil,
+          :offsetTop => String.t() | nil,
+          :offsetBottom => String.t() | nil,
+          :offsetStart => String.t() | nil,
+          :offsetEnd => String.t() | nil,
+          :align => String.t() | nil,
+          :gravity => String.t() | nil,
+          :size => String.t() | nil,
+          :aspectRatio => String.t() | nil,
+          :aspectMode => String.t() | nil,
+          :backgroundColor => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil,
+          :animated => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

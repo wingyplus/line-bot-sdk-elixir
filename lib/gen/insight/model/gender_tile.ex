@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GenderTile do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.GenderTile do
   ]
 
   @type t :: %__MODULE__{
-    :gender => String.t | nil,
-    :percentage => float() | nil
-  }
+          :gender => String.t() | nil,
+          :percentage => float() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

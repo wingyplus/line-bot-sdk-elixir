@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.GetStatisticsPerUnitResponse do
   ]
 
   @type t :: %__MODULE__{
-    :overview => LINEBotSDK.Model.GetStatisticsPerUnitResponseOverview.t,
-    :messages => [LINEBotSDK.Model.GetStatisticsPerUnitResponseMessage.t],
-    :clicks => [LINEBotSDK.Model.GetStatisticsPerUnitResponseClick.t]
-  }
+          :overview => LINEBotSDK.Model.GetStatisticsPerUnitResponseOverview.t(),
+          :messages => [LINEBotSDK.Model.GetStatisticsPerUnitResponseMessage.t()],
+          :clicks => [LINEBotSDK.Model.GetStatisticsPerUnitResponseClick.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

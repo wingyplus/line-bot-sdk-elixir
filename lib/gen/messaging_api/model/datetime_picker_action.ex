@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.DatetimePickerAction do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.DatetimePickerAction do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :label => String.t | nil,
-    :data => String.t | nil,
-    :mode => String.t | nil,
-    :initial => String.t | nil,
-    :max => String.t | nil,
-    :min => String.t | nil
-  }
+          :type => String.t() | nil,
+          :label => String.t() | nil,
+          :data => String.t() | nil,
+          :mode => String.t() | nil,
+          :initial => String.t() | nil,
+          :max => String.t() | nil,
+          :min => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

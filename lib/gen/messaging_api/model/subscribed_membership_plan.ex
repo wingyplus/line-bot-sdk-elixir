@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.SubscribedMembershipPlan do
   ]
 
   @type t :: %__MODULE__{
-    :membershipId => integer(),
-    :title => String.t,
-    :description => String.t,
-    :benefits => [String.t],
-    :price => float(),
-    :currency => String.t
-  }
+          :membershipId => integer(),
+          :title => String.t(),
+          :description => String.t(),
+          :benefits => [String.t()],
+          :price => float(),
+          :currency => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

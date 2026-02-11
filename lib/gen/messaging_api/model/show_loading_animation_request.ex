@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ShowLoadingAnimationRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.ShowLoadingAnimationRequest do
   ]
 
   @type t :: %__MODULE__{
-    :chatId => String.t,
-    :loadingSeconds => integer() | nil
-  }
+          :chatId => String.t(),
+          :loadingSeconds => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

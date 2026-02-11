@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.PostbackEvent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :source => LINEBotSDK.Model.Source.t | nil,
-    :timestamp => integer(),
-    :mode => LINEBotSDK.Model.EventMode.t,
-    :webhookEventId => String.t,
-    :deliveryContext => LINEBotSDK.Model.DeliveryContext.t,
-    :replyToken => String.t | nil,
-    :postback => LINEBotSDK.Model.PostbackContent.t
-  }
+          :type => String.t(),
+          :source => LINEBotSDK.Model.Source.t() | nil,
+          :timestamp => integer(),
+          :mode => LINEBotSDK.Model.EventMode.t(),
+          :webhookEventId => String.t(),
+          :deliveryContext => LINEBotSDK.Model.DeliveryContext.t(),
+          :replyToken => String.t() | nil,
+          :postback => LINEBotSDK.Model.PostbackContent.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.ErrorResponse do
   ]
 
   @type t :: %__MODULE__{
-    :error => String.t | nil,
-    :error_description => String.t | nil
-  }
+          :error => String.t() | nil,
+          :error_description => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

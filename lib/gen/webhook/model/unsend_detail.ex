@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.UnsendDetail do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.UnsendDetail do
   ]
 
   @type t :: %__MODULE__{
-    :messageId => String.t
-  }
+          :messageId => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

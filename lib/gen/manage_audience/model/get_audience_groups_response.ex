@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.GetAudienceGroupsResponse do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroups => [LINEBotSDK.Model.AudienceGroup.t] | nil,
-    :hasNextPage => boolean() | nil,
-    :totalCount => integer() | nil,
-    :readWriteAudienceGroupTotalCount => integer() | nil,
-    :page => integer() | nil,
-    :size => integer() | nil
-  }
+          :audienceGroups => [LINEBotSDK.Model.AudienceGroup.t()] | nil,
+          :hasNextPage => boolean() | nil,
+          :totalCount => integer() | nil,
+          :readWriteAudienceGroupTotalCount => integer() | nil,
+          :page => integer() | nil,
+          :size => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

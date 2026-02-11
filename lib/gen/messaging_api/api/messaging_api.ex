@@ -23,11 +23,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def broadcast(client, broadcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/message/broadcast",
       json: broadcast_request,
-      headers: Enum.filter([:"X-Line-Retry-Key": x_line_retry_key], fn {_k, v} -> v != nil end)
+      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -89,6 +90,7 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def create_coupon(client, opts \\ []) do
     body = Keyword.get(opts, :body)
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/coupon",
@@ -202,10 +204,11 @@ defmodule LINEBotSDK.MessagingApi do
   def get_aggregation_unit_name_list(client, opts \\ []) do
     limit = Keyword.get(opts, :limit)
     start = Keyword.get(opts, :start)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/aggregation/list",
-      params: Enum.filter([:limit: limit, :start: start], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"limit", limit}, {"start", start}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -309,10 +312,11 @@ defmodule LINEBotSDK.MessagingApi do
   def get_followers(client, opts \\ []) do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/followers/ids",
-      params: Enum.filter([:start: start, :limit: limit], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -378,11 +382,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def get_group_members_ids(client, group_id, opts \\ []) do
     start = Keyword.get(opts, :start)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/group/:group_id/members/ids",
       path_params: [group_id: group_id],
-      params: Enum.filter([:start: start], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -427,11 +432,12 @@ defmodule LINEBotSDK.MessagingApi do
   def get_joined_membership_users(client, membership_id, opts \\ []) do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/membership/:membership_id/users/ids",
       path_params: [membership_id: membership_id],
-      params: Enum.filter([:start: start, :limit: limit], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -535,7 +541,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/progress/narrowcast",
-      params: Enum.filter([:requestId: request_id], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -557,7 +563,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/delivery/broadcast",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -579,7 +585,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/delivery/multicast",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -601,7 +607,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/delivery/push",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -623,7 +629,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/delivery/reply",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -645,7 +651,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/message/delivery/pnp",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -753,7 +759,7 @@ defmodule LINEBotSDK.MessagingApi do
     Req.request(client,
       method: :get,
       url: "/v2/bot/richmenu/progress/batch",
-      params: Enum.filter([:requestId: request_id], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -861,11 +867,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def get_room_members_ids(client, room_id, opts \\ []) do
     start = Keyword.get(opts, :start)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/room/:room_id/members/ids",
       path_params: [room_id: room_id],
-      params: Enum.filter([:start: start], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -1020,10 +1027,14 @@ defmodule LINEBotSDK.MessagingApi do
     status = Keyword.get(opts, :status)
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/coupon",
-      params: Enum.filter([:status: status, :start: start, :limit: limit], fn {_k, v} -> v != nil end)
+      params:
+        Enum.reject([{"status", status}, {"start", start}, {"limit", limit}], fn {_, v} ->
+          is_nil(v)
+        end)
     )
   end
 
@@ -1088,11 +1099,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def multicast(client, multicast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/message/multicast",
       json: multicast_request,
-      headers: Enum.filter([:"X-Line-Retry-Key": x_line_retry_key], fn {_k, v} -> v != nil end)
+      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -1113,11 +1125,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def narrowcast(client, narrowcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/message/narrowcast",
       json: narrowcast_request,
-      headers: Enum.filter([:"X-Line-Retry-Key": x_line_retry_key], fn {_k, v} -> v != nil end)
+      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -1138,11 +1151,12 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def push_message(client, push_message_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/message/push",
       json: push_message_request,
-      headers: Enum.filter([:"X-Line-Retry-Key": x_line_retry_key], fn {_k, v} -> v != nil end)
+      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -1163,11 +1177,13 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def push_messages_by_phone(client, pnp_messages_request, opts \\ []) do
     x_line_delivery_tag = Keyword.get(opts, :"X-Line-Delivery-Tag")
+
     Req.request(client,
       method: :post,
       url: "/bot/pnp/push",
       json: pnp_messages_request,
-      headers: Enum.filter([:"X-Line-Delivery-Tag": x_line_delivery_tag], fn {_k, v} -> v != nil end)
+      headers:
+        Enum.reject([{"X-Line-Delivery-Tag", x_line_delivery_tag}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -1297,6 +1313,7 @@ defmodule LINEBotSDK.MessagingApi do
   """
   def test_webhook_endpoint(client, opts \\ []) do
     body = Keyword.get(opts, :body)
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/channel/webhook/test",
@@ -1363,7 +1380,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:ok, Req.Response.t()}` on success
   - `{:error, Exception.t()}` on failure
   """
-  def update_rich_menu_alias(client, rich_menu_alias_id, update_rich_menu_alias_request, opts \\ []) do
+  def update_rich_menu_alias(
+        client,
+        rich_menu_alias_id,
+        update_rich_menu_alias_request,
+        opts \\ []
+      ) do
     Req.request(client,
       method: :post,
       url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",

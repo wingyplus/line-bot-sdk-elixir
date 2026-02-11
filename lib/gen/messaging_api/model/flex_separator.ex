@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexSeparator do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.FlexSeparator do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :margin => String.t | nil,
-    :color => String.t | nil
-  }
+          :type => String.t(),
+          :margin => String.t() | nil,
+          :color => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

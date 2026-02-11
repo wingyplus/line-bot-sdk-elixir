@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexButton do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -26,25 +26,24 @@ defmodule LINEBotSDK.Model.FlexButton do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :flex => integer() | nil,
-    :color => String.t | nil,
-    :style => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t,
-    :gravity => String.t | nil,
-    :margin => String.t | nil,
-    :position => String.t | nil,
-    :offsetTop => String.t | nil,
-    :offsetBottom => String.t | nil,
-    :offsetStart => String.t | nil,
-    :offsetEnd => String.t | nil,
-    :height => String.t | nil,
-    :adjustMode => String.t | nil,
-    :scaling => boolean() | nil
-  }
+          :type => String.t(),
+          :flex => integer() | nil,
+          :color => String.t() | nil,
+          :style => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t(),
+          :gravity => String.t() | nil,
+          :margin => String.t() | nil,
+          :position => String.t() | nil,
+          :offsetTop => String.t() | nil,
+          :offsetBottom => String.t() | nil,
+          :offsetStart => String.t() | nil,
+          :offsetEnd => String.t() | nil,
+          :height => String.t() | nil,
+          :adjustMode => String.t() | nil,
+          :scaling => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -23,6 +23,7 @@ defmodule LINEBotSDK.LineModule do
   """
   def acquire_chat_control(client, chat_id, opts \\ []) do
     body = Keyword.get(opts, :body)
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/chat/:chat_id/control/acquire",
@@ -47,6 +48,7 @@ defmodule LINEBotSDK.LineModule do
   """
   def detach_module(client, opts \\ []) do
     body = Keyword.get(opts, :body)
+
     Req.request(client,
       method: :post,
       url: "/v2/bot/channel/detach",
@@ -72,10 +74,11 @@ defmodule LINEBotSDK.LineModule do
   def get_modules(client, opts \\ []) do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/list",
-      params: Enum.filter([:start: start, :limit: limit], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     )
   end
 

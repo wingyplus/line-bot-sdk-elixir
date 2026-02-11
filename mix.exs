@@ -28,10 +28,10 @@ defmodule LINEBotSDK.Mixfile do
     ]
   end
 
-   defp package do
-      [
-        name: "line_bot_sdk",
-        files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
-      ]
+  defp package do
+    [
+      name: "line_bot_sdk",
+      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*)
+    ]
   end
 end

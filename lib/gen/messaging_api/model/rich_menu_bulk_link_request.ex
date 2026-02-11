@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuBulkLinkRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RichMenuBulkLinkRequest do
   ]
 
   @type t :: %__MODULE__{
-    :richMenuId => String.t,
-    :userIds => [String.t]
-  }
+          :richMenuId => String.t(),
+          :userIds => [String.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ButtonsTemplate do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -20,19 +20,18 @@ defmodule LINEBotSDK.Model.ButtonsTemplate do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :thumbnailImageUrl => Uri | nil,
-    :imageAspectRatio => String.t | nil,
-    :imageSize => String.t | nil,
-    :imageBackgroundColor => String.t | nil,
-    :title => String.t | nil,
-    :text => String.t,
-    :defaultAction => LINEBotSDK.Model.Action.t | nil,
-    :actions => [LINEBotSDK.Model.Action.t]
-  }
+          :type => String.t(),
+          :thumbnailImageUrl => Uri | nil,
+          :imageAspectRatio => String.t() | nil,
+          :imageSize => String.t() | nil,
+          :imageBackgroundColor => String.t() | nil,
+          :title => String.t() | nil,
+          :text => String.t(),
+          :defaultAction => LINEBotSDK.Model.Action.t() | nil,
+          :actions => [LINEBotSDK.Model.Action.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

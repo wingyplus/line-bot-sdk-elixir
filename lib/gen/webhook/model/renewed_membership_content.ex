@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RenewedMembershipContent do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RenewedMembershipContent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :membershipId => integer()
-  }
+          :type => String.t(),
+          :membershipId => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

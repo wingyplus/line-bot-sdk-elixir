@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetMessageEventResponseMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -23,22 +23,21 @@ defmodule LINEBotSDK.Model.GetMessageEventResponseMessage do
   ]
 
   @type t :: %__MODULE__{
-    :seq => integer() | nil,
-    :impression => integer() | nil,
-    :mediaPlayed => integer() | nil,
-    :mediaPlayed25Percent => integer() | nil,
-    :mediaPlayed50Percent => integer() | nil,
-    :mediaPlayed75Percent => integer() | nil,
-    :mediaPlayed100Percent => integer() | nil,
-    :uniqueMediaPlayed => integer() | nil,
-    :uniqueMediaPlayed25Percent => integer() | nil,
-    :uniqueMediaPlayed50Percent => integer() | nil,
-    :uniqueMediaPlayed75Percent => integer() | nil,
-    :uniqueMediaPlayed100Percent => integer() | nil
-  }
+          :seq => integer() | nil,
+          :impression => integer() | nil,
+          :mediaPlayed => integer() | nil,
+          :mediaPlayed25Percent => integer() | nil,
+          :mediaPlayed50Percent => integer() | nil,
+          :mediaPlayed75Percent => integer() | nil,
+          :mediaPlayed100Percent => integer() | nil,
+          :uniqueMediaPlayed => integer() | nil,
+          :uniqueMediaPlayed25Percent => integer() | nil,
+          :uniqueMediaPlayed50Percent => integer() | nil,
+          :uniqueMediaPlayed75Percent => integer() | nil,
+          :uniqueMediaPlayed100Percent => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

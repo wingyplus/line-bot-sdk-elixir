@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.FlexMessage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :quickReply => LINEBotSDK.Model.QuickReply.t | nil,
-    :sender => LINEBotSDK.Model.Sender.t | nil,
-    :altText => String.t,
-    :contents => LINEBotSDK.Model.FlexContainer.t
-  }
+          :type => String.t(),
+          :quickReply => LINEBotSDK.Model.QuickReply.t() | nil,
+          :sender => LINEBotSDK.Model.Sender.t() | nil,
+          :altText => String.t(),
+          :contents => LINEBotSDK.Model.FlexContainer.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -45,7 +45,7 @@ defmodule LINEBotSDK.Insight do
     Req.request(client,
       method: :get,
       url: "/v2/bot/insight/message/event",
-      params: Enum.filter([:requestId: request_id], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -66,10 +66,11 @@ defmodule LINEBotSDK.Insight do
   """
   def get_number_of_followers(client, opts \\ []) do
     date = Keyword.get(opts, :date)
+
     Req.request(client,
       method: :get,
       url: "/v2/bot/insight/followers",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -92,7 +93,7 @@ defmodule LINEBotSDK.Insight do
     Req.request(client,
       method: :get,
       url: "/v2/bot/insight/message/delivery",
-      params: Enum.filter([:date: date], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     )
   end
 
@@ -116,7 +117,11 @@ defmodule LINEBotSDK.Insight do
     Req.request(client,
       method: :get,
       url: "/v2/bot/insight/message/event/aggregation",
-      params: Enum.filter([:customAggregationUnit: custom_aggregation_unit, :from: from, :to: to], fn {_k, v} -> v != nil end)
+      params:
+        Enum.reject(
+          [{"customAggregationUnit", custom_aggregation_unit}, {"from", from}, {"to", to}],
+          fn {_, v} -> is_nil(v) end
+        )
     )
   end
 end

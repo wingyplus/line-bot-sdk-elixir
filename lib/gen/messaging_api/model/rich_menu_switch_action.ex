@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.RichMenuSwitchAction do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.RichMenuSwitchAction do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :label => String.t | nil,
-    :data => String.t | nil,
-    :richMenuAliasId => String.t | nil
-  }
+          :type => String.t() | nil,
+          :label => String.t() | nil,
+          :data => String.t() | nil,
+          :richMenuAliasId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

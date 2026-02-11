@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImageCarouselColumn do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.ImageCarouselColumn do
   ]
 
   @type t :: %__MODULE__{
-    :imageUrl => Uri,
-    :action => LINEBotSDK.Model.Action.t
-  }
+          :imageUrl => Uri,
+          :action => LINEBotSDK.Model.Action.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

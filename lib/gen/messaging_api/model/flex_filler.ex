@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexFiller do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.FlexFiller do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :flex => integer() | nil
-  }
+          :type => String.t(),
+          :flex => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

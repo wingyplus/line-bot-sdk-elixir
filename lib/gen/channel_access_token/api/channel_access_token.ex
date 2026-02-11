@@ -21,11 +21,23 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:ok, Req.Response.t()}` on success
   - `{:error, Exception.t()}` on failure
   """
-  def gets_all_valid_channel_access_token_key_ids(client, client_assertion_type, client_assertion, opts \\ []) do
+  def gets_all_valid_channel_access_token_key_ids(
+        client,
+        client_assertion_type,
+        client_assertion,
+        opts \\ []
+      ) do
     Req.request(client,
       method: :get,
       url: "/oauth2/v2.1/tokens/kid",
-      params: Enum.filter([:client_assertion_type: client_assertion_type, :client_assertion: client_assertion], fn {_k, v} -> v != nil end)
+      params:
+        Enum.reject(
+          [
+            {"client_assertion_type", client_assertion_type},
+            {"client_assertion", client_assertion}
+          ],
+          fn {_, v} -> is_nil(v) end
+        )
     )
   end
 
@@ -68,7 +80,13 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:ok, Req.Response.t()}` on success
   - `{:error, Exception.t()}` on failure
   """
-  def issue_channel_token_by_jwt(client, grant_type, client_assertion_type, client_assertion, opts \\ []) do
+  def issue_channel_token_by_jwt(
+        client,
+        grant_type,
+        client_assertion_type,
+        client_assertion,
+        opts \\ []
+      ) do
     Req.request(client,
       method: :post,
       url: "/oauth2/v2.1/token"
@@ -183,7 +201,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
     Req.request(client,
       method: :get,
       url: "/oauth2/v2.1/verify",
-      params: Enum.filter([:access_token: access_token], fn {_k, v} -> v != nil end)
+      params: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     )
   end
 end

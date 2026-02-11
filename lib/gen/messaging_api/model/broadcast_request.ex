@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.BroadcastRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.BroadcastRequest do
   ]
 
   @type t :: %__MODULE__{
-    :messages => [LINEBotSDK.Model.Message.t],
-    :notificationDisabled => boolean() | nil
-  }
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :notificationDisabled => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.Sender do
   ]
 
   @type t :: %__MODULE__{
-    :name => String.t | nil,
-    :iconUrl => Uri | nil
-  }
+          :name => String.t() | nil,
+          :iconUrl => Uri | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.UserProfileResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.UserProfileResponse do
   ]
 
   @type t :: %__MODULE__{
-    :displayName => String.t,
-    :userId => String.t,
-    :pictureUrl => Uri | nil,
-    :statusMessage => String.t | nil,
-    :language => String.t | nil
-  }
+          :displayName => String.t(),
+          :userId => String.t(),
+          :pictureUrl => Uri | nil,
+          :statusMessage => String.t() | nil,
+          :language => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

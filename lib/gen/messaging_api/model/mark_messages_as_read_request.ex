@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.MarkMessagesAsReadRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.MarkMessagesAsReadRequest do
   ]
 
   @type t :: %__MODULE__{
-    :chat => LINEBotSDK.Model.ChatReference.t
-  }
+          :chat => LINEBotSDK.Model.ChatReference.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

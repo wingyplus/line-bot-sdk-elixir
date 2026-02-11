@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.StickerMessageContent do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -21,20 +21,19 @@ defmodule LINEBotSDK.Model.StickerMessageContent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :id => String.t,
-    :packageId => String.t,
-    :stickerId => String.t,
-    :stickerResourceType => String.t,
-    :keywords => [String.t] | nil,
-    :text => String.t | nil,
-    :quoteToken => String.t,
-    :quotedMessageId => String.t | nil,
-    :markAsReadToken => String.t | nil
-  }
+          :type => String.t(),
+          :id => String.t(),
+          :packageId => String.t(),
+          :stickerId => String.t(),
+          :stickerResourceType => String.t(),
+          :keywords => [String.t()] | nil,
+          :text => String.t() | nil,
+          :quoteToken => String.t(),
+          :quotedMessageId => String.t() | nil,
+          :markAsReadToken => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RichMenuArea do
   ]
 
   @type t :: %__MODULE__{
-    :bounds => LINEBotSDK.Model.RichMenuBounds.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil
-  }
+          :bounds => LINEBotSDK.Model.RichMenuBounds.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

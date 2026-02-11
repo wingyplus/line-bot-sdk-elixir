@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.GetMessageEventResponseClick do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.GetMessageEventResponseClick do
   ]
 
   @type t :: %__MODULE__{
-    :seq => integer() | nil,
-    :url => String.t | nil,
-    :click => integer() | nil,
-    :uniqueClick => integer() | nil,
-    :uniqueClickOfRequest => integer() | nil
-  }
+          :seq => integer() | nil,
+          :url => String.t() | nil,
+          :click => integer() | nil,
+          :uniqueClick => integer() | nil,
+          :uniqueClickOfRequest => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

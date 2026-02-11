@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.ChannelAccessTokenKeyIdsResponse do
   ]
 
   @type t :: %__MODULE__{
-    :kids => [String.t]
-  }
+          :kids => [String.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

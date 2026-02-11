@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.CreateImpBasedAudienceGroupResponse do
   ]
 
   @type t :: %__MODULE__{
-    :audienceGroupId => integer() | nil,
-    :type => LINEBotSDK.Model.AudienceGroupType.t | nil,
-    :description => String.t | nil,
-    :created => integer() | nil,
-    :requestId => String.t | nil
-  }
+          :audienceGroupId => integer() | nil,
+          :type => LINEBotSDK.Model.AudienceGroupType.t() | nil,
+          :description => String.t() | nil,
+          :created => integer() | nil,
+          :requestId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

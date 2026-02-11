@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.RichMenuSize do
   ]
 
   @type t :: %__MODULE__{
-    :width => integer() | nil,
-    :height => integer() | nil
-  }
+          :width => integer() | nil,
+          :height => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

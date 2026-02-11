@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.SubscriptionPeriodDemographicFilter do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.SubscriptionPeriodDemographicFilter do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :gte => LINEBotSDK.Model.SubscriptionPeriodDemographic.t | nil,
-    :lt => LINEBotSDK.Model.SubscriptionPeriodDemographic.t | nil
-  }
+          :type => String.t() | nil,
+          :gte => LINEBotSDK.Model.SubscriptionPeriodDemographic.t() | nil,
+          :lt => LINEBotSDK.Model.SubscriptionPeriodDemographic.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

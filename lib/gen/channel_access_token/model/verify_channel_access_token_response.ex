@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.VerifyChannelAccessTokenResponse do
   ]
 
   @type t :: %__MODULE__{
-    :client_id => String.t,
-    :expires_in => integer(),
-    :scope => String.t | nil
-  }
+          :client_id => String.t(),
+          :expires_in => integer(),
+          :scope => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

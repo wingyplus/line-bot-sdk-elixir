@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.FlexVideo do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -17,16 +17,15 @@ defmodule LINEBotSDK.Model.FlexVideo do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :url => Uri,
-    :previewUrl => Uri,
-    :altContent => LINEBotSDK.Model.FlexComponent.t,
-    :aspectRatio => String.t | nil,
-    :action => LINEBotSDK.Model.Action.t | nil
-  }
+          :type => String.t(),
+          :url => Uri,
+          :previewUrl => Uri,
+          :altContent => LINEBotSDK.Model.FlexComponent.t(),
+          :aspectRatio => String.t() | nil,
+          :action => LINEBotSDK.Model.Action.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

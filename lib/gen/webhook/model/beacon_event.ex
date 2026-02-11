@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.BeaconEvent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :source => LINEBotSDK.Model.Source.t | nil,
-    :timestamp => integer(),
-    :mode => LINEBotSDK.Model.EventMode.t,
-    :webhookEventId => String.t,
-    :deliveryContext => LINEBotSDK.Model.DeliveryContext.t,
-    :replyToken => String.t,
-    :beacon => LINEBotSDK.Model.BeaconContent.t
-  }
+          :type => String.t(),
+          :source => LINEBotSDK.Model.Source.t() | nil,
+          :timestamp => integer(),
+          :mode => LINEBotSDK.Model.EventMode.t(),
+          :webhookEventId => String.t(),
+          :deliveryContext => LINEBotSDK.Model.DeliveryContext.t(),
+          :replyToken => String.t(),
+          :beacon => LINEBotSDK.Model.BeaconContent.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

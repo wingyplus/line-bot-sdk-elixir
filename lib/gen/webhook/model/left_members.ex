@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.LeftMembers do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.LeftMembers do
   ]
 
   @type t :: %__MODULE__{
-    :members => [LINEBotSDK.Model.UserSource.t]
-  }
+          :members => [LINEBotSDK.Model.UserSource.t()]
+        }
 
   def decode(value) do
     value
   end
 end
-

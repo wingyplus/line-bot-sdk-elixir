@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AudioMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.AudioMessage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :quickReply => LINEBotSDK.Model.QuickReply.t | nil,
-    :sender => LINEBotSDK.Model.Sender.t | nil,
-    :originalContentUrl => Uri,
-    :duration => integer()
-  }
+          :type => String.t(),
+          :quickReply => LINEBotSDK.Model.QuickReply.t() | nil,
+          :sender => LINEBotSDK.Model.Sender.t() | nil,
+          :originalContentUrl => Uri,
+          :duration => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

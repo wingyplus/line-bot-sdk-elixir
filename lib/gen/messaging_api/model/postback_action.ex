@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.PostbackAction do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.PostbackAction do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :label => String.t | nil,
-    :data => String.t | nil,
-    :displayText => String.t | nil,
-    :text => String.t | nil,
-    :inputOption => String.t | nil,
-    :fillInText => String.t | nil
-  }
+          :type => String.t() | nil,
+          :label => String.t() | nil,
+          :data => String.t() | nil,
+          :displayText => String.t() | nil,
+          :text => String.t() | nil,
+          :inputOption => String.t() | nil,
+          :fillInText => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.UserMentionee do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :index => integer(),
-    :length => integer(),
-    :userId => String.t | nil,
-    :isSelf => boolean() | nil
-  }
+          :type => String.t(),
+          :index => integer(),
+          :length => integer(),
+          :userId => String.t() | nil,
+          :isSelf => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.ImagemapBaseSize do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.ImagemapBaseSize do
   ]
 
   @type t :: %__MODULE__{
-    :height => integer(),
-    :width => integer()
-  }
+          :height => integer(),
+          :width => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

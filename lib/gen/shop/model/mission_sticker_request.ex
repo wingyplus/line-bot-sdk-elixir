@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.MissionStickerRequest do
   ]
 
   @type t :: %__MODULE__{
-    :to => String.t,
-    :productId => String.t,
-    :productType => String.t,
-    :sendPresentMessage => boolean()
-  }
+          :to => String.t(),
+          :productId => String.t(),
+          :productType => String.t(),
+          :sendPresentMessage => boolean()
+        }
 
   def decode(value) do
     value
   end
 end
-

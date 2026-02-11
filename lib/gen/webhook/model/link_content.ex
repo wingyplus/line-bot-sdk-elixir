@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.LinkContent do
   ]
 
   @type t :: %__MODULE__{
-    :result => String.t,
-    :nonce => String.t
-  }
+          :result => String.t(),
+          :nonce => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

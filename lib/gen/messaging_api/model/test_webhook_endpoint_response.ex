@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.TestWebhookEndpointResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.TestWebhookEndpointResponse do
   ]
 
   @type t :: %__MODULE__{
-    :success => boolean() | nil,
-    :timestamp => DateTime.t,
-    :statusCode => integer(),
-    :reason => String.t,
-    :detail => String.t
-  }
+          :success => boolean() | nil,
+          :timestamp => DateTime.t(),
+          :statusCode => integer(),
+          :reason => String.t(),
+          :detail => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

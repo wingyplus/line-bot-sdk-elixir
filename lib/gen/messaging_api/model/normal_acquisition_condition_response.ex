@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.NormalAcquisitionConditionResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.NormalAcquisitionConditionResponse do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t
-  }
+          :type => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

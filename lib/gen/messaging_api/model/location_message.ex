@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.LocationMessage do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.LocationMessage do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :quickReply => LINEBotSDK.Model.QuickReply.t | nil,
-    :sender => LINEBotSDK.Model.Sender.t | nil,
-    :title => String.t,
-    :address => String.t,
-    :latitude => float(),
-    :longitude => float()
-  }
+          :type => String.t(),
+          :quickReply => LINEBotSDK.Model.QuickReply.t() | nil,
+          :sender => LINEBotSDK.Model.Sender.t() | nil,
+          :title => String.t(),
+          :address => String.t(),
+          :latitude => float(),
+          :longitude => float()
+        }
 
   def decode(value) do
     value
   end
 end
-

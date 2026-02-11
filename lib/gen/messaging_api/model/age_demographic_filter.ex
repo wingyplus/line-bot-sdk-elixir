@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AgeDemographicFilter do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.AgeDemographicFilter do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :gte => LINEBotSDK.Model.AgeDemographic.t | nil,
-    :lt => LINEBotSDK.Model.AgeDemographic.t | nil
-  }
+          :type => String.t() | nil,
+          :gte => LINEBotSDK.Model.AgeDemographic.t() | nil,
+          :lt => LINEBotSDK.Model.AgeDemographic.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

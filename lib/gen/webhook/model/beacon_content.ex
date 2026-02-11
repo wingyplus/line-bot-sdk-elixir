@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.BeaconContent do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.BeaconContent do
   ]
 
   @type t :: %__MODULE__{
-    :hwid => String.t,
-    :type => String.t,
-    :dm => String.t | nil
-  }
+          :hwid => String.t(),
+          :type => String.t(),
+          :dm => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

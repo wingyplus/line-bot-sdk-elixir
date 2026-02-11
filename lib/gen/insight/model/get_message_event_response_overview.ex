@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.GetMessageEventResponseOverview do
   ]
 
   @type t :: %__MODULE__{
-    :requestId => String.t | nil,
-    :timestamp => integer() | nil,
-    :delivered => integer() | nil,
-    :uniqueImpression => integer() | nil,
-    :uniqueClick => integer() | nil,
-    :uniqueMediaPlayed => integer() | nil,
-    :uniqueMediaPlayed100Percent => integer() | nil
-  }
+          :requestId => String.t() | nil,
+          :timestamp => integer() | nil,
+          :delivered => integer() | nil,
+          :uniqueImpression => integer() | nil,
+          :uniqueClick => integer() | nil,
+          :uniqueMediaPlayed => integer() | nil,
+          :uniqueMediaPlayed100Percent => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

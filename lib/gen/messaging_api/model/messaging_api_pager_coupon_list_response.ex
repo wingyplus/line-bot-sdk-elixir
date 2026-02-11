@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.MessagingApiPagerCouponListResponse do
   ]
 
   @type t :: %__MODULE__{
-    :items => [LINEBotSDK.Model.CouponListResponse.t],
-    :next => String.t | nil
-  }
+          :items => [LINEBotSDK.Model.CouponListResponse.t()],
+          :next => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

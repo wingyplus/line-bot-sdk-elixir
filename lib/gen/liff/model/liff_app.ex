@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.LiffApp do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.LiffApp do
   ]
 
   @type t :: %__MODULE__{
-    :liffId => String.t | nil,
-    :view => LINEBotSDK.Model.LiffView.t | nil,
-    :description => String.t | nil,
-    :features => LINEBotSDK.Model.LiffFeatures.t | nil,
-    :permanentLinkPattern => String.t | nil,
-    :scope => [LINEBotSDK.Model.LiffScope.t] | nil,
-    :botPrompt => LINEBotSDK.Model.LiffBotPrompt.t | nil
-  }
+          :liffId => String.t() | nil,
+          :view => LINEBotSDK.Model.LiffView.t() | nil,
+          :description => String.t() | nil,
+          :features => LINEBotSDK.Model.LiffFeatures.t() | nil,
+          :permanentLinkPattern => String.t() | nil,
+          :scope => [LINEBotSDK.Model.LiffScope.t()] | nil,
+          :botPrompt => LINEBotSDK.Model.LiffBotPrompt.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

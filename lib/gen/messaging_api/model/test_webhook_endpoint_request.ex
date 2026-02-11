@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.TestWebhookEndpointRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.TestWebhookEndpointRequest do
   ]
 
   @type t :: %__MODULE__{
-    :endpoint => Uri | nil
-  }
+          :endpoint => Uri | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

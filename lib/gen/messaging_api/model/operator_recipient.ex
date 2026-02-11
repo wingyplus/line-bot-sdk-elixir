@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.OperatorRecipient do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.OperatorRecipient do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :and => [LINEBotSDK.Model.Recipient.t] | nil,
-    :or => [LINEBotSDK.Model.Recipient.t] | nil,
-    :not => LINEBotSDK.Model.Recipient.t | nil
-  }
+          :type => String.t() | nil,
+          :and => [LINEBotSDK.Model.Recipient.t()] | nil,
+          :or => [LINEBotSDK.Model.Recipient.t()] | nil,
+          :not => LINEBotSDK.Model.Recipient.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

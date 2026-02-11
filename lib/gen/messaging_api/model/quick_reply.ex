@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.QuickReply do
   ]
 
   @type t :: %__MODULE__{
-    :items => [LINEBotSDK.Model.QuickReplyItem.t] | nil
-  }
+          :items => [LINEBotSDK.Model.QuickReplyItem.t()] | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

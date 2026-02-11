@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AudienceRecipient do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.AudienceRecipient do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t | nil,
-    :audienceGroupId => integer() | nil
-  }
+          :type => String.t() | nil,
+          :audienceGroupId => integer() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

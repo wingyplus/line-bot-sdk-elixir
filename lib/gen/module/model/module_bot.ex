@@ -16,15 +16,14 @@ defmodule LINEBotSDK.Model.ModuleBot do
   ]
 
   @type t :: %__MODULE__{
-    :userId => String.t,
-    :basicId => String.t,
-    :premiumId => String.t | nil,
-    :displayName => String.t,
-    :pictureUrl => String.t | nil
-  }
+          :userId => String.t(),
+          :basicId => String.t(),
+          :premiumId => String.t() | nil,
+          :displayName => String.t(),
+          :pictureUrl => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

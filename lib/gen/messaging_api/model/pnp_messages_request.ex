@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.PnpMessagesRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.PnpMessagesRequest do
   ]
 
   @type t :: %__MODULE__{
-    :messages => [LINEBotSDK.Model.Message.t],
-    :to => String.t,
-    :notificationDisabled => boolean() | nil
-  }
+          :messages => [LINEBotSDK.Model.Message.t()],
+          :to => String.t(),
+          :notificationDisabled => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.CouponDiscountRewardResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -13,12 +13,11 @@ defmodule LINEBotSDK.Model.CouponDiscountRewardResponse do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :priceInfo => LINEBotSDK.Model.DiscountPriceInfoResponse.t | nil
-  }
+          :type => String.t(),
+          :priceInfo => LINEBotSDK.Model.DiscountPriceInfoResponse.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

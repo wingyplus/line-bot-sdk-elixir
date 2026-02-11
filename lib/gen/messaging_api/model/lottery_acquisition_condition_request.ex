@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.LotteryAcquisitionConditionRequest do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.LotteryAcquisitionConditionRequest do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :lotteryProbability => integer(),
-    :maxAcquireCount => integer()
-  }
+          :type => String.t(),
+          :lotteryProbability => integer(),
+          :maxAcquireCount => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

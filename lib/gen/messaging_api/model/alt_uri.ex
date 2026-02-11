@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.AltUri do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.AltUri do
   ]
 
   @type t :: %__MODULE__{
-    :desktop => String.t | nil
-  }
+          :desktop => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

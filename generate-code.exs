@@ -11,6 +11,12 @@ defmodule GenerateCode do
 
     generate_clients()
     generate_webhook()
+
+    {_, 0} =
+      System.cmd("mix", ["format"],
+        into: IO.stream(),
+        stderr_to_stdout: true
+      )
   end
 
   defp generate_clients do
@@ -29,7 +35,7 @@ defmodule GenerateCode do
       package_name = source_yaml |> String.replace(".yml", "") |> String.replace("-", "_")
       output_path = "lib/gen/#{package_name}"
 
-      run_command([
+      generate_code([
         "--model-package", "model",
         "--api-package", "api",
         "--package-name", package_name,
@@ -40,7 +46,7 @@ defmodule GenerateCode do
   end
 
   defp generate_webhook do
-    run_command([
+    generate_code([
       "--global-property", "apiTest=false,modelDocs=false,apiDocs=false",
       "--model-package", "model",
       "--api-package", "api",
@@ -50,7 +56,7 @@ defmodule GenerateCode do
     ])
   end
 
-  defp run_command(flags) do
+  defp generate_code(flags) do
     cmd = "java"
 
     args = [

@@ -15,14 +15,13 @@ defmodule LINEBotSDK.Model.SubscribedMembershipUser do
   ]
 
   @type t :: %__MODULE__{
-    :membershipNo => integer(),
-    :joinedTime => integer(),
-    :nextBillingDate => String.t,
-    :totalSubscriptionMonths => integer()
-  }
+          :membershipNo => integer(),
+          :joinedTime => integer(),
+          :nextBillingDate => String.t(),
+          :totalSubscriptionMonths => integer()
+        }
 
   def decode(value) do
     value
   end
 end
-

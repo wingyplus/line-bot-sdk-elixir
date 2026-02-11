@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.BotInfoResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -18,17 +18,16 @@ defmodule LINEBotSDK.Model.BotInfoResponse do
   ]
 
   @type t :: %__MODULE__{
-    :userId => String.t,
-    :basicId => String.t,
-    :premiumId => String.t | nil,
-    :displayName => String.t,
-    :pictureUrl => Uri | nil,
-    :chatMode => String.t,
-    :markAsReadMode => String.t
-  }
+          :userId => String.t(),
+          :basicId => String.t(),
+          :premiumId => String.t() | nil,
+          :displayName => String.t(),
+          :pictureUrl => Uri | nil,
+          :chatMode => String.t(),
+          :markAsReadMode => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-

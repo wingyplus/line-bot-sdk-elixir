@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.CreateClickBasedAudienceGroupRequest do
   ]
 
   @type t :: %__MODULE__{
-    :description => String.t | nil,
-    :requestId => String.t | nil,
-    :clickUrl => Uri | nil
-  }
+          :description => String.t() | nil,
+          :requestId => String.t() | nil,
+          :clickUrl => Uri | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

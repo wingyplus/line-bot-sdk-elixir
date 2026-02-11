@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.Limit do
   ]
 
   @type t :: %__MODULE__{
-    :max => integer() | nil,
-    :upToRemainingQuota => boolean() | nil,
-    :forbidPartialDelivery => boolean() | nil
-  }
+          :max => integer() | nil,
+          :upToRemainingQuota => boolean() | nil,
+          :forbidPartialDelivery => boolean() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

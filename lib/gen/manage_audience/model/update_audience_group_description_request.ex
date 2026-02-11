@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.UpdateAudienceGroupDescriptionRequest do
   ]
 
   @type t :: %__MODULE__{
-    :description => String.t | nil
-  }
+          :description => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

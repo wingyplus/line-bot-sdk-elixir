@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.TextMessageContent do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -19,18 +19,17 @@ defmodule LINEBotSDK.Model.TextMessageContent do
   ]
 
   @type t :: %__MODULE__{
-    :type => String.t,
-    :id => String.t,
-    :text => String.t,
-    :emojis => [LINEBotSDK.Model.Emoji.t] | nil,
-    :mention => LINEBotSDK.Model.Mention.t | nil,
-    :quoteToken => String.t,
-    :quotedMessageId => String.t | nil,
-    :markAsReadToken => String.t | nil
-  }
+          :type => String.t(),
+          :id => String.t(),
+          :text => String.t(),
+          :emojis => [LINEBotSDK.Model.Emoji.t()] | nil,
+          :mention => LINEBotSDK.Model.Mention.t() | nil,
+          :quoteToken => String.t(),
+          :quotedMessageId => String.t() | nil,
+          :markAsReadToken => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

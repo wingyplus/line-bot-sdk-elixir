@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.Emoji do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -14,13 +14,12 @@ defmodule LINEBotSDK.Model.Emoji do
   ]
 
   @type t :: %__MODULE__{
-    :index => integer() | nil,
-    :productId => String.t | nil,
-    :emojiId => String.t | nil
-  }
+          :index => integer() | nil,
+          :productId => String.t() | nil,
+          :emojiId => String.t() | nil
+        }
 
   def decode(value) do
     value
   end
 end
-

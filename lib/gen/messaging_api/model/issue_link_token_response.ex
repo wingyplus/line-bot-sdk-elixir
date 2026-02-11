@@ -3,7 +3,7 @@
 
 defmodule LINEBotSDK.Model.IssueLinkTokenResponse do
   @moduledoc """
-  
+
   """
 
   @derive JSON.Encoder
@@ -12,11 +12,10 @@ defmodule LINEBotSDK.Model.IssueLinkTokenResponse do
   ]
 
   @type t :: %__MODULE__{
-    :linkToken => String.t
-  }
+          :linkToken => String.t()
+        }
 
   def decode(value) do
     value
   end
 end
-
