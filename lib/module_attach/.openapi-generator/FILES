@@ -1,0 +1,3 @@
+.openapi-generator-ignore
+api/line_module_attach.ex
+model/attach_module_response.ex

@@ -1,0 +1,62 @@
+{{>licenseInfo}}
+defmodule {{moduleName}}.Api.{{classname}} do
+  @moduledoc """
+  API calls for all endpoints tagged `{{baseName}}`.
+  """
+{{#operations}}
+{{#operation}}
+
+  @doc """
+  {{#summary}}
+  {{&summary}}
+  {{/summary}}
+  {{#notes}}
+  {{&notes}}
+  {{/notes}}
+
+  ### Parameters
+
+  - `client` (Req.Request.t()): Client to make request with
+{{#requiredParams}}
+  - `{{#underscored}}{{&paramName}}{{/underscored}}` ({{&dataType}}): {{&description}}
+{{/requiredParams}}
+  - `opts` (keyword): Optional parameters
+{{#optionalParams}}
+{{#isBodyParam}}
+    - `:body` ({{dataType}}): {{&description}}
+{{/isBodyParam}}
+{{^isBodyParam}}
+    - `{{#atom}}{{&baseName}}{{/atom}}` ({{&dataType}}): {{&description}}
+{{/isBodyParam}}
+{{/optionalParams}}
+
+  ### Returns
+
+  - `{:ok, Req.Response.t()}` on success
+  - `{:error, Exception.t()}` on failure
+  """
+  def {{{operationId}}}(client, {{#requiredParams}}{{#underscored}}{{{paramName}}}{{/underscored}}, {{/requiredParams}}opts \\ []) do
+{{#optionalParams}}
+{{#isBodyParam}}
+    body = Keyword.get(opts, :body)
+{{/isBodyParam}}
+{{^isBodyParam}}
+{{#isQueryParam}}
+    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{baseName}}{{/atom}})
+{{/isQueryParam}}
+{{#isHeaderParam}}
+    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{baseName}}{{/atom}})
+{{/isHeaderParam}}
+{{/isBodyParam}}
+{{/optionalParams}}
+    Req.request(client,
+      method: {{#atom}}{{#underscored}}{{httpMethod}}{{/underscored}}{{/atom}},
+      url: "{{replacedPathName}}"{{#bodyParams}}{{#-first}},
+      json: {{/-first}}{{/bodyParams}}{{#requiredParams}}{{#isBodyParam}}{{#underscored}}{{{paramName}}}{{/underscored}}{{/isBodyParam}}{{/requiredParams}}{{#optionalParams}}{{#isBodyParam}}body{{/isBodyParam}}{{/optionalParams}}{{#queryParams}}{{#-first}},
+      params: Enum.filter([{{/-first}}{{#atom}}{{baseName}}{{/atom}}: {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}{{^-last}}, {{/-last}}{{#-last}}], fn {_k, v} -> v != nil end){{/-last}}{{/queryParams}}{{#headerParams}}{{#-first}},
+      headers: Enum.filter([{{/-first}}{{#atom}}{{baseName}}{{/atom}}: {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}{{^-last}}, {{/-last}}{{#-last}}], fn {_k, v} -> v != nil end){{/-last}}{{/headerParams}}
+    )
+  end
+{{/operation}}
+{{/operations}}
+end

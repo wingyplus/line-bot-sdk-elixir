@@ -1,0 +1,8 @@
+.openapi-generator-ignore
+api/channel_access_token.ex
+model/channel_access_token_key_ids_response.ex
+model/error_response.ex
+model/issue_channel_access_token_response.ex
+model/issue_short_lived_channel_access_token_response.ex
+model/issue_stateless_channel_access_token_response.ex
+model/verify_channel_access_token_response.ex

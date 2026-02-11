@@ -1,0 +1,22 @@
+{{>licenseInfo}}
+{{#models}}{{#model}}defmodule {{moduleName}}.Model.{{classname}} do
+  @moduledoc """
+  {{&description}}
+  """
+
+  @derive JSON.Encoder
+  defstruct [
+    {{#vars}}{{#atom}}{{&baseName}}{{/atom}}{{^-last}},
+    {{/-last}}{{/vars}}
+  ]
+
+  @type t :: %__MODULE__{
+    {{#vars}}{{#atom}}{{&baseName}}{{/atom}} => {{{datatype}}}{{#isNullable}} | nil{{/isNullable}}{{^isNullable}}{{^required}} | nil{{/required}}{{/isNullable}}{{^-last}},
+    {{/-last}}{{/vars}}
+  }
+
+  def decode(value) do
+    value
+  end
+end
+{{/model}}{{/models}}

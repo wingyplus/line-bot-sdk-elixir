@@ -1,0 +1,12 @@
+.openapi-generator-ignore
+api/liff.ex
+model/add_liff_app_request.ex
+model/add_liff_app_response.ex
+model/get_all_liff_apps_response.ex
+model/liff_app.ex
+model/liff_bot_prompt.ex
+model/liff_features.ex
+model/liff_scope.ex
+model/liff_view.ex
+model/update_liff_app_request.ex
+model/update_liff_view.ex
