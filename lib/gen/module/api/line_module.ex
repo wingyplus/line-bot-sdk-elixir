@@ -16,8 +16,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `chat_id` (String.t): The `userId`, `roomId`, or `groupId`
+  - `client` (`Req.Request.t`): Client to make request with
+  - `chat_id` (`String.t`): The `userId`, `roomId`, or `groupId`
   - `optional_args` (keyword): Optional parameters
     - `:body` (AcquireChatControlRequest): 
   - `client_opts` (keyword): Options to pass to `Req.request`
@@ -49,7 +49,7 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
+  - `client` (`Req.Request.t`): Client to make request with
   - `optional_args` (keyword): Optional parameters
     - `:body` (DetachModuleRequest): 
   - `client_opts` (keyword): Options to pass to `Req.request`
@@ -80,7 +80,7 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
+  - `client` (`Req.Request.t`): Client to make request with
   - `optional_args` (keyword): Optional parameters
     - `:start` (String.t): Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
     - `:limit` (integer()): Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
@@ -113,8 +113,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `chat_id` (String.t): The `userId`, `roomId`, or `groupId`
+  - `client` (`Req.Request.t`): Client to make request with
+  - `chat_id` (`String.t`): The `userId`, `roomId`, or `groupId`
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

@@ -16,10 +16,10 @@ defmodule LINEBotSDK.LineModuleAttach do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `grant_type` (String.t): authorization_code
-  - `code` (String.t): Authorization code received from the LINE Platform.
-  - `redirect_uri` (String.t): Specify the redirect_uri specified in the URL for authentication and authorization.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `grant_type` (`String.t`): authorization_code
+  - `code` (`String.t`): Authorization code received from the LINE Platform.
+  - `redirect_uri` (`String.t`): Specify the redirect_uri specified in the URL for authentication and authorization.
   - `optional_args` (keyword): Optional parameters
     - `:code_verifier` (String.t): Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
     - `:client_id` (String.t): Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 

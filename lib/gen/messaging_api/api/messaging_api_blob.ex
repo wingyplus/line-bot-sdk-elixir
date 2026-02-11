@@ -16,8 +16,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `message_id` (String.t): Message ID of video or audio
+  - `client` (`Req.Request.t`): Client to make request with
+  - `message_id` (`String.t`): Message ID of video or audio
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -44,8 +44,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `message_id` (String.t): Message ID of image or video
+  - `client` (`Req.Request.t`): Client to make request with
+  - `message_id` (`String.t`): Message ID of image or video
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -72,8 +72,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `message_id` (String.t): Message ID of video or audio
+  - `client` (`Req.Request.t`): Client to make request with
+  - `message_id` (`String.t`): Message ID of video or audio
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -100,8 +100,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `rich_menu_id` (String.t): ID of the rich menu with the image to be downloaded
+  - `client` (`Req.Request.t`): Client to make request with
+  - `rich_menu_id` (`String.t`): ID of the rich menu with the image to be downloaded
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -128,8 +128,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `rich_menu_id` (String.t): The ID of the rich menu to attach the image to
+  - `client` (`Req.Request.t`): Client to make request with
+  - `rich_menu_id` (`String.t`): The ID of the rich menu to attach the image to
   - `optional_args` (keyword): Optional parameters
     - `:body` (String.t): 
   - `client_opts` (keyword): Options to pass to `Req.request`

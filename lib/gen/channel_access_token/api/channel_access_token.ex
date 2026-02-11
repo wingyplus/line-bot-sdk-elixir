@@ -16,9 +16,9 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `client_assertion_type` (String.t): `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-  - `client_assertion` (String.t): A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `client_assertion_type` (`String.t`): `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+  - `client_assertion` (`String.t`): A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -57,10 +57,10 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `grant_type` (String.t): `client_credentials`
-  - `client_id` (String.t): Channel ID.
-  - `client_secret` (String.t): Channel secret.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `grant_type` (`String.t`): `client_credentials`
+  - `client_id` (`String.t`): Channel ID.
+  - `client_secret` (`String.t`): Channel secret.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -96,10 +96,10 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `grant_type` (String.t): client_credentials
-  - `client_assertion_type` (String.t): urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-  - `client_assertion` (String.t): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `grant_type` (`String.t`): client_credentials
+  - `client_assertion_type` (`String.t`): urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+  - `client_assertion` (`String.t`): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -140,7 +140,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
+  - `client` (`Req.Request.t`): Client to make request with
   - `optional_args` (keyword): Optional parameters
     - `:grant_type` (String.t): `client_credentials`
     - `:client_assertion_type` (String.t): URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
@@ -189,8 +189,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `access_token` (String.t): Channel access token
+  - `client` (`Req.Request.t`): Client to make request with
+  - `access_token` (`String.t`): Channel access token
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -217,10 +217,10 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `client_id` (String.t): Channel ID
-  - `client_secret` (String.t): Channel Secret
-  - `access_token` (String.t): Channel access token
+  - `client` (`Req.Request.t`): Client to make request with
+  - `client_id` (`String.t`): Channel ID
+  - `client_secret` (`String.t`): Channel Secret
+  - `access_token` (`String.t`): Channel access token
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -261,8 +261,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `access_token` (String.t): A short-lived or long-lived channel access token.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `access_token` (`String.t`): A short-lived or long-lived channel access token.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -289,8 +289,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `access_token` (String.t): Channel access token with a user-specified expiration (Channel Access Token v2.1).
+  - `client` (`Req.Request.t`): Client to make request with
+  - `access_token` (`String.t`): Channel access token with a user-specified expiration (Channel Access Token v2.1).
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

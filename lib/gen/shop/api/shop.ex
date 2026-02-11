@@ -16,8 +16,8 @@ defmodule LINEBotSDK.Shop do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `mission_sticker_request` (MissionStickerRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `mission_sticker_request` (`MissionStickerRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

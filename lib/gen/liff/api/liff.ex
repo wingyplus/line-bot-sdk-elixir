@@ -17,8 +17,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `add_liff_app_request` (AddLiffAppRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `add_liff_app_request` (`AddLiffAppRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -48,8 +48,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `liff_id` (String.t): ID of the LIFF app to be updated
+  - `client` (`Req.Request.t`): Client to make request with
+  - `liff_id` (`String.t`): ID of the LIFF app to be updated
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -79,7 +79,7 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
+  - `client` (`Req.Request.t`): Client to make request with
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -108,9 +108,9 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `liff_id` (String.t): ID of the LIFF app to be updated
-  - `update_liff_app_request` (UpdateLiffAppRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `liff_id` (`String.t`): ID of the LIFF app to be updated
+  - `update_liff_app_request` (`UpdateLiffAppRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

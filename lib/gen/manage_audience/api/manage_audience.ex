@@ -16,8 +16,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `add_audience_to_audience_group_request` (AddAudienceToAudienceGroupRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `add_audience_to_audience_group_request` (`AddAudienceToAudienceGroupRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -48,8 +48,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `create_audience_group_request` (CreateAudienceGroupRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `create_audience_group_request` (`CreateAudienceGroupRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -76,8 +76,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `create_click_based_audience_group_request` (CreateClickBasedAudienceGroupRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `create_click_based_audience_group_request` (`CreateClickBasedAudienceGroupRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -108,8 +108,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `create_imp_based_audience_group_request` (CreateImpBasedAudienceGroupRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `create_imp_based_audience_group_request` (`CreateImpBasedAudienceGroupRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -140,8 +140,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `audience_group_id` (integer()): The audience ID.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `audience_group_id` (`integer()`): The audience ID.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -168,8 +168,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `audience_group_id` (integer()): The audience ID.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `audience_group_id` (`integer()`): The audience ID.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -197,8 +197,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `page` (integer()): The page to return when getting (paginated) results. Must be 1 or higher.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `page` (`integer()`): The page to return when getting (paginated) results. Must be 1 or higher.
   - `optional_args` (keyword): Optional parameters
     - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
     - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
@@ -248,8 +248,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `audience_group_id` (integer()): The audience ID.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `audience_group_id` (`integer()`): The audience ID.
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns
@@ -277,8 +277,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `page` (integer()): The page to return when getting (paginated) results. Must be 1 or higher.
+  - `client` (`Req.Request.t`): Client to make request with
+  - `page` (`integer()`): The page to return when getting (paginated) results. Must be 1 or higher.
   - `optional_args` (keyword): Optional parameters
     - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
     - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
@@ -328,9 +328,9 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `audience_group_id` (integer()): The audience ID.
-  - `update_audience_group_description_request` (UpdateAudienceGroupDescriptionRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `audience_group_id` (`integer()`): The audience ID.
+  - `update_audience_group_description_request` (`UpdateAudienceGroupDescriptionRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

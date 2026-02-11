@@ -16,8 +16,8 @@ defmodule LINEBotSDK.Dummy do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `callback_request` (CallbackRequest): 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `callback_request` (`CallbackRequest`): 
   - `client_opts` (keyword): Options to pass to `Req.request`
 
   ### Returns

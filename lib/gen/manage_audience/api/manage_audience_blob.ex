@@ -16,8 +16,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `file` (`String.t`): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
   - `optional_args` (keyword): Optional parameters
     - `:audience_group_id` (integer()): The audience ID.
     - `:upload_description` (String.t): The description to register with the job
@@ -58,8 +58,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   ### Parameters
 
-  - `client` (Req.Request.t()): Client to make request with
-  - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
+  - `client` (`Req.Request.t`): Client to make request with
+  - `file` (`String.t`): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
   - `optional_args` (keyword): Optional parameters
     - `:description` (String.t): The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
     - `:is_ifa_audience` (boolean()): To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
