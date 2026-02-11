@@ -23,7 +23,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
   def get_message_content(client, message_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/message/#{message_id}/content"
+      url: "/v2/bot/message/:message_id/content",
+      path_params: [message_id: message_id]
     )
   end
 
@@ -44,7 +45,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
   def get_message_content_preview(client, message_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/message/#{message_id}/content/preview"
+      url: "/v2/bot/message/:message_id/content/preview",
+      path_params: [message_id: message_id]
     )
   end
 
@@ -65,7 +67,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
   def get_message_content_transcoding_by_message_id(client, message_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/message/#{message_id}/content/transcoding"
+      url: "/v2/bot/message/:message_id/content/transcoding",
+      path_params: [message_id: message_id]
     )
   end
 
@@ -86,7 +89,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
   def get_rich_menu_image(client, rich_menu_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/richmenu/#{rich_menu_id}/content"
+      url: "/v2/bot/richmenu/:rich_menu_id/content",
+      path_params: [rich_menu_id: rich_menu_id]
     )
   end
 
@@ -109,7 +113,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
     body = Keyword.get(opts, :body)
     Req.request(client,
       method: :post,
-      url: "/v2/bot/richmenu/#{rich_menu_id}/content",
+      url: "/v2/bot/richmenu/:rich_menu_id/content",
+      path_params: [rich_menu_id: rich_menu_id],
       json: body
     )
   end

@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/shop.ex
 model/error_response.ex
 model/mission_sticker_request.ex

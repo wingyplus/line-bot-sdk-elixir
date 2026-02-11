@@ -111,7 +111,8 @@ defmodule LINEBotSDK.ManageAudience do
   def delete_audience_group(client, audience_group_id, opts \\ []) do
     Req.request(client,
       method: :delete,
-      url: "/v2/bot/audienceGroup/#{audience_group_id}"
+      url: "/v2/bot/audienceGroup/:audience_group_id",
+      path_params: [audience_group_id: audience_group_id]
     )
   end
 
@@ -132,7 +133,8 @@ defmodule LINEBotSDK.ManageAudience do
   def get_audience_data(client, audience_group_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/audienceGroup/#{audience_group_id}"
+      url: "/v2/bot/audienceGroup/:audience_group_id",
+      path_params: [audience_group_id: audience_group_id]
     )
   end
 
@@ -185,7 +187,8 @@ defmodule LINEBotSDK.ManageAudience do
   def get_shared_audience_data(client, audience_group_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/audienceGroup/shared/#{audience_group_id}"
+      url: "/v2/bot/audienceGroup/shared/:audience_group_id",
+      path_params: [audience_group_id: audience_group_id]
     )
   end
 
@@ -239,7 +242,8 @@ defmodule LINEBotSDK.ManageAudience do
   def update_audience_group_description(client, audience_group_id, update_audience_group_description_request, opts \\ []) do
     Req.request(client,
       method: :put,
-      url: "/v2/bot/audienceGroup/#{audience_group_id}/updateDescription",
+      url: "/v2/bot/audienceGroup/:audience_group_id/updateDescription",
+      path_params: [audience_group_id: audience_group_id],
       json: update_audience_group_description_request
     )
   end

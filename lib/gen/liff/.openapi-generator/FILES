@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/liff.ex
 model/add_liff_app_request.ex
 model/add_liff_app_response.ex

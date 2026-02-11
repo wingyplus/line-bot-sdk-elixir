@@ -68,7 +68,8 @@ defmodule LINEBotSDK.MessagingApi do
   def close_coupon(client, coupon_id, opts \\ []) do
     Req.request(client,
       method: :put,
-      url: "/v2/bot/coupon/#{coupon_id}/close"
+      url: "/v2/bot/coupon/:coupon_id/close",
+      path_params: [coupon_id: coupon_id]
     )
   end
 
@@ -156,7 +157,8 @@ defmodule LINEBotSDK.MessagingApi do
   def delete_rich_menu(client, rich_menu_id, opts \\ []) do
     Req.request(client,
       method: :delete,
-      url: "/v2/bot/richmenu/#{rich_menu_id}"
+      url: "/v2/bot/richmenu/:rich_menu_id",
+      path_params: [rich_menu_id: rich_menu_id]
     )
   end
 
@@ -177,7 +179,8 @@ defmodule LINEBotSDK.MessagingApi do
   def delete_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
     Req.request(client,
       method: :delete,
-      url: "/v2/bot/richmenu/alias/#{rich_menu_alias_id}"
+      url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
+      path_params: [rich_menu_alias_id: rich_menu_alias_id]
     )
   end
 
@@ -263,7 +266,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_coupon_detail(client, coupon_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/coupon/#{coupon_id}"
+      url: "/v2/bot/coupon/:coupon_id",
+      path_params: [coupon_id: coupon_id]
     )
   end
 
@@ -329,7 +333,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_group_member_count(client, group_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/group/#{group_id}/members/count"
+      url: "/v2/bot/group/:group_id/members/count",
+      path_params: [group_id: group_id]
     )
   end
 
@@ -351,7 +356,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_group_member_profile(client, group_id, user_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/group/#{group_id}/member/#{user_id}"
+      url: "/v2/bot/group/:group_id/member/:user_id",
+      path_params: [group_id: group_id, user_id: user_id]
     )
   end
 
@@ -374,7 +380,8 @@ defmodule LINEBotSDK.MessagingApi do
     start = Keyword.get(opts, :start)
     Req.request(client,
       method: :get,
-      url: "/v2/bot/group/#{group_id}/members/ids",
+      url: "/v2/bot/group/:group_id/members/ids",
+      path_params: [group_id: group_id],
       params: Enum.filter([:start: start], fn {_k, v} -> v != nil end)
     )
   end
@@ -396,7 +403,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_group_summary(client, group_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/group/#{group_id}/summary"
+      url: "/v2/bot/group/:group_id/summary",
+      path_params: [group_id: group_id]
     )
   end
 
@@ -421,7 +429,8 @@ defmodule LINEBotSDK.MessagingApi do
     limit = Keyword.get(opts, :limit)
     Req.request(client,
       method: :get,
-      url: "/v2/bot/membership/#{membership_id}/users/ids",
+      url: "/v2/bot/membership/:membership_id/users/ids",
+      path_params: [membership_id: membership_id],
       params: Enum.filter([:start: start, :limit: limit], fn {_k, v} -> v != nil end)
     )
   end
@@ -463,7 +472,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_membership_subscription(client, user_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/membership/subscription/#{user_id}"
+      url: "/v2/bot/membership/subscription/:user_id",
+      path_params: [user_id: user_id]
     )
   end
 
@@ -656,7 +666,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_profile(client, user_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/profile/#{user_id}"
+      url: "/v2/bot/profile/:user_id",
+      path_params: [user_id: user_id]
     )
   end
 
@@ -677,7 +688,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_rich_menu(client, rich_menu_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/richmenu/#{rich_menu_id}"
+      url: "/v2/bot/richmenu/:rich_menu_id",
+      path_params: [rich_menu_id: rich_menu_id]
     )
   end
 
@@ -698,7 +710,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/richmenu/alias/#{rich_menu_alias_id}"
+      url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
+      path_params: [rich_menu_alias_id: rich_menu_alias_id]
     )
   end
 
@@ -761,7 +774,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_rich_menu_id_of_user(client, user_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/user/#{user_id}/richmenu"
+      url: "/v2/bot/user/:user_id/richmenu",
+      path_params: [user_id: user_id]
     )
   end
 
@@ -802,7 +816,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_room_member_count(client, room_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/room/#{room_id}/members/count"
+      url: "/v2/bot/room/:room_id/members/count",
+      path_params: [room_id: room_id]
     )
   end
 
@@ -824,7 +839,8 @@ defmodule LINEBotSDK.MessagingApi do
   def get_room_member_profile(client, room_id, user_id, opts \\ []) do
     Req.request(client,
       method: :get,
-      url: "/v2/bot/room/#{room_id}/member/#{user_id}"
+      url: "/v2/bot/room/:room_id/member/:user_id",
+      path_params: [room_id: room_id, user_id: user_id]
     )
   end
 
@@ -847,7 +863,8 @@ defmodule LINEBotSDK.MessagingApi do
     start = Keyword.get(opts, :start)
     Req.request(client,
       method: :get,
-      url: "/v2/bot/room/#{room_id}/members/ids",
+      url: "/v2/bot/room/:room_id/members/ids",
+      path_params: [room_id: room_id],
       params: Enum.filter([:start: start], fn {_k, v} -> v != nil end)
     )
   end
@@ -889,7 +906,8 @@ defmodule LINEBotSDK.MessagingApi do
   def issue_link_token(client, user_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/user/#{user_id}/linkToken"
+      url: "/v2/bot/user/:user_id/linkToken",
+      path_params: [user_id: user_id]
     )
   end
 
@@ -910,7 +928,8 @@ defmodule LINEBotSDK.MessagingApi do
   def leave_group(client, group_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/group/#{group_id}/leave"
+      url: "/v2/bot/group/:group_id/leave",
+      path_params: [group_id: group_id]
     )
   end
 
@@ -931,7 +950,8 @@ defmodule LINEBotSDK.MessagingApi do
   def leave_room(client, room_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/room/#{room_id}/leave"
+      url: "/v2/bot/room/:room_id/leave",
+      path_params: [room_id: room_id]
     )
   end
 
@@ -953,7 +973,8 @@ defmodule LINEBotSDK.MessagingApi do
   def link_rich_menu_id_to_user(client, user_id, rich_menu_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/user/#{user_id}/richmenu/#{rich_menu_id}"
+      url: "/v2/bot/user/:user_id/richmenu/:rich_menu_id",
+      path_params: [user_id: user_id, rich_menu_id: rich_menu_id]
     )
   end
 
@@ -1211,7 +1232,8 @@ defmodule LINEBotSDK.MessagingApi do
   def set_default_rich_menu(client, rich_menu_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/user/all/richmenu/#{rich_menu_id}"
+      url: "/v2/bot/user/all/richmenu/:rich_menu_id",
+      path_params: [rich_menu_id: rich_menu_id]
     )
   end
 
@@ -1299,7 +1321,8 @@ defmodule LINEBotSDK.MessagingApi do
   def unlink_rich_menu_id_from_user(client, user_id, opts \\ []) do
     Req.request(client,
       method: :delete,
-      url: "/v2/bot/user/#{user_id}/richmenu"
+      url: "/v2/bot/user/:user_id/richmenu",
+      path_params: [user_id: user_id]
     )
   end
 
@@ -1343,7 +1366,8 @@ defmodule LINEBotSDK.MessagingApi do
   def update_rich_menu_alias(client, rich_menu_alias_id, update_rich_menu_alias_request, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/richmenu/alias/#{rich_menu_alias_id}",
+      url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
+      path_params: [rich_menu_alias_id: rich_menu_alias_id],
       json: update_rich_menu_alias_request
     )
   end

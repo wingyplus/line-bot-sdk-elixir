@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/channel_access_token.ex
 model/channel_access_token_key_ids_response.ex
 model/error_response.ex

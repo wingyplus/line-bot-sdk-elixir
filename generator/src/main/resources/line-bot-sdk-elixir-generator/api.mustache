@@ -51,7 +51,8 @@ defmodule {{moduleName}}.{{classname}} do
 {{/optionalParams}}
     Req.request(client,
       method: {{#atom}}{{#underscored}}{{httpMethod}}{{/underscored}}{{/atom}},
-      url: "{{replacedPathName}}"{{#bodyParams}}{{#-first}},
+      url: "{{vendorExtensions.x-req-path}}"{{#pathParams}}{{#-first}},
+      path_params: [{{/-first}}{{#underscored}}{{baseName}}{{/underscored}}: {{#underscored}}{{paramName}}{{/underscored}}{{^-last}}, {{/-last}}{{#-last}}]{{/-last}}{{/pathParams}}{{#bodyParams}}{{#-first}},
       json: {{/-first}}{{/bodyParams}}{{#requiredParams}}{{#isBodyParam}}{{#underscored}}{{{paramName}}}{{/underscored}}{{/isBodyParam}}{{/requiredParams}}{{#optionalParams}}{{#isBodyParam}}body{{/isBodyParam}}{{/optionalParams}}{{#queryParams}}{{#-first}},
       params: Enum.filter([{{/-first}}{{#atom}}{{baseName}}{{/atom}}: {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}{{^-last}}, {{/-last}}{{#-last}}], fn {_k, v} -> v != nil end){{/-last}}{{/queryParams}}{{#headerParams}}{{#-first}},
       headers: Enum.filter([{{/-first}}{{#atom}}{{baseName}}{{/atom}}: {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}{{^-last}}, {{/-last}}{{#-last}}], fn {_k, v} -> v != nil end){{/-last}}{{/headerParams}}

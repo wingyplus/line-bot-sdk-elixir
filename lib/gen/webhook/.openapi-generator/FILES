@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/dummy.ex
 model/account_link_event.ex
 model/activated_event.ex

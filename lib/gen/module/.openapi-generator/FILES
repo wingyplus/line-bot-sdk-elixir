@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 api/line_module.ex
 model/acquire_chat_control_request.ex
 model/detach_module_request.ex

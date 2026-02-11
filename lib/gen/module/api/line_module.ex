@@ -25,7 +25,8 @@ defmodule LINEBotSDK.LineModule do
     body = Keyword.get(opts, :body)
     Req.request(client,
       method: :post,
-      url: "/v2/bot/chat/#{chat_id}/control/acquire",
+      url: "/v2/bot/chat/:chat_id/control/acquire",
+      path_params: [chat_id: chat_id],
       json: body
     )
   end
@@ -95,7 +96,8 @@ defmodule LINEBotSDK.LineModule do
   def release_chat_control(client, chat_id, opts \\ []) do
     Req.request(client,
       method: :post,
-      url: "/v2/bot/chat/#{chat_id}/control/release"
+      url: "/v2/bot/chat/:chat_id/control/release",
+      path_params: [chat_id: chat_id]
     )
   end
 end

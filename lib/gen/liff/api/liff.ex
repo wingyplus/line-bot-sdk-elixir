@@ -47,7 +47,8 @@ defmodule LINEBotSDK.Liff do
   def delete_liff_app(client, liff_id, opts \\ []) do
     Req.request(client,
       method: :delete,
-      url: "/liff/v1/apps/#{liff_id}"
+      url: "/liff/v1/apps/:liff_id",
+      path_params: [liff_id: liff_id]
     )
   end
 
@@ -91,7 +92,8 @@ defmodule LINEBotSDK.Liff do
   def update_liff_app(client, liff_id, update_liff_app_request, opts \\ []) do
     Req.request(client,
       method: :put,
-      url: "/liff/v1/apps/#{liff_id}",
+      url: "/liff/v1/apps/:liff_id",
+      path_params: [liff_id: liff_id],
       json: update_liff_app_request
     )
   end

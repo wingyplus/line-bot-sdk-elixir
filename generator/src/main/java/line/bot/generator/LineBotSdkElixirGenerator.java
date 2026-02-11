@@ -1,9 +1,16 @@
 package line.bot.generator;
 
 import java.io.File;
+import java.util.List;
 
+import static org.openapitools.codegen.utils.StringUtils.underscore;
+
+import org.openapitools.codegen.CodegenOperation;
+import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.languages.ElixirClientCodegen;
+import org.openapitools.codegen.model.ModelMap;
+import org.openapitools.codegen.model.OperationsMap;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
@@ -51,6 +58,20 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
         // preprocessOpenAPI adds connection.ex, request_builder.ex, deserializer.ex
         // to supportingFiles. Clear them again since we don't need them.
         supportingFiles.clear();
+    }
+
+    @Override
+    public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
+        OperationsMap result = super.postProcessOperationsWithModels(objs, allModels);
+        for (CodegenOperation op : result.getOperations().getOperation()) {
+            // Replace {paramName} with :param_name for Req's path_params option.
+            String reqPath = op.path;
+            for (CodegenParameter pp : op.pathParams) {
+                reqPath = reqPath.replace("{" + pp.baseName + "}", ":" + underscore(pp.baseName));
+            }
+            op.vendorExtensions.put("x-req-path", reqPath);
+        }
+        return result;
     }
 
     @Override
