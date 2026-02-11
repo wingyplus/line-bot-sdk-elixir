@@ -16,14 +16,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `message_id` (`String.t`): Message ID of video or audio
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `message_id` (`t:String.t/0`): Message ID of video or audio
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_message_content(client, message_id, client_opts \\ []) do
     request_opts = [
@@ -44,14 +44,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `message_id` (`String.t`): Message ID of image or video
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `message_id` (`t:String.t/0`): Message ID of image or video
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_message_content_preview(client, message_id, client_opts \\ []) do
     request_opts = [
@@ -72,14 +72,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `message_id` (`String.t`): Message ID of video or audio
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `message_id` (`t:String.t/0`): Message ID of video or audio
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetMessageContentTranscodingResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_message_content_transcoding_by_message_id(client, message_id, client_opts \\ []) do
     request_opts = [
@@ -100,14 +100,14 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `rich_menu_id` (`String.t`): ID of the rich menu with the image to be downloaded
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `rich_menu_id` (`t:String.t/0`): ID of the rich menu with the image to be downloaded
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, String.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_rich_menu_image(client, rich_menu_id, client_opts \\ []) do
     request_opts = [
@@ -128,16 +128,16 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `rich_menu_id` (`String.t`): The ID of the rich menu to attach the image to
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `rich_menu_id` (`t:String.t/0`): The ID of the rich menu to attach the image to
   - `optional_args` (keyword): Optional parameters
-    - `:body` (String.t): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:body` (`t:String.t/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def set_rich_menu_image(client, rich_menu_id, optional_args \\ [], client_opts \\ []) do
     body = Keyword.get(optional_args, :body)

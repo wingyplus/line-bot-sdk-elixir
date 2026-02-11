@@ -16,13 +16,13 @@ defmodule LINEBotSDK.Insight do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetFriendsDemographicsResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_friends_demographics(client, client_opts \\ []) do
     request_opts = [
@@ -43,14 +43,14 @@ defmodule LINEBotSDK.Insight do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `request_id` (`String.t`): Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `request_id` (`t:String.t/0`): Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetMessageEventResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_message_event(client, request_id, client_opts \\ []) do
     request_opts = [
@@ -72,15 +72,15 @@ defmodule LINEBotSDK.Insight do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
+  - `client` (`t:Req.Request.t/0`): Client to make request with
   - `optional_args` (keyword): Optional parameters
-    - `:date` (String.t): Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:date` (`t:String.t/0`): Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetNumberOfFollowersResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_number_of_followers(client, optional_args \\ [], client_opts \\ []) do
     date = Keyword.get(optional_args, :date)
@@ -104,14 +104,14 @@ defmodule LINEBotSDK.Insight do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `date` (`String.t`): Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `date` (`t:String.t/0`): Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_number_of_message_deliveries(client, date, client_opts \\ []) do
     request_opts = [
@@ -132,16 +132,16 @@ defmodule LINEBotSDK.Insight do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `custom_aggregation_unit` (`String.t`): Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
-  - `from` (`String.t`): Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
-  - `to` (`String.t`): End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `custom_aggregation_unit` (`t:String.t/0`): Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
+  - `from` (`t:String.t/0`): Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+  - `to` (`t:String.t/0`): End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetStatisticsPerUnitResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_statistics_per_unit(client, custom_aggregation_unit, from, to, client_opts \\ []) do
     request_opts = [

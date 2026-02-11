@@ -16,16 +16,16 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `chat_id` (`String.t`): The `userId`, `roomId`, or `groupId`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `chat_id` (`t:String.t/0`): The `userId`, `roomId`, or `groupId`
   - `optional_args` (keyword): Optional parameters
-    - `:body` (AcquireChatControlRequest): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:body` (`t:AcquireChatControlRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def acquire_chat_control(client, chat_id, optional_args \\ [], client_opts \\ []) do
     body = Keyword.get(optional_args, :body)
@@ -49,15 +49,15 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
+  - `client` (`t:Req.Request.t/0`): Client to make request with
   - `optional_args` (keyword): Optional parameters
-    - `:body` (DetachModuleRequest): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:body` (`t:DetachModuleRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def detach_module(client, optional_args \\ [], client_opts \\ []) do
     body = Keyword.get(optional_args, :body)
@@ -80,16 +80,16 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
+  - `client` (`t:Req.Request.t/0`): Client to make request with
   - `optional_args` (keyword): Optional parameters
-    - `:start` (String.t): Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
-    - `:limit` (integer()): Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:start` (`t:String.t/0`): Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
+    - `:limit` (`t:integer()/0`): Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetModulesResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_modules(client, optional_args \\ [], client_opts \\ []) do
     start = Keyword.get(optional_args, :start)
@@ -113,14 +113,14 @@ defmodule LINEBotSDK.LineModule do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `chat_id` (`String.t`): The `userId`, `roomId`, or `groupId`
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `chat_id` (`t:String.t/0`): The `userId`, `roomId`, or `groupId`
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def release_chat_control(client, chat_id, client_opts \\ []) do
     request_opts = [

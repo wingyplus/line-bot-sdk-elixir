@@ -16,24 +16,24 @@ defmodule LINEBotSDK.LineModuleAttach do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `grant_type` (`String.t`): authorization_code
-  - `code` (`String.t`): Authorization code received from the LINE Platform.
-  - `redirect_uri` (`String.t`): Specify the redirect_uri specified in the URL for authentication and authorization.
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `grant_type` (`t:String.t/0`): authorization_code
+  - `code` (`t:String.t/0`): Authorization code received from the LINE Platform.
+  - `redirect_uri` (`t:String.t/0`): Specify the redirect_uri specified in the URL for authentication and authorization.
   - `optional_args` (keyword): Optional parameters
-    - `:code_verifier` (String.t): Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
-    - `:client_id` (String.t): Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
-    - `:client_secret` (String.t): Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
-    - `:region` (String.t): If you specified a value for region in the URL for authentication and authorization, specify the same value. 
-    - `:basic_search_id` (String.t): If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
-    - `:scope` (String.t): If you specified a value for scope in the URL for authentication and authorization, specify the same value.
-    - `:brand_type` (String.t): If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:code_verifier` (`t:String.t/0`): Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.
+    - `:client_id` (`t:String.t/0`): Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. 
+    - `:client_secret` (`t:String.t/0`): Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. 
+    - `:region` (`t:String.t/0`): If you specified a value for region in the URL for authentication and authorization, specify the same value. 
+    - `:basic_search_id` (`t:String.t/0`): If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.
+    - `:scope` (`t:String.t/0`): If you specified a value for scope in the URL for authentication and authorization, specify the same value.
+    - `:brand_type` (`t:String.t/0`): If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.AttachModuleResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def attach_module(
         client,

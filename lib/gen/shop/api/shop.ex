@@ -16,14 +16,14 @@ defmodule LINEBotSDK.Shop do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `mission_sticker_request` (`MissionStickerRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `mission_sticker_request` (`t:MissionStickerRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def mission_sticker_v3(client, mission_sticker_request, client_opts \\ []) do
     request_opts = [

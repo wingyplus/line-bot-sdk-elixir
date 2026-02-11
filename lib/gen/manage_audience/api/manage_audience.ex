@@ -16,14 +16,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `add_audience_to_audience_group_request` (`AddAudienceToAudienceGroupRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `add_audience_to_audience_group_request` (`t:AddAudienceToAudienceGroupRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def add_audience_to_audience_group(
         client,
@@ -48,14 +48,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `create_audience_group_request` (`CreateAudienceGroupRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `create_audience_group_request` (`t:CreateAudienceGroupRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.CreateAudienceGroupResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def create_audience_group(client, create_audience_group_request, client_opts \\ []) do
     request_opts = [
@@ -76,14 +76,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `create_click_based_audience_group_request` (`CreateClickBasedAudienceGroupRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `create_click_based_audience_group_request` (`t:CreateClickBasedAudienceGroupRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.CreateClickBasedAudienceGroupResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def create_click_based_audience_group(
         client,
@@ -108,14 +108,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `create_imp_based_audience_group_request` (`CreateImpBasedAudienceGroupRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `create_imp_based_audience_group_request` (`t:CreateImpBasedAudienceGroupRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.CreateImpBasedAudienceGroupResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def create_imp_based_audience_group(
         client,
@@ -140,14 +140,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `audience_group_id` (`integer()`): The audience ID.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `audience_group_id` (`t:integer()/0`): The audience ID.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def delete_audience_group(client, audience_group_id, client_opts \\ []) do
     request_opts = [
@@ -168,14 +168,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `audience_group_id` (`integer()`): The audience ID.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `audience_group_id` (`t:integer()/0`): The audience ID.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetAudienceDataResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_audience_data(client, audience_group_id, client_opts \\ []) do
     request_opts = [
@@ -197,20 +197,20 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `page` (`integer()`): The page to return when getting (paginated) results. Must be 1 or higher.
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `page` (`t:integer()/0`): The page to return when getting (paginated) results. Must be 1 or higher.
   - `optional_args` (keyword): Optional parameters
-    - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-    - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-    - `:size` (integer()): The number of audiences per page. Default: 20 Max: 40 
-    - `:includes_external_public_groups` (boolean()): true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-    - `:create_route` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:description` (`t:String.t/0`): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+    - `:status` (`t:AudienceGroupStatus/0`): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+    - `:size` (`t:integer()/0`): The number of audiences per page. Default: 20 Max: 40 
+    - `:includes_external_public_groups` (`t:boolean()/0`): true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+    - `:create_route` (`t:AudienceGroupCreateRoute/0`): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetAudienceGroupsResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_audience_groups(client, page, optional_args \\ [], client_opts \\ []) do
     description = Keyword.get(optional_args, :description)
@@ -248,14 +248,14 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `audience_group_id` (`integer()`): The audience ID.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `audience_group_id` (`t:integer()/0`): The audience ID.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetSharedAudienceDataResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_shared_audience_data(client, audience_group_id, client_opts \\ []) do
     request_opts = [
@@ -277,20 +277,20 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `page` (`integer()`): The page to return when getting (paginated) results. Must be 1 or higher.
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `page` (`t:integer()/0`): The page to return when getting (paginated) results. Must be 1 or higher.
   - `optional_args` (keyword): Optional parameters
-    - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-    - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-    - `:size` (integer()): The number of audiences per page. Default: 20 Max: 40 
-    - `:create_route` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
-    - `:includes_owned_audience_groups` (boolean()): true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:description` (`t:String.t/0`): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+    - `:status` (`t:AudienceGroupStatus/0`): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+    - `:size` (`t:integer()/0`): The number of audiences per page. Default: 20 Max: 40 
+    - `:create_route` (`t:AudienceGroupCreateRoute/0`): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+    - `:includes_owned_audience_groups` (`t:boolean()/0`): true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetSharedAudienceGroupsResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_shared_audience_groups(client, page, optional_args \\ [], client_opts \\ []) do
     description = Keyword.get(optional_args, :description)
@@ -328,15 +328,15 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `audience_group_id` (`integer()`): The audience ID.
-  - `update_audience_group_description_request` (`UpdateAudienceGroupDescriptionRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `audience_group_id` (`t:integer()/0`): The audience ID.
+  - `update_audience_group_description_request` (`t:UpdateAudienceGroupDescriptionRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def update_audience_group_description(
         client,

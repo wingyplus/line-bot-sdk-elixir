@@ -17,14 +17,14 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `add_liff_app_request` (`AddLiffAppRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `add_liff_app_request` (`t:AddLiffAppRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.AddLiffAppResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def add_liff_app(client, add_liff_app_request, client_opts \\ []) do
     request_opts = [
@@ -48,14 +48,14 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `liff_id` (`String.t`): ID of the LIFF app to be updated
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `liff_id` (`t:String.t/0`): ID of the LIFF app to be updated
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def delete_liff_app(client, liff_id, client_opts \\ []) do
     request_opts = [
@@ -79,13 +79,13 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.GetAllLiffAppsResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def get_all_liff_apps(client, client_opts \\ []) do
     request_opts = [
@@ -108,15 +108,15 @@ defmodule LINEBotSDK.Liff do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `liff_id` (`String.t`): ID of the LIFF app to be updated
-  - `update_liff_app_request` (`UpdateLiffAppRequest`): 
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `liff_id` (`t:String.t/0`): ID of the LIFF app to be updated
+  - `update_liff_app_request` (`t:UpdateLiffAppRequest/0`): 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def update_liff_app(client, liff_id, update_liff_app_request, client_opts \\ []) do
     request_opts = [

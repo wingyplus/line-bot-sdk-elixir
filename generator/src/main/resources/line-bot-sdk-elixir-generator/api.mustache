@@ -18,27 +18,27 @@ defmodule {{moduleName}}.{{classname}} do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
+  - `client` (`t:Req.Request.t/0`): Client to make request with
 {{#requiredParams}}
-  - `{{#underscored}}{{&paramName}}{{/underscored}}` (`{{&dataType}}`): {{&description}}
+  - `{{#underscored}}{{&paramName}}{{/underscored}}` (`t:{{&dataType}}/0`): {{&description}}
 {{/requiredParams}}
 {{#hasOptionalParams}}
   - `optional_args` (keyword): Optional parameters
 {{#optionalParams}}
 {{#isBodyParam}}
-    - `:body` ({{dataType}}): {{&description}}
+    - `:body` (`t:{{dataType}}/0`): {{&description}}
 {{/isBodyParam}}
 {{^isBodyParam}}
-    - `{{#atom}}{{#underscored}}{{&baseName}}{{/underscored}}{{/atom}}` ({{&dataType}}): {{&description}}
+    - `{{#atom}}{{#underscored}}{{&baseName}}{{/underscored}}{{/atom}}` (`t:{{&dataType}}/0`): {{&description}}
 {{/isBodyParam}}
 {{/optionalParams}}
 {{/hasOptionalParams}}
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, {{#isArray}}[%{{&returnBaseType}}{}, ...]{{/isArray}}{{#isMap}}%{}{{/isMap}}{{^returnType}}nil{{/returnType}}{{#returnSimpleType}}{{#returnType}}{{{.}}}{{/returnType}}{{/returnSimpleType}}}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def {{{operationId}}}(client, {{#requiredParams}}{{#underscored}}{{{paramName}}}{{/underscored}}, {{/requiredParams}}{{#hasOptionalParams}}optional_args \\ [], {{/hasOptionalParams}}client_opts \\ []) do
 {{#optionalParams}}

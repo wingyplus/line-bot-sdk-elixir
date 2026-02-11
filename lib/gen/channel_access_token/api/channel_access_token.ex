@@ -16,15 +16,15 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `client_assertion_type` (`String.t`): `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-  - `client_assertion` (`String.t`): A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `client_assertion_type` (`t:String.t/0`): `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+  - `client_assertion` (`t:String.t/0`): A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.ChannelAccessTokenKeyIdsResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def gets_all_valid_channel_access_token_key_ids(
         client,
@@ -57,16 +57,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `grant_type` (`String.t`): `client_credentials`
-  - `client_id` (`String.t`): Channel ID.
-  - `client_secret` (`String.t`): Channel secret.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `grant_type` (`t:String.t/0`): `client_credentials`
+  - `client_id` (`t:String.t/0`): Channel ID.
+  - `client_secret` (`t:String.t/0`): Channel secret.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.IssueShortLivedChannelAccessTokenResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def issue_channel_token(client, grant_type, client_id, client_secret, client_opts \\ []) do
     request_opts = [
@@ -96,16 +96,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `grant_type` (`String.t`): client_credentials
-  - `client_assertion_type` (`String.t`): urn:ietf:params:oauth:client-assertion-type:jwt-bearer
-  - `client_assertion` (`String.t`): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `grant_type` (`t:String.t/0`): client_credentials
+  - `client_assertion_type` (`t:String.t/0`): urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+  - `client_assertion` (`t:String.t/0`): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.IssueChannelAccessTokenResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def issue_channel_token_by_jwt(
         client,
@@ -140,19 +140,19 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
+  - `client` (`t:Req.Request.t/0`): Client to make request with
   - `optional_args` (keyword): Optional parameters
-    - `:grant_type` (String.t): `client_credentials`
-    - `:client_assertion_type` (String.t): URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-    - `:client_assertion` (String.t): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
-    - `:client_id` (String.t): Channel ID.
-    - `:client_secret` (String.t): Channel secret.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+    - `:grant_type` (`t:String.t/0`): `client_credentials`
+    - `:client_assertion_type` (`t:String.t/0`): URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+    - `:client_assertion` (`t:String.t/0`): A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+    - `:client_id` (`t:String.t/0`): Channel ID.
+    - `:client_secret` (`t:String.t/0`): Channel secret.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.IssueStatelessChannelAccessTokenResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def issue_stateless_channel_token(client, optional_args \\ [], client_opts \\ []) do
     grant_type = Keyword.get(optional_args, :grant_type)
@@ -189,14 +189,14 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `access_token` (`String.t`): Channel access token
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `access_token` (`t:String.t/0`): Channel access token
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def revoke_channel_token(client, access_token, client_opts \\ []) do
     request_opts = [
@@ -217,16 +217,16 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `client_id` (`String.t`): Channel ID
-  - `client_secret` (`String.t`): Channel Secret
-  - `access_token` (`String.t`): Channel access token
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `client_id` (`t:String.t/0`): Channel ID
+  - `client_secret` (`t:String.t/0`): Channel Secret
+  - `access_token` (`t:String.t/0`): Channel access token
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, nil}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def revoke_channel_token_by_jwt(
         client,
@@ -261,14 +261,14 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `access_token` (`String.t`): A short-lived or long-lived channel access token.
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `access_token` (`t:String.t/0`): A short-lived or long-lived channel access token.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.VerifyChannelAccessTokenResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def verify_channel_token(client, access_token, client_opts \\ []) do
     request_opts = [
@@ -289,14 +289,14 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Parameters
 
-  - `client` (`Req.Request.t`): Client to make request with
-  - `access_token` (`String.t`): Channel access token with a user-specified expiration (Channel Access Token v2.1).
-  - `client_opts` (keyword): Options to pass to `Req.request`
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `access_token` (`t:String.t/0`): Channel access token with a user-specified expiration (Channel Access Token v2.1).
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
 
   - `{:ok, LINEBotSDK.Model.VerifyChannelAccessTokenResponse.t}` on success
-  - `{:error, Req.Response.t()}` on failure
+  - `{:error, Req.Response.t}` on failure
   """
   def verify_channel_token_by_jwt(client, access_token, client_opts \\ []) do
     request_opts = [
