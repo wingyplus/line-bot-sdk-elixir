@@ -20,10 +20,12 @@ defmodule LINEBotSDK.Insight do
   - `{:error, Exception.t()}` on failure
   """
   def get_friends_demographics(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/insight/demographic"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -42,11 +44,13 @@ defmodule LINEBotSDK.Insight do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_event(client, request_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/event",
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -67,11 +71,13 @@ defmodule LINEBotSDK.Insight do
   def get_number_of_followers(client, opts \\ []) do
     date = Keyword.get(opts, :date)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/insight/followers",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -90,11 +96,13 @@ defmodule LINEBotSDK.Insight do
   - `{:error, Exception.t()}` on failure
   """
   def get_number_of_message_deliveries(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/delivery",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -114,7 +122,7 @@ defmodule LINEBotSDK.Insight do
   - `{:error, Exception.t()}` on failure
   """
   def get_statistics_per_unit(client, custom_aggregation_unit, from, to, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/insight/message/event/aggregation",
       params:
@@ -122,6 +130,8 @@ defmodule LINEBotSDK.Insight do
           [{"customAggregationUnit", custom_aggregation_unit}, {"from", from}, {"to", to}],
           fn {_, v} -> is_nil(v) end
         )
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

@@ -1,5 +1,5 @@
 {{>licenseInfo}}
-{{#models}}{{#model}}defmodule {{moduleName}}.Model.{{classname}} do
+{{#models}}{{#model}}defmodule {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{classname}} do
   @moduledoc """
   {{&description}}
   """

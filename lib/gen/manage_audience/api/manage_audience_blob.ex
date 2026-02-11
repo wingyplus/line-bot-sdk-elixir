@@ -23,10 +23,12 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `{:error, Exception.t()}` on failure
   """
   def add_user_ids_to_audience(client, file, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/v2/bot/audienceGroup/upload/byFile"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -47,9 +49,11 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `{:error, Exception.t()}` on failure
   """
   def create_audience_for_uploading_user_ids(client, file, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/audienceGroup/upload/byFile"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

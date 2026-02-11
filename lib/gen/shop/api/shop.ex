@@ -21,10 +21,12 @@ defmodule LINEBotSDK.Shop do
   - `{:error, Exception.t()}` on failure
   """
   def mission_sticker_v3(client, mission_sticker_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/shop/v3/mission",
       json: mission_sticker_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

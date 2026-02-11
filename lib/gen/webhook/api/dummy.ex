@@ -21,10 +21,12 @@ defmodule LINEBotSDK.Dummy do
   - `{:error, Exception.t()}` on failure
   """
   def callback(client, callback_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/callback",
       json: callback_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

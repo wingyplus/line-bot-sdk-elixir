@@ -49,14 +49,16 @@ defmodule {{moduleName}}.{{classname}} do
 {{/isHeaderParam}}
 {{/isBodyParam}}
 {{/optionalParams}}
-    Req.request(client,
+    request_opts = [
       method: {{#atom}}{{#underscored}}{{httpMethod}}{{/underscored}}{{/atom}},
       url: "{{vendorExtensions.x-req-path}}"{{#pathParams}}{{#-first}},
       path_params: [{{/-first}}{{#underscored}}{{baseName}}{{/underscored}}: {{#underscored}}{{paramName}}{{/underscored}}{{^-last}}, {{/-last}}{{#-last}}]{{/-last}}{{/pathParams}}{{#bodyParams}}{{#-first}},
       json: {{/-first}}{{/bodyParams}}{{#requiredParams}}{{#isBodyParam}}{{#underscored}}{{{paramName}}}{{/underscored}}{{/isBodyParam}}{{/requiredParams}}{{#optionalParams}}{{#isBodyParam}}body{{/isBodyParam}}{{/optionalParams}}{{#queryParams}}{{#-first}},
       params: Enum.reject([{{/-first}}{"{{baseName}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/queryParams}}{{#headerParams}}{{#-first}},
-      headers: Enum.reject([{{/-first}}{"{{baseName}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/headerParams}}
-    )
+      headers: Enum.reject([{{/-first}}{"{{#lowercase}}{{baseName}}{{/lowercase}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/headerParams}}
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 {{/operation}}
 {{/operations}}

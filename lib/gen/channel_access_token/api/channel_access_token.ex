@@ -27,7 +27,7 @@ defmodule LINEBotSDK.ChannelAccessToken do
         client_assertion,
         opts \\ []
       ) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/oauth2/v2.1/tokens/kid",
       params:
@@ -38,7 +38,9 @@ defmodule LINEBotSDK.ChannelAccessToken do
           ],
           fn {_, v} -> is_nil(v) end
         )
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -58,10 +60,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def issue_channel_token(client, grant_type, client_id, client_secret, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/oauth/accessToken"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -87,10 +91,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
         client_assertion,
         opts \\ []
       ) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/oauth2/v2.1/token"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -112,10 +118,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def issue_stateless_channel_token(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/oauth2/v3/token"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -133,10 +141,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def revoke_channel_token(client, access_token, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/oauth/revoke"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -156,10 +166,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def revoke_channel_token_by_jwt(client, client_id, client_secret, access_token, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/oauth2/v2.1/revoke"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -177,10 +189,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def verify_channel_token(client, access_token, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/oauth/verify"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -198,10 +212,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
   - `{:error, Exception.t()}` on failure
   """
   def verify_channel_token_by_jwt(client, access_token, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/oauth2/v2.1/verify",
       params: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

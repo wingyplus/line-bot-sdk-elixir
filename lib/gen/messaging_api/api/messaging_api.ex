@@ -24,12 +24,14 @@ defmodule LINEBotSDK.MessagingApi do
   def broadcast(client, broadcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/broadcast",
       json: broadcast_request,
-      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
-    )
+      headers: Enum.reject([{"", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -46,10 +48,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def cancel_default_rich_menu(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/v2/bot/user/all/richmenu"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -67,11 +71,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def close_coupon(client, coupon_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/v2/bot/coupon/:coupon_id/close",
       path_params: [coupon_id: coupon_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -91,11 +97,13 @@ defmodule LINEBotSDK.MessagingApi do
   def create_coupon(client, opts \\ []) do
     body = Keyword.get(opts, :body)
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/coupon",
       json: body
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -113,11 +121,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def create_rich_menu(client, rich_menu_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu",
       json: rich_menu_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -135,11 +145,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def create_rich_menu_alias(client, create_rich_menu_alias_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/alias",
       json: create_rich_menu_alias_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -157,11 +169,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def delete_rich_menu(client, rich_menu_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/v2/bot/richmenu/:rich_menu_id",
       path_params: [rich_menu_id: rich_menu_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -179,11 +193,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def delete_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
       path_params: [rich_menu_alias_id: rich_menu_alias_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -205,11 +221,13 @@ defmodule LINEBotSDK.MessagingApi do
     limit = Keyword.get(opts, :limit)
     start = Keyword.get(opts, :start)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/aggregation/list",
       params: Enum.reject([{"limit", limit}, {"start", start}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -226,10 +244,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_aggregation_unit_usage(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/aggregation/info"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -246,10 +266,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_bot_info(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/info"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -267,11 +289,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_coupon_detail(client, coupon_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/coupon/:coupon_id",
       path_params: [coupon_id: coupon_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -288,10 +312,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_default_rich_menu_id(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/user/all/richmenu"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -313,11 +339,13 @@ defmodule LINEBotSDK.MessagingApi do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/followers/ids",
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -335,11 +363,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_group_member_count(client, group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/group/:group_id/members/count",
       path_params: [group_id: group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -358,11 +388,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_group_member_profile(client, group_id, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/group/:group_id/member/:user_id",
       path_params: [group_id: group_id, user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -383,12 +415,14 @@ defmodule LINEBotSDK.MessagingApi do
   def get_group_members_ids(client, group_id, opts \\ []) do
     start = Keyword.get(opts, :start)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/group/:group_id/members/ids",
       path_params: [group_id: group_id],
       params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -406,11 +440,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_group_summary(client, group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/group/:group_id/summary",
       path_params: [group_id: group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -433,12 +469,14 @@ defmodule LINEBotSDK.MessagingApi do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/membership/:membership_id/users/ids",
       path_params: [membership_id: membership_id],
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -455,10 +493,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_membership_list(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/membership/list"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -476,11 +516,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_membership_subscription(client, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/membership/subscription/:user_id",
       path_params: [user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -497,10 +539,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_quota(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/quota"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -517,10 +561,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_quota_consumption(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/quota/consumption"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -538,11 +584,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_narrowcast_progress(client, request_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/progress/narrowcast",
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -560,11 +608,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_number_of_sent_broadcast_messages(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/delivery/broadcast",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -582,11 +632,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_number_of_sent_multicast_messages(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/delivery/multicast",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -604,11 +656,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_number_of_sent_push_messages(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/delivery/push",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -626,11 +680,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_number_of_sent_reply_messages(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/delivery/reply",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -648,11 +704,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_pnp_message_statistics(client, date, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/delivery/pnp",
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -670,11 +728,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_profile(client, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/profile/:user_id",
       path_params: [user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -692,11 +752,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu(client, rich_menu_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/:rich_menu_id",
       path_params: [rich_menu_id: rich_menu_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -714,11 +776,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
       path_params: [rich_menu_alias_id: rich_menu_alias_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -735,10 +799,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_alias_list(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/alias/list"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -756,11 +822,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_batch_progress(client, request_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/progress/batch",
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -778,11 +846,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_id_of_user(client, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/user/:user_id/richmenu",
       path_params: [user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -799,10 +869,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_list(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/list"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -820,11 +892,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_room_member_count(client, room_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/room/:room_id/members/count",
       path_params: [room_id: room_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -843,11 +917,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_room_member_profile(client, room_id, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/room/:room_id/member/:user_id",
       path_params: [room_id: room_id, user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -868,12 +944,14 @@ defmodule LINEBotSDK.MessagingApi do
   def get_room_members_ids(client, room_id, opts \\ []) do
     start = Keyword.get(opts, :start)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/room/:room_id/members/ids",
       path_params: [room_id: room_id],
       params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -890,10 +968,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def get_webhook_endpoint(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/channel/webhook/endpoint"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -911,11 +991,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def issue_link_token(client, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/user/:user_id/linkToken",
       path_params: [user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -933,11 +1015,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def leave_group(client, group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/group/:group_id/leave",
       path_params: [group_id: group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -955,11 +1039,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def leave_room(client, room_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/room/:room_id/leave",
       path_params: [room_id: room_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -978,11 +1064,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def link_rich_menu_id_to_user(client, user_id, rich_menu_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/user/:user_id/richmenu/:rich_menu_id",
       path_params: [user_id: user_id, rich_menu_id: rich_menu_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1000,11 +1088,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def link_rich_menu_id_to_users(client, rich_menu_bulk_link_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/bulk/link",
       json: rich_menu_bulk_link_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1028,14 +1118,16 @@ defmodule LINEBotSDK.MessagingApi do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/coupon",
       params:
         Enum.reject([{"status", status}, {"start", start}, {"limit", limit}], fn {_, v} ->
           is_nil(v)
         end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1053,11 +1145,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def mark_messages_as_read(client, mark_messages_as_read_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/markAsRead",
       json: mark_messages_as_read_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1075,11 +1169,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def mark_messages_as_read_by_token(client, mark_messages_as_read_by_token_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/chat/markAsRead",
       json: mark_messages_as_read_by_token_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1100,12 +1196,14 @@ defmodule LINEBotSDK.MessagingApi do
   def multicast(client, multicast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/multicast",
       json: multicast_request,
-      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
-    )
+      headers: Enum.reject([{"", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1126,12 +1224,14 @@ defmodule LINEBotSDK.MessagingApi do
   def narrowcast(client, narrowcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/narrowcast",
       json: narrowcast_request,
-      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
-    )
+      headers: Enum.reject([{"", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1152,12 +1252,14 @@ defmodule LINEBotSDK.MessagingApi do
   def push_message(client, push_message_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :"X-Line-Retry-Key")
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/push",
       json: push_message_request,
-      headers: Enum.reject([{"X-Line-Retry-Key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
-    )
+      headers: Enum.reject([{"", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1178,13 +1280,14 @@ defmodule LINEBotSDK.MessagingApi do
   def push_messages_by_phone(client, pnp_messages_request, opts \\ []) do
     x_line_delivery_tag = Keyword.get(opts, :"X-Line-Delivery-Tag")
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/bot/pnp/push",
       json: pnp_messages_request,
-      headers:
-        Enum.reject([{"X-Line-Delivery-Tag", x_line_delivery_tag}], fn {_, v} -> is_nil(v) end)
-    )
+      headers: Enum.reject([{"", x_line_delivery_tag}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1202,11 +1305,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def reply_message(client, reply_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/reply",
       json: reply_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1224,11 +1329,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def rich_menu_batch(client, rich_menu_batch_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/batch",
       json: rich_menu_batch_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1246,11 +1353,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def set_default_rich_menu(client, rich_menu_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/user/all/richmenu/:rich_menu_id",
       path_params: [rich_menu_id: rich_menu_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1268,11 +1377,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def set_webhook_endpoint(client, set_webhook_endpoint_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/v2/bot/channel/webhook/endpoint",
       json: set_webhook_endpoint_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1290,11 +1401,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def show_loading_animation(client, show_loading_animation_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/chat/loading/start",
       json: show_loading_animation_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1314,11 +1427,13 @@ defmodule LINEBotSDK.MessagingApi do
   def test_webhook_endpoint(client, opts \\ []) do
     body = Keyword.get(opts, :body)
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/channel/webhook/test",
       json: body
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1336,11 +1451,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def unlink_rich_menu_id_from_user(client, user_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/v2/bot/user/:user_id/richmenu",
       path_params: [user_id: user_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1358,11 +1475,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def unlink_rich_menu_id_from_users(client, rich_menu_bulk_unlink_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/bulk/unlink",
       json: rich_menu_bulk_unlink_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1386,12 +1505,14 @@ defmodule LINEBotSDK.MessagingApi do
         update_rich_menu_alias_request,
         opts \\ []
       ) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/alias/:rich_menu_alias_id",
       path_params: [rich_menu_alias_id: rich_menu_alias_id],
       json: update_rich_menu_alias_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1409,11 +1530,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_broadcast(client, validate_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/validate/broadcast",
       json: validate_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1431,11 +1554,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_multicast(client, validate_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/validate/multicast",
       json: validate_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1453,11 +1578,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_narrowcast(client, validate_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/validate/narrowcast",
       json: validate_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1475,11 +1602,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_push(client, validate_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/validate/push",
       json: validate_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1497,11 +1626,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_reply(client, validate_message_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/message/validate/reply",
       json: validate_message_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1519,11 +1650,13 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_rich_menu_batch_request(client, rich_menu_batch_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/validate/batch",
       json: rich_menu_batch_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -1541,10 +1674,12 @@ defmodule LINEBotSDK.MessagingApi do
   - `{:error, Exception.t()}` on failure
   """
   def validate_rich_menu_object(client, rich_menu_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/validate",
       json: rich_menu_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

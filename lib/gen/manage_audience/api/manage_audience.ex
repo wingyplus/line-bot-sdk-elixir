@@ -21,11 +21,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def add_audience_to_audience_group(client, add_audience_to_audience_group_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/v2/bot/audienceGroup/upload",
       json: add_audience_to_audience_group_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -43,11 +45,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def create_audience_group(client, create_audience_group_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/audienceGroup/upload",
       json: create_audience_group_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -69,11 +73,13 @@ defmodule LINEBotSDK.ManageAudience do
         create_click_based_audience_group_request,
         opts \\ []
       ) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/audienceGroup/click",
       json: create_click_based_audience_group_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -91,11 +97,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def create_imp_based_audience_group(client, create_imp_based_audience_group_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/audienceGroup/imp",
       json: create_imp_based_audience_group_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -113,11 +121,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def delete_audience_group(client, audience_group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/v2/bot/audienceGroup/:audience_group_id",
       path_params: [audience_group_id: audience_group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -135,11 +145,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def get_audience_data(client, audience_group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/audienceGroup/:audience_group_id",
       path_params: [audience_group_id: audience_group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -168,7 +180,7 @@ defmodule LINEBotSDK.ManageAudience do
     includes_external_public_groups = Keyword.get(opts, :includesExternalPublicGroups)
     create_route = Keyword.get(opts, :createRoute)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/audienceGroup/list",
       params:
@@ -183,7 +195,9 @@ defmodule LINEBotSDK.ManageAudience do
           ],
           fn {_, v} -> is_nil(v) end
         )
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -201,11 +215,13 @@ defmodule LINEBotSDK.ManageAudience do
   - `{:error, Exception.t()}` on failure
   """
   def get_shared_audience_data(client, audience_group_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/audienceGroup/shared/:audience_group_id",
       path_params: [audience_group_id: audience_group_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -234,7 +250,7 @@ defmodule LINEBotSDK.ManageAudience do
     create_route = Keyword.get(opts, :createRoute)
     includes_owned_audience_groups = Keyword.get(opts, :includesOwnedAudienceGroups)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/audienceGroup/shared/list",
       params:
@@ -249,7 +265,9 @@ defmodule LINEBotSDK.ManageAudience do
           ],
           fn {_, v} -> is_nil(v) end
         )
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -273,11 +291,13 @@ defmodule LINEBotSDK.ManageAudience do
         update_audience_group_description_request,
         opts \\ []
       ) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/v2/bot/audienceGroup/:audience_group_id/updateDescription",
       path_params: [audience_group_id: audience_group_id],
       json: update_audience_group_description_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

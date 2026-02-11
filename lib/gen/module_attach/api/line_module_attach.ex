@@ -30,9 +30,11 @@ defmodule LINEBotSDK.LineModuleAttach do
   - `{:error, Exception.t()}` on failure
   """
   def attach_module(client, grant_type, code, redirect_uri, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/module/auth/v1/token"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

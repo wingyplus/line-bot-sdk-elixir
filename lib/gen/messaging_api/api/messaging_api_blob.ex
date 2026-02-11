@@ -21,11 +21,13 @@ defmodule LINEBotSDK.MessagingApiBlob do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_content(client, message_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content",
       path_params: [message_id: message_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -43,11 +45,13 @@ defmodule LINEBotSDK.MessagingApiBlob do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_content_preview(client, message_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content/preview",
       path_params: [message_id: message_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -65,11 +69,13 @@ defmodule LINEBotSDK.MessagingApiBlob do
   - `{:error, Exception.t()}` on failure
   """
   def get_message_content_transcoding_by_message_id(client, message_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/message/:message_id/content/transcoding",
       path_params: [message_id: message_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -87,11 +93,13 @@ defmodule LINEBotSDK.MessagingApiBlob do
   - `{:error, Exception.t()}` on failure
   """
   def get_rich_menu_image(client, rich_menu_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/richmenu/:rich_menu_id/content",
       path_params: [rich_menu_id: rich_menu_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -112,11 +120,13 @@ defmodule LINEBotSDK.MessagingApiBlob do
   def set_rich_menu_image(client, rich_menu_id, opts \\ []) do
     body = Keyword.get(opts, :body)
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/:rich_menu_id/content",
       path_params: [rich_menu_id: rich_menu_id],
       json: body
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

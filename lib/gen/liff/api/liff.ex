@@ -22,11 +22,13 @@ defmodule LINEBotSDK.Liff do
   - `{:error, Exception.t()}` on failure
   """
   def add_liff_app(client, add_liff_app_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/liff/v1/apps",
       json: add_liff_app_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -45,11 +47,13 @@ defmodule LINEBotSDK.Liff do
   - `{:error, Exception.t()}` on failure
   """
   def delete_liff_app(client, liff_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :delete,
       url: "/liff/v1/apps/:liff_id",
       path_params: [liff_id: liff_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -67,10 +71,12 @@ defmodule LINEBotSDK.Liff do
   - `{:error, Exception.t()}` on failure
   """
   def get_all_liff_apps(client, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/liff/v1/apps"
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -90,11 +96,13 @@ defmodule LINEBotSDK.Liff do
   - `{:error, Exception.t()}` on failure
   """
   def update_liff_app(client, liff_id, update_liff_app_request, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :put,
       url: "/liff/v1/apps/:liff_id",
       path_params: [liff_id: liff_id],
       json: update_liff_app_request
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end

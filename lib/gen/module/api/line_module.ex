@@ -24,12 +24,14 @@ defmodule LINEBotSDK.LineModule do
   def acquire_chat_control(client, chat_id, opts \\ []) do
     body = Keyword.get(opts, :body)
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/chat/:chat_id/control/acquire",
       path_params: [chat_id: chat_id],
       json: body
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -49,11 +51,13 @@ defmodule LINEBotSDK.LineModule do
   def detach_module(client, opts \\ []) do
     body = Keyword.get(opts, :body)
 
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/channel/detach",
       json: body
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -75,11 +79,13 @@ defmodule LINEBotSDK.LineModule do
     start = Keyword.get(opts, :start)
     limit = Keyword.get(opts, :limit)
 
-    Req.request(client,
+    request_opts = [
       method: :get,
       url: "/v2/bot/list",
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 
   @doc """
@@ -97,10 +103,12 @@ defmodule LINEBotSDK.LineModule do
   - `{:error, Exception.t()}` on failure
   """
   def release_chat_control(client, chat_id, opts \\ []) do
-    Req.request(client,
+    request_opts = [
       method: :post,
       url: "/v2/bot/chat/:chat_id/control/release",
       path_params: [chat_id: chat_id]
-    )
+    ]
+
+    Req.request(client, Keyword.merge(request_opts, opts))
   end
 end
