@@ -26,7 +26,7 @@ defmodule {{moduleName}}.{{classname}} do
     - `:body` ({{dataType}}): {{&description}}
 {{/isBodyParam}}
 {{^isBodyParam}}
-    - `{{#atom}}{{&baseName}}{{/atom}}` ({{&dataType}}): {{&description}}
+    - `{{#atom}}{{#underscored}}{{&baseName}}{{/underscored}}{{/atom}}` ({{&dataType}}): {{&description}}
 {{/isBodyParam}}
 {{/optionalParams}}
 
@@ -42,13 +42,13 @@ defmodule {{moduleName}}.{{classname}} do
 {{/isBodyParam}}
 {{^isBodyParam}}
 {{#isQueryParam}}
-    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{baseName}}{{/atom}})
+    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{#underscored}}{{baseName}}{{/underscored}}{{/atom}})
 {{/isQueryParam}}
 {{#isHeaderParam}}
-    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{baseName}}{{/atom}})
+    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{#underscored}}{{baseName}}{{/underscored}}{{/atom}})
 {{/isHeaderParam}}
 {{#isFormParam}}
-    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{baseName}}{{/atom}})
+    {{#underscored}}{{baseName}}{{/underscored}} = Keyword.get(opts, {{#atom}}{{#underscored}}{{baseName}}{{/underscored}}{{/atom}})
 {{/isFormParam}}
 {{/isBodyParam}}
 {{/optionalParams}}
@@ -59,7 +59,7 @@ defmodule {{moduleName}}.{{classname}} do
       json: {{/-first}}{{/bodyParams}}{{#requiredParams}}{{#isBodyParam}}{{#underscored}}{{{paramName}}}{{/underscored}}{{/isBodyParam}}{{/requiredParams}}{{#optionalParams}}{{#isBodyParam}}body{{/isBodyParam}}{{/optionalParams}}{{#formParams}}{{#-first}},
       form: Enum.reject([{{/-first}}{"{{baseName}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/formParams}}{{#queryParams}}{{#-first}},
       params: Enum.reject([{{/-first}}{"{{baseName}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/queryParams}}{{#headerParams}}{{#-first}},
-      headers: Enum.reject([{{/-first}}{"{{#lowercase}}{{baseName}}{{/lowercase}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/headerParams}}
+      headers: Enum.reject([{{/-first}}{"{{vendorExtensions.x-header-name}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/headerParams}}
     ]
 
     Req.request(client, Keyword.merge(request_opts, opts))

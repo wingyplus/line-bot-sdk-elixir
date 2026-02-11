@@ -14,8 +14,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `client` (Req.Request.t()): Client to make request with
   - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
   - `opts` (keyword): Optional parameters
-    - `:audienceGroupId` (integer()): The audience ID.
-    - `:uploadDescription` (String.t): The description to register with the job
+    - `:audience_group_id` (integer()): The audience ID.
+    - `:upload_description` (String.t): The description to register with the job
 
   ### Returns
 
@@ -23,8 +23,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `{:error, Exception.t()}` on failure
   """
   def add_user_ids_to_audience(client, file, opts \\ []) do
-    audience_group_id = Keyword.get(opts, :audienceGroupId)
-    upload_description = Keyword.get(opts, :uploadDescription)
+    audience_group_id = Keyword.get(opts, :audience_group_id)
+    upload_description = Keyword.get(opts, :upload_description)
 
     request_opts = [
       method: :put,
@@ -52,8 +52,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   - `file` (String.t): A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
   - `opts` (keyword): Optional parameters
     - `:description` (String.t): The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 
-    - `:isIfaAudience` (boolean()): To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
-    - `:uploadDescription` (String.t): The description to register for the job (in `jobs[].description`). 
+    - `:is_ifa_audience` (boolean()): To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. 
+    - `:upload_description` (String.t): The description to register for the job (in `jobs[].description`). 
 
   ### Returns
 
@@ -62,8 +62,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   """
   def create_audience_for_uploading_user_ids(client, file, opts \\ []) do
     description = Keyword.get(opts, :description)
-    is_ifa_audience = Keyword.get(opts, :isIfaAudience)
-    upload_description = Keyword.get(opts, :uploadDescription)
+    is_ifa_audience = Keyword.get(opts, :is_ifa_audience)
+    upload_description = Keyword.get(opts, :upload_description)
 
     request_opts = [
       method: :post,

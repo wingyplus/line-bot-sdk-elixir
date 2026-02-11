@@ -165,8 +165,8 @@ defmodule LINEBotSDK.ManageAudience do
     - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
     - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
     - `:size` (integer()): The number of audiences per page. Default: 20 Max: 40 
-    - `:includesExternalPublicGroups` (boolean()): true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-    - `:createRoute` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+    - `:includes_external_public_groups` (boolean()): true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
+    - `:create_route` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
 
   ### Returns
 
@@ -177,8 +177,8 @@ defmodule LINEBotSDK.ManageAudience do
     description = Keyword.get(opts, :description)
     status = Keyword.get(opts, :status)
     size = Keyword.get(opts, :size)
-    includes_external_public_groups = Keyword.get(opts, :includesExternalPublicGroups)
-    create_route = Keyword.get(opts, :createRoute)
+    includes_external_public_groups = Keyword.get(opts, :includes_external_public_groups)
+    create_route = Keyword.get(opts, :create_route)
 
     request_opts = [
       method: :get,
@@ -235,8 +235,8 @@ defmodule LINEBotSDK.ManageAudience do
     - `:description` (String.t): The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
     - `:status` (AudienceGroupStatus): The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
     - `:size` (integer()): The number of audiences per page. Default: 20 Max: 40 
-    - `:createRoute` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
-    - `:includesOwnedAudienceGroups` (boolean()): true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
+    - `:create_route` (AudienceGroupCreateRoute): How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+    - `:includes_owned_audience_groups` (boolean()): true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
 
   ### Returns
 
@@ -247,8 +247,8 @@ defmodule LINEBotSDK.ManageAudience do
     description = Keyword.get(opts, :description)
     status = Keyword.get(opts, :status)
     size = Keyword.get(opts, :size)
-    create_route = Keyword.get(opts, :createRoute)
-    includes_owned_audience_groups = Keyword.get(opts, :includesOwnedAudienceGroups)
+    create_route = Keyword.get(opts, :create_route)
+    includes_owned_audience_groups = Keyword.get(opts, :includes_owned_audience_groups)
 
     request_opts = [
       method: :get,

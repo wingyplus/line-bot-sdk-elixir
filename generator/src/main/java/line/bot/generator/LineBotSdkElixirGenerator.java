@@ -70,6 +70,11 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
                 reqPath = reqPath.replace("{" + pp.baseName + "}", ":" + underscore(pp.baseName));
             }
             op.vendorExtensions.put("x-req-path", reqPath);
+
+            // Add lowercase header name for each header param
+            for (CodegenParameter hp : op.headerParams) {
+                hp.vendorExtensions.put("x-header-name", hp.baseName.toLowerCase());
+            }
         }
         return result;
     }
