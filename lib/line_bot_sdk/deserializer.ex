@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
 defmodule LINEBotSDK.Deserializer do
   @moduledoc """
   Helper functions for deserializing responses into models.

@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-FileCopyrightText: 2026 Thanabodee Charoenpiriyakij
+
 package line.bot.generator;
 
 import java.io.File;

@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
 defmodule LINEBotSDK.LiffTest do
   use ExUnit.Case, async: true
 
