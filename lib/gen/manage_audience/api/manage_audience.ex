@@ -6,6 +6,8 @@ defmodule LINEBotSDK.ManageAudience do
   API calls for all endpoints tagged `ManageAudience`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
@@ -17,8 +19,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def add_audience_to_audience_group(client, add_audience_to_audience_group_request, opts \\ []) do
     request_opts = [
@@ -27,7 +29,11 @@ defmodule LINEBotSDK.ManageAudience do
       json: add_audience_to_audience_group_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, false}
+    ])
   end
 
   @doc """
@@ -41,8 +47,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CreateAudienceGroupResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_audience_group(client, create_audience_group_request, opts \\ []) do
     request_opts = [
@@ -51,7 +57,11 @@ defmodule LINEBotSDK.ManageAudience do
       json: create_audience_group_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, LINEBotSDK.Model.CreateAudienceGroupResponse}
+    ])
   end
 
   @doc """
@@ -65,8 +75,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CreateClickBasedAudienceGroupResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_click_based_audience_group(
         client,
@@ -79,7 +89,11 @@ defmodule LINEBotSDK.ManageAudience do
       json: create_click_based_audience_group_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, LINEBotSDK.Model.CreateClickBasedAudienceGroupResponse}
+    ])
   end
 
   @doc """
@@ -93,8 +107,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CreateImpBasedAudienceGroupResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_imp_based_audience_group(client, create_imp_based_audience_group_request, opts \\ []) do
     request_opts = [
@@ -103,7 +117,11 @@ defmodule LINEBotSDK.ManageAudience do
       json: create_imp_based_audience_group_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, LINEBotSDK.Model.CreateImpBasedAudienceGroupResponse}
+    ])
   end
 
   @doc """
@@ -117,8 +135,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def delete_audience_group(client, audience_group_id, opts \\ []) do
     request_opts = [
@@ -127,7 +145,11 @@ defmodule LINEBotSDK.ManageAudience do
       path_params: [audience_group_id: audience_group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -141,8 +163,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetAudienceDataResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_audience_data(client, audience_group_id, opts \\ []) do
     request_opts = [
@@ -151,7 +173,12 @@ defmodule LINEBotSDK.ManageAudience do
       path_params: [audience_group_id: audience_group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetAudienceDataResponse},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -170,8 +197,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetAudienceGroupsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_audience_groups(client, page, opts \\ []) do
     description = Keyword.get(opts, :description)
@@ -197,7 +224,11 @@ defmodule LINEBotSDK.ManageAudience do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetAudienceGroupsResponse}
+    ])
   end
 
   @doc """
@@ -211,8 +242,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetSharedAudienceDataResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_shared_audience_data(client, audience_group_id, opts \\ []) do
     request_opts = [
@@ -221,7 +252,12 @@ defmodule LINEBotSDK.ManageAudience do
       path_params: [audience_group_id: audience_group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetSharedAudienceDataResponse},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -240,8 +276,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetSharedAudienceGroupsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_shared_audience_groups(client, page, opts \\ []) do
     description = Keyword.get(opts, :description)
@@ -267,7 +303,11 @@ defmodule LINEBotSDK.ManageAudience do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetSharedAudienceGroupsResponse}
+    ])
   end
 
   @doc """
@@ -282,8 +322,8 @@ defmodule LINEBotSDK.ManageAudience do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def update_audience_group_description(
         client,
@@ -298,6 +338,10 @@ defmodule LINEBotSDK.ManageAudience do
       json: update_audience_group_description_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

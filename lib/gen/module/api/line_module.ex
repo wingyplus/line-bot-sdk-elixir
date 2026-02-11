@@ -6,6 +6,8 @@ defmodule LINEBotSDK.LineModule do
   API calls for all endpoints tagged `LineModule`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
 
@@ -18,8 +20,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def acquire_chat_control(client, chat_id, opts \\ []) do
     body = Keyword.get(opts, :body)
@@ -31,7 +33,11 @@ defmodule LINEBotSDK.LineModule do
       json: body
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -45,8 +51,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def detach_module(client, opts \\ []) do
     body = Keyword.get(opts, :body)
@@ -57,7 +63,11 @@ defmodule LINEBotSDK.LineModule do
       json: body
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -72,8 +82,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetModulesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_modules(client, opts \\ []) do
     start = Keyword.get(opts, :start)
@@ -85,7 +95,11 @@ defmodule LINEBotSDK.LineModule do
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetModulesResponse}
+    ])
   end
 
   @doc """
@@ -99,8 +113,8 @@ defmodule LINEBotSDK.LineModule do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def release_chat_control(client, chat_id, opts \\ []) do
     request_opts = [
@@ -109,6 +123,10 @@ defmodule LINEBotSDK.LineModule do
       path_params: [chat_id: chat_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

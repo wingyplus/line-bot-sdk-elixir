@@ -19,7 +19,24 @@ defmodule LINEBotSDK.Insight.Model.GetMessageEventResponse do
           :clicks => [LINEBotSDK.Model.GetMessageEventResponseClick.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :overview,
+      :struct,
+      LINEBotSDK.Insight.Model.GetMessageEventResponseOverview
+    )
+    |> Deserializer.deserialize(
+      :messages,
+      :list,
+      LINEBotSDK.Insight.Model.GetMessageEventResponseMessage
+    )
+    |> Deserializer.deserialize(
+      :clicks,
+      :list,
+      LINEBotSDK.Insight.Model.GetMessageEventResponseClick
+    )
   end
 end

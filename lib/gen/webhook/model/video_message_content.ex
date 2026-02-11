@@ -25,7 +25,14 @@ defmodule LINEBotSDK.Webhook.Model.VideoMessageContent do
           :markAsReadToken => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :contentProvider,
+      :struct,
+      LINEBotSDK.Webhook.Model.ContentProvider
+    )
   end
 end

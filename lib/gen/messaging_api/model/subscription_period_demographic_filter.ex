@@ -19,7 +19,19 @@ defmodule LINEBotSDK.MessagingApi.Model.SubscriptionPeriodDemographicFilter do
           :lt => LINEBotSDK.Model.SubscriptionPeriodDemographic.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :gte,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.SubscriptionPeriodDemographic
+    )
+    |> Deserializer.deserialize(
+      :lt,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.SubscriptionPeriodDemographic
+    )
   end
 end

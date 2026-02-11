@@ -19,7 +19,11 @@ defmodule LINEBotSDK.Webhook.Model.ContentProvider do
           :previewImageUrl => Uri | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:originalContentUrl, :struct, LINEBotSDK.Webhook.Model.Uri)
+    |> Deserializer.deserialize(:previewImageUrl, :struct, LINEBotSDK.Webhook.Model.Uri)
   end
 end

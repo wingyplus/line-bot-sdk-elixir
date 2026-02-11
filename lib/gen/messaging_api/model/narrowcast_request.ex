@@ -23,7 +23,13 @@ defmodule LINEBotSDK.MessagingApi.Model.NarrowcastRequest do
           :notificationDisabled => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:messages, :list, LINEBotSDK.MessagingApi.Model.Message)
+    |> Deserializer.deserialize(:recipient, :struct, LINEBotSDK.MessagingApi.Model.Recipient)
+    |> Deserializer.deserialize(:filter, :struct, LINEBotSDK.MessagingApi.Model.Filter)
+    |> Deserializer.deserialize(:limit, :struct, LINEBotSDK.MessagingApi.Model.Limit)
   end
 end

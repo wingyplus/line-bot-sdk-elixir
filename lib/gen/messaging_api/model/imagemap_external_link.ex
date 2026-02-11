@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapExternalLink do
           :label => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:linkUri, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

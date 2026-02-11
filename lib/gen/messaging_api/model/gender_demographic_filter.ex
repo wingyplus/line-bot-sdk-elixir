@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.GenderDemographicFilter do
           :oneOf => [LINEBotSDK.Model.GenderDemographic.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:oneOf, :list, LINEBotSDK.MessagingApi.Model.GenderDemographic)
   end
 end

@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexCarousel do
           :contents => [LINEBotSDK.Model.FlexBubble.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:contents, :list, LINEBotSDK.MessagingApi.Model.FlexBubble)
   end
 end

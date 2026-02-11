@@ -15,7 +15,10 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuListResponse do
           :richmenus => [LINEBotSDK.Model.RichMenuResponse.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:richmenus, :list, LINEBotSDK.MessagingApi.Model.RichMenuResponse)
   end
 end

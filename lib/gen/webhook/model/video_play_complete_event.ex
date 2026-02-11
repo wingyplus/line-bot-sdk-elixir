@@ -29,7 +29,21 @@ defmodule LINEBotSDK.Webhook.Model.VideoPlayCompleteEvent do
           :videoPlayComplete => LINEBotSDK.Model.VideoPlayComplete.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:source, :struct, LINEBotSDK.Webhook.Model.Source)
+    |> Deserializer.deserialize(:mode, :struct, LINEBotSDK.Webhook.Model.EventMode)
+    |> Deserializer.deserialize(
+      :deliveryContext,
+      :struct,
+      LINEBotSDK.Webhook.Model.DeliveryContext
+    )
+    |> Deserializer.deserialize(
+      :videoPlayComplete,
+      :struct,
+      LINEBotSDK.Webhook.Model.VideoPlayComplete
+    )
   end
 end

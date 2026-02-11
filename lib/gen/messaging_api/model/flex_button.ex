@@ -43,7 +43,10 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexButton do
           :scaling => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
   end
 end

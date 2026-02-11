@@ -15,7 +15,14 @@ defmodule LINEBotSDK.MessagingApi.Model.Filter do
           :demographic => LINEBotSDK.Model.DemographicFilter.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :demographic,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.DemographicFilter
+    )
   end
 end

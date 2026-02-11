@@ -29,7 +29,11 @@ defmodule LINEBotSDK.Webhook.Model.TextMessageContent do
           :markAsReadToken => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:emojis, :list, LINEBotSDK.Webhook.Model.Emoji)
+    |> Deserializer.deserialize(:mention, :struct, LINEBotSDK.Webhook.Model.Mention)
   end
 end

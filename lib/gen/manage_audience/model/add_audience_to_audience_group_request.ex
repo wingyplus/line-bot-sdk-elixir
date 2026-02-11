@@ -19,7 +19,10 @@ defmodule LINEBotSDK.ManageAudience.Model.AddAudienceToAudienceGroupRequest do
           :audiences => [LINEBotSDK.Model.Audience.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:audiences, :list, LINEBotSDK.ManageAudience.Model.Audience)
   end
 end

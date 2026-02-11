@@ -17,7 +17,14 @@ defmodule LINEBotSDK.MessagingApi.Model.ImageCarouselTemplate do
           :columns => [LINEBotSDK.Model.ImageCarouselColumn.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :columns,
+      :list,
+      LINEBotSDK.MessagingApi.Model.ImageCarouselColumn
+    )
   end
 end

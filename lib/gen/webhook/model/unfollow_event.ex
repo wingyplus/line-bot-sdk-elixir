@@ -25,7 +25,16 @@ defmodule LINEBotSDK.Webhook.Model.UnfollowEvent do
           :deliveryContext => LINEBotSDK.Model.DeliveryContext.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:source, :struct, LINEBotSDK.Webhook.Model.Source)
+    |> Deserializer.deserialize(:mode, :struct, LINEBotSDK.Webhook.Model.EventMode)
+    |> Deserializer.deserialize(
+      :deliveryContext,
+      :struct,
+      LINEBotSDK.Webhook.Model.DeliveryContext
+    )
   end
 end

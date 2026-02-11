@@ -19,7 +19,10 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateClickBasedAudienceGroupRequest d
           :clickUrl => Uri | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:clickUrl, :struct, LINEBotSDK.ManageAudience.Model.Uri)
   end
 end

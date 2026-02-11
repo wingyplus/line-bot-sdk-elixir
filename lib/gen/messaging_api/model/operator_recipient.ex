@@ -21,7 +21,12 @@ defmodule LINEBotSDK.MessagingApi.Model.OperatorRecipient do
           :not => LINEBotSDK.Model.Recipient.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:and, :list, LINEBotSDK.MessagingApi.Model.Recipient)
+    |> Deserializer.deserialize(:or, :list, LINEBotSDK.MessagingApi.Model.Recipient)
+    |> Deserializer.deserialize(:not, :struct, LINEBotSDK.MessagingApi.Model.Recipient)
   end
 end

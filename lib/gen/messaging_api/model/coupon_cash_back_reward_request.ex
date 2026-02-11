@@ -17,7 +17,14 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponCashBackRewardRequest do
           :priceInfo => LINEBotSDK.Model.CashBackPriceInfoRequest.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :priceInfo,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.CashBackPriceInfoRequest
+    )
   end
 end

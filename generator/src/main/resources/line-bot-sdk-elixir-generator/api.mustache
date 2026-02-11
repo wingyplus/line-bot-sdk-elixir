@@ -3,6 +3,8 @@ defmodule {{moduleName}}.{{classname}} do
   @moduledoc """
   API calls for all endpoints tagged `{{baseName}}`.
   """
+
+  alias LINEBotSDK.Deserializer
 {{#operations}}
 {{#operation}}
 
@@ -32,8 +34,8 @@ defmodule {{moduleName}}.{{classname}} do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, {{#isArray}}[%{{&returnBaseType}}{}, ...]{{/isArray}}{{#isMap}}%{}{{/isMap}}{{^returnType}}nil{{/returnType}}{{#returnSimpleType}}{{#returnType}}{{{.}}}{{/returnType}}{{/returnSimpleType}}}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def {{{operationId}}}(client, {{#requiredParams}}{{#underscored}}{{{paramName}}}{{/underscored}}, {{/requiredParams}}opts \\ []) do
 {{#optionalParams}}
@@ -62,7 +64,12 @@ defmodule {{moduleName}}.{{classname}} do
       headers: Enum.reject([{{/-first}}{"{{vendorExtensions.x-header-name}}", {{^required}}{{#underscored}}{{baseName}}{{/underscored}}{{/required}}{{#required}}{{#underscored}}{{paramName}}{{/underscored}}{{/required}}}{{^-last}}, {{/-last}}{{#-last}}], fn {_, v} -> is_nil(v) end){{/-last}}{{/headerParams}}
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response({{#responses}}{{#-first}}[
+{{/-first}}
+      {{=<% %>=}}{<%codeMappingKey%>, <%decodedStruct%>}<%={{ }}=%>{{^-last}},{{/-last}}
+{{#-last}}    ]{{/-last}}{{/responses}})
   end
 {{/operation}}
 {{/operations}}

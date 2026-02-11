@@ -6,6 +6,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
   API calls for all endpoints tagged `ManageAudienceBlob`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
@@ -19,8 +21,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def add_user_ids_to_audience(client, file, opts \\ []) do
     audience_group_id = Keyword.get(opts, :audience_group_id)
@@ -40,7 +42,11 @@ defmodule LINEBotSDK.ManageAudienceBlob do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, false}
+    ])
   end
 
   @doc """
@@ -57,8 +63,8 @@ defmodule LINEBotSDK.ManageAudienceBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CreateAudienceGroupResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_audience_for_uploading_user_ids(client, file, opts \\ []) do
     description = Keyword.get(opts, :description)
@@ -80,6 +86,10 @@ defmodule LINEBotSDK.ManageAudienceBlob do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, LINEBotSDK.Model.CreateAudienceGroupResponse}
+    ])
   end
 end

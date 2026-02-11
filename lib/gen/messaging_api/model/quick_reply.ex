@@ -15,7 +15,10 @@ defmodule LINEBotSDK.MessagingApi.Model.QuickReply do
           :items => [LINEBotSDK.Model.QuickReplyItem.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:items, :list, LINEBotSDK.MessagingApi.Model.QuickReplyItem)
   end
 end

@@ -3,14 +3,13 @@ package line.bot.generator;
 import java.io.File;
 import java.util.List;
 
-import static org.openapitools.codegen.utils.StringUtils.underscore;
-
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenType;
 import org.openapitools.codegen.languages.ElixirClientCodegen;
 import org.openapitools.codegen.model.ModelMap;
 import org.openapitools.codegen.model.OperationsMap;
+import static org.openapitools.codegen.utils.StringUtils.underscore;
 
 import io.swagger.v3.oas.models.OpenAPI;
 
@@ -62,7 +61,11 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
 
     @Override
     public OperationsMap postProcessOperationsWithModels(OperationsMap objs, List<ModelMap> allModels) {
+        // Call the parent implementation first - this creates ExtendedCodegenOperation,
+        // ExtendedCodegenResponse with codeMappingKey() and decodedStruct() methods
         OperationsMap result = super.postProcessOperationsWithModels(objs, allModels);
+
+        // Now add our custom processing on top
         for (CodegenOperation op : result.getOperations().getOperation()) {
             // Replace {paramName} with :param_name for Req's path_params option.
             String reqPath = op.path;

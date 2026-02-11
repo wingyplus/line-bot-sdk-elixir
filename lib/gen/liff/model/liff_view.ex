@@ -19,7 +19,10 @@ defmodule LINEBotSDK.Liff.Model.LiffView do
           :moduleMode => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:url, :struct, LINEBotSDK.Liff.Model.Uri)
   end
 end

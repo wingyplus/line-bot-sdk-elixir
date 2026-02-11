@@ -17,7 +17,10 @@ defmodule LINEBotSDK.Module.Model.GetModulesResponse do
           :next => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:bots, :list, LINEBotSDK.Module.Model.ModuleBot)
   end
 end

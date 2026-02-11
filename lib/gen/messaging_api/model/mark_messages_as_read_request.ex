@@ -15,7 +15,10 @@ defmodule LINEBotSDK.MessagingApi.Model.MarkMessagesAsReadRequest do
           :chat => LINEBotSDK.Model.ChatReference.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:chat, :struct, LINEBotSDK.MessagingApi.Model.ChatReference)
   end
 end

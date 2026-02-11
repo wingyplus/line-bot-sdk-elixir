@@ -25,7 +25,18 @@ defmodule LINEBotSDK.Insight.Model.GetFriendsDemographicsResponse do
           :subscriptionPeriods => [LINEBotSDK.Model.SubscriptionPeriodTile.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:genders, :list, LINEBotSDK.Insight.Model.GenderTile)
+    |> Deserializer.deserialize(:ages, :list, LINEBotSDK.Insight.Model.AgeTile)
+    |> Deserializer.deserialize(:areas, :list, LINEBotSDK.Insight.Model.AreaTile)
+    |> Deserializer.deserialize(:appTypes, :list, LINEBotSDK.Insight.Model.AppTypeTile)
+    |> Deserializer.deserialize(
+      :subscriptionPeriods,
+      :list,
+      LINEBotSDK.Insight.Model.SubscriptionPeriodTile
+    )
   end
 end

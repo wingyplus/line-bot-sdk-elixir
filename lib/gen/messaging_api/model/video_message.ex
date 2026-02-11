@@ -25,7 +25,13 @@ defmodule LINEBotSDK.MessagingApi.Model.VideoMessage do
           :trackingId => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
+    |> Deserializer.deserialize(:originalContentUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:previewImageUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

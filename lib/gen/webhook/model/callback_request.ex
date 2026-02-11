@@ -17,7 +17,10 @@ defmodule LINEBotSDK.Webhook.Model.CallbackRequest do
           :events => [LINEBotSDK.Model.Event.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:events, :list, LINEBotSDK.Webhook.Model.Event)
   end
 end

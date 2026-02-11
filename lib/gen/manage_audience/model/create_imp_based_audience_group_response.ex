@@ -23,7 +23,10 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateImpBasedAudienceGroupResponse do
           :requestId => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:type, :struct, LINEBotSDK.ManageAudience.Model.AudienceGroupType)
   end
 end

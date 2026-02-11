@@ -6,6 +6,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
   API calls for all endpoints tagged `ChannelAccessToken`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Gets all valid channel access token key IDs.
 
@@ -18,8 +20,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.ChannelAccessTokenKeyIdsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def gets_all_valid_channel_access_token_key_ids(
         client,
@@ -40,7 +42,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.ChannelAccessTokenKeyIdsResponse}
+    ])
   end
 
   @doc """
@@ -56,8 +62,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.IssueShortLivedChannelAccessTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def issue_channel_token(client, grant_type, client_id, client_secret, opts \\ []) do
     request_opts = [
@@ -74,7 +80,12 @@ defmodule LINEBotSDK.ChannelAccessToken do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.IssueShortLivedChannelAccessTokenResponse},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -90,8 +101,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.IssueChannelAccessTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def issue_channel_token_by_jwt(
         client,
@@ -114,7 +125,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.IssueChannelAccessTokenResponse}
+    ])
   end
 
   @doc """
@@ -132,8 +147,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.IssueStatelessChannelAccessTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def issue_stateless_channel_token(client, opts \\ []) do
     grant_type = Keyword.get(opts, :grant_type)
@@ -158,7 +173,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.IssueStatelessChannelAccessTokenResponse}
+    ])
   end
 
   @doc """
@@ -172,8 +191,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def revoke_channel_token(client, access_token, opts \\ []) do
     request_opts = [
@@ -182,7 +201,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
       form: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -198,8 +221,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def revoke_channel_token_by_jwt(client, client_id, client_secret, access_token, opts \\ []) do
     request_opts = [
@@ -216,7 +239,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -230,8 +257,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.VerifyChannelAccessTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def verify_channel_token(client, access_token, opts \\ []) do
     request_opts = [
@@ -240,7 +267,11 @@ defmodule LINEBotSDK.ChannelAccessToken do
       form: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.VerifyChannelAccessTokenResponse}
+    ])
   end
 
   @doc """
@@ -254,8 +285,8 @@ defmodule LINEBotSDK.ChannelAccessToken do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.VerifyChannelAccessTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def verify_channel_token_by_jwt(client, access_token, opts \\ []) do
     request_opts = [
@@ -264,6 +295,10 @@ defmodule LINEBotSDK.ChannelAccessToken do
       params: Enum.reject([{"access_token", access_token}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.VerifyChannelAccessTokenResponse}
+    ])
   end
 end

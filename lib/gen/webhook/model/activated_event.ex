@@ -27,7 +27,17 @@ defmodule LINEBotSDK.Webhook.Model.ActivatedEvent do
           :chatControl => LINEBotSDK.Model.ChatControl.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:source, :struct, LINEBotSDK.Webhook.Model.Source)
+    |> Deserializer.deserialize(:mode, :struct, LINEBotSDK.Webhook.Model.EventMode)
+    |> Deserializer.deserialize(
+      :deliveryContext,
+      :struct,
+      LINEBotSDK.Webhook.Model.DeliveryContext
+    )
+    |> Deserializer.deserialize(:chatControl, :struct, LINEBotSDK.Webhook.Model.ChatControl)
   end
 end

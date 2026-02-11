@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapAction do
           :area => LINEBotSDK.Model.ImagemapArea.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:area, :struct, LINEBotSDK.MessagingApi.Model.ImagemapArea)
   end
 end

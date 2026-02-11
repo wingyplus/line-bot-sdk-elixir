@@ -29,7 +29,24 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroupJob do
           :created => integer() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :type,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupJobType
+    )
+    |> Deserializer.deserialize(
+      :jobStatus,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupJobStatus
+    )
+    |> Deserializer.deserialize(
+      :failedType,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupJobFailedType
+    )
   end
 end

@@ -21,7 +21,17 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapVideo do
           :externalLink => LINEBotSDK.Model.ImagemapExternalLink.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:originalContentUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:previewImageUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:area, :struct, LINEBotSDK.MessagingApi.Model.ImagemapArea)
+    |> Deserializer.deserialize(
+      :externalLink,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.ImagemapExternalLink
+    )
   end
 end

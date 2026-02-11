@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.MessagingApiPagerCouponListResponse do
           :next => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:items, :list, LINEBotSDK.MessagingApi.Model.CouponListResponse)
   end
 end

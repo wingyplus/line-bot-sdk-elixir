@@ -21,7 +21,10 @@ defmodule LINEBotSDK.MessagingApi.Model.PushMessageRequest do
           :customAggregationUnits => [String.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:messages, :list, LINEBotSDK.MessagingApi.Model.Message)
   end
 end

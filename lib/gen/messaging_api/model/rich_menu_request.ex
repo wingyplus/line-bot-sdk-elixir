@@ -23,7 +23,11 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuRequest do
           :areas => [LINEBotSDK.Model.RichMenuArea.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:size, :struct, LINEBotSDK.MessagingApi.Model.RichMenuSize)
+    |> Deserializer.deserialize(:areas, :list, LINEBotSDK.MessagingApi.Model.RichMenuArea)
   end
 end

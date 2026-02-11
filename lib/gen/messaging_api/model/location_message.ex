@@ -27,7 +27,11 @@ defmodule LINEBotSDK.MessagingApi.Model.LocationMessage do
           :longitude => float()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
   end
 end

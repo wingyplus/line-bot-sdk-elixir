@@ -19,7 +19,11 @@ defmodule LINEBotSDK.MessagingApi.Model.Message do
           :sender => LINEBotSDK.Model.Sender.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
   end
 end

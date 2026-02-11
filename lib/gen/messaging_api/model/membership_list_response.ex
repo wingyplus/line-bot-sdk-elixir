@@ -15,7 +15,10 @@ defmodule LINEBotSDK.MessagingApi.Model.MembershipListResponse do
           :memberships => [LINEBotSDK.Model.Membership.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:memberships, :list, LINEBotSDK.MessagingApi.Model.Membership)
   end
 end

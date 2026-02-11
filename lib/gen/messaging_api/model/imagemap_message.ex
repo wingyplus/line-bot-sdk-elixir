@@ -29,7 +29,19 @@ defmodule LINEBotSDK.MessagingApi.Model.ImagemapMessage do
           :video => LINEBotSDK.Model.ImagemapVideo.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
+    |> Deserializer.deserialize(:baseUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(
+      :baseSize,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.ImagemapBaseSize
+    )
+    |> Deserializer.deserialize(:actions, :list, LINEBotSDK.MessagingApi.Model.ImagemapAction)
+    |> Deserializer.deserialize(:video, :struct, LINEBotSDK.MessagingApi.Model.ImagemapVideo)
   end
 end

@@ -15,7 +15,14 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuAliasListResponse do
           :aliases => [LINEBotSDK.Model.RichMenuAliasResponse.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :aliases,
+      :list,
+      LINEBotSDK.MessagingApi.Model.RichMenuAliasResponse
+    )
   end
 end

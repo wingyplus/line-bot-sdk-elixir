@@ -59,7 +59,11 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexText do
           :scaling => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
+    |> Deserializer.deserialize(:contents, :list, LINEBotSDK.MessagingApi.Model.FlexSpan)
   end
 end

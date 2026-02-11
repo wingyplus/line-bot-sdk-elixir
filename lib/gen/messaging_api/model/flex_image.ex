@@ -47,7 +47,11 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexImage do
           :animated => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:url, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
   end
 end

@@ -49,7 +49,21 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponResponse do
           :status => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :acquisitionCondition,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.AcquisitionConditionResponse
+    )
+    |> Deserializer.deserialize(:barcodeImageUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:imageUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(
+      :reward,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.CouponRewardResponse
+    )
   end
 end

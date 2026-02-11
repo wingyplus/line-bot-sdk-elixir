@@ -19,7 +19,10 @@ defmodule LINEBotSDK.MessagingApi.Model.GroupUserProfileResponse do
           :pictureUrl => Uri | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:pictureUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

@@ -17,7 +17,10 @@ defmodule LINEBotSDK.ManageAudience.Model.ErrorResponse do
           :details => [LINEBotSDK.Model.ErrorDetail.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:details, :list, LINEBotSDK.ManageAudience.Model.ErrorDetail)
   end
 end

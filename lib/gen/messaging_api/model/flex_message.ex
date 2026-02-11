@@ -23,7 +23,12 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexMessage do
           :contents => LINEBotSDK.Model.FlexContainer.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
+    |> Deserializer.deserialize(:contents, :struct, LINEBotSDK.MessagingApi.Model.FlexContainer)
   end
 end

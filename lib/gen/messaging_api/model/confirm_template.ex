@@ -19,7 +19,10 @@ defmodule LINEBotSDK.MessagingApi.Model.ConfirmTemplate do
           :actions => [LINEBotSDK.Model.Action.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:actions, :list, LINEBotSDK.MessagingApi.Model.Action)
   end
 end

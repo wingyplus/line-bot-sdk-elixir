@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.Sender do
           :iconUrl => Uri | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:iconUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

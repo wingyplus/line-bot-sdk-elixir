@@ -6,6 +6,8 @@ defmodule LINEBotSDK.Shop do
   API calls for all endpoints tagged `Shop`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Sends a mission sticker.
 
@@ -17,8 +19,8 @@ defmodule LINEBotSDK.Shop do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def mission_sticker_v3(client, mission_sticker_request, opts \\ []) do
     request_opts = [
@@ -27,6 +29,10 @@ defmodule LINEBotSDK.Shop do
       json: mission_sticker_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

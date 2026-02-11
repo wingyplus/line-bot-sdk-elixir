@@ -6,6 +6,8 @@ defmodule LINEBotSDK.Dummy do
   API calls for all endpoints tagged `Dummy`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   This is the dummy endpoint to generate the model classes
 
@@ -17,8 +19,8 @@ defmodule LINEBotSDK.Dummy do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, String.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def callback(client, callback_request, opts \\ []) do
     request_opts = [
@@ -27,6 +29,10 @@ defmodule LINEBotSDK.Dummy do
       json: callback_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

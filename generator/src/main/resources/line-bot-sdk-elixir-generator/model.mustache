@@ -15,8 +15,23 @@
     {{/-last}}{{/vars}}
   }
 
+{{#hasComplexVars}}
+  alias LINEBotSDK.Deserializer
+
+  def decode(value) do
+    value
+    {{#vars}}
+    {{^isPrimitiveType}}
+    {{#baseType}}|> Deserializer.deserialize({{#atom}}{{&baseName}}{{/atom}}, {{#isArray}}:list, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{{items.baseType}}}{{/isArray}}{{#isMap}}:map, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{{items.baseType}}}{{/isMap}}{{#isDate}}:date, nil{{/isDate}}{{#isDateTime}}:datetime, nil{{/isDateTime}}{{^isDate}}{{^isDateTime}}{{^isMap}}{{^isArray}}:struct, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{baseType}}{{/isArray}}{{/isMap}}{{/isDateTime}}{{/isDate}})
+    {{/baseType}}
+    {{/isPrimitiveType}}
+    {{/vars}}
+  end
+{{/hasComplexVars}}
+{{^hasComplexVars}}
   def decode(value) do
     value
   end
+{{/hasComplexVars}}
 end
 {{/model}}{{/models}}

@@ -25,7 +25,13 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexVideo do
           :action => LINEBotSDK.Model.Action.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:url, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:previewUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:altContent, :struct, LINEBotSDK.MessagingApi.Model.FlexComponent)
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
   end
 end

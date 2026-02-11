@@ -17,7 +17,14 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBatchRequest do
           :resumeRequestKey => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :operations,
+      :list,
+      LINEBotSDK.MessagingApi.Model.RichMenuBatchOperation
+    )
   end
 end

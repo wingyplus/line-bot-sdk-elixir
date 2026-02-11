@@ -6,6 +6,8 @@ defmodule LINEBotSDK.Insight do
   API calls for all endpoints tagged `Insight`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
 
@@ -16,8 +18,8 @@ defmodule LINEBotSDK.Insight do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetFriendsDemographicsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_friends_demographics(client, opts \\ []) do
     request_opts = [
@@ -25,7 +27,11 @@ defmodule LINEBotSDK.Insight do
       url: "/v2/bot/insight/demographic"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetFriendsDemographicsResponse}
+    ])
   end
 
   @doc """
@@ -40,8 +46,8 @@ defmodule LINEBotSDK.Insight do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetMessageEventResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_event(client, request_id, opts \\ []) do
     request_opts = [
@@ -50,7 +56,11 @@ defmodule LINEBotSDK.Insight do
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetMessageEventResponse}
+    ])
   end
 
   @doc """
@@ -65,8 +75,8 @@ defmodule LINEBotSDK.Insight do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetNumberOfFollowersResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_followers(client, opts \\ []) do
     date = Keyword.get(opts, :date)
@@ -77,7 +87,11 @@ defmodule LINEBotSDK.Insight do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetNumberOfFollowersResponse}
+    ])
   end
 
   @doc """
@@ -92,8 +106,8 @@ defmodule LINEBotSDK.Insight do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_message_deliveries(client, date, opts \\ []) do
     request_opts = [
@@ -102,7 +116,11 @@ defmodule LINEBotSDK.Insight do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetNumberOfMessageDeliveriesResponse}
+    ])
   end
 
   @doc """
@@ -118,8 +136,8 @@ defmodule LINEBotSDK.Insight do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetStatisticsPerUnitResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_statistics_per_unit(client, custom_aggregation_unit, from, to, opts \\ []) do
     request_opts = [
@@ -132,6 +150,10 @@ defmodule LINEBotSDK.Insight do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetStatisticsPerUnitResponse}
+    ])
   end
 end

@@ -17,7 +17,14 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponDiscountRewardResponse do
           :priceInfo => LINEBotSDK.Model.DiscountPriceInfoResponse.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :priceInfo,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.DiscountPriceInfoResponse
+    )
   end
 end

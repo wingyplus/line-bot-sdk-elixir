@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.MentionSubstitutionObject do
           :mentionee => LINEBotSDK.Model.MentionTarget.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:mentionee, :struct, LINEBotSDK.MessagingApi.Model.MentionTarget)
   end
 end

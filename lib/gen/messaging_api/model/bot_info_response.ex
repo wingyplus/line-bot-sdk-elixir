@@ -27,7 +27,10 @@ defmodule LINEBotSDK.MessagingApi.Model.BotInfoResponse do
           :markAsReadMode => String.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:pictureUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

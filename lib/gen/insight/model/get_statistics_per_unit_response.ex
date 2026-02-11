@@ -19,7 +19,24 @@ defmodule LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponse do
           :clicks => [LINEBotSDK.Model.GetStatisticsPerUnitResponseClick.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :overview,
+      :struct,
+      LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponseOverview
+    )
+    |> Deserializer.deserialize(
+      :messages,
+      :list,
+      LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponseMessage
+    )
+    |> Deserializer.deserialize(
+      :clicks,
+      :list,
+      LINEBotSDK.Insight.Model.GetStatisticsPerUnitResponseClick
+    )
   end
 end

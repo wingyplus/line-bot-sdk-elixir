@@ -23,7 +23,12 @@ defmodule LINEBotSDK.MessagingApi.Model.AudioMessage do
           :duration => integer()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
+    |> Deserializer.deserialize(:originalContentUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

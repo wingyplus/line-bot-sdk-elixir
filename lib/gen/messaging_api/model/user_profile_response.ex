@@ -23,7 +23,10 @@ defmodule LINEBotSDK.MessagingApi.Model.UserProfileResponse do
           :language => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:pictureUrl, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

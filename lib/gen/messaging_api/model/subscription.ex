@@ -17,7 +17,19 @@ defmodule LINEBotSDK.MessagingApi.Model.Subscription do
           :user => LINEBotSDK.Model.SubscribedMembershipUser.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :membership,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.SubscribedMembershipPlan
+    )
+    |> Deserializer.deserialize(
+      :user,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.SubscribedMembershipUser
+    )
   end
 end

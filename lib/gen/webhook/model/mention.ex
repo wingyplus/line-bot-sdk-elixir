@@ -15,7 +15,10 @@ defmodule LINEBotSDK.Webhook.Model.Mention do
           :mentionees => [LINEBotSDK.Model.Mentionee.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:mentionees, :list, LINEBotSDK.Webhook.Model.Mentionee)
   end
 end

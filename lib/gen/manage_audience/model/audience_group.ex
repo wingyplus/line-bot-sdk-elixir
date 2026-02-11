@@ -37,7 +37,31 @@ defmodule LINEBotSDK.ManageAudience.Model.AudienceGroup do
           :createRoute => LINEBotSDK.Model.AudienceGroupCreateRoute.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:type, :struct, LINEBotSDK.ManageAudience.Model.AudienceGroupType)
+    |> Deserializer.deserialize(
+      :status,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupStatus
+    )
+    |> Deserializer.deserialize(
+      :failedType,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupFailedType
+    )
+    |> Deserializer.deserialize(:clickUrl, :struct, LINEBotSDK.ManageAudience.Model.Uri)
+    |> Deserializer.deserialize(
+      :permission,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupPermission
+    )
+    |> Deserializer.deserialize(
+      :createRoute,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroupCreateRoute
+    )
   end
 end

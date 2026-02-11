@@ -39,7 +39,19 @@ defmodule LINEBotSDK.MessagingApi.Model.CouponCreateRequest do
           :timezone => String.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :acquisitionCondition,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.AcquisitionConditionRequest
+    )
+    |> Deserializer.deserialize(
+      :reward,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.CouponRewardRequest
+    )
   end
 end

@@ -69,7 +69,16 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexBox do
           :background => LINEBotSDK.Model.FlexBoxBackground.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:contents, :list, LINEBotSDK.MessagingApi.Model.FlexComponent)
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
+    |> Deserializer.deserialize(
+      :background,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.FlexBoxBackground
+    )
   end
 end

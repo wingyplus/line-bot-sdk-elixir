@@ -6,6 +6,8 @@ defmodule LINEBotSDK.MessagingApi do
   API calls for all endpoints tagged `MessagingApi`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Sends a message to multiple users at any time.
 
@@ -18,8 +20,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, map()}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def broadcast(client, broadcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :x_line_retry_key)
@@ -31,7 +33,15 @@ defmodule LINEBotSDK.MessagingApi do
       headers: Enum.reject([{"x-line-retry-key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, %{}},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {403, LINEBotSDK.Model.ErrorResponse},
+      {409, LINEBotSDK.Model.ErrorResponse},
+      {429, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -44,8 +54,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def cancel_default_rich_menu(client, opts \\ []) do
     request_opts = [
@@ -53,7 +63,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/user/all/richmenu"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -67,8 +81,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def close_coupon(client, coupon_id, opts \\ []) do
     request_opts = [
@@ -77,7 +91,14 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [coupon_id: coupon_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {404, LINEBotSDK.Model.ErrorResponse},
+      {410, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -91,8 +112,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CouponCreateResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_coupon(client, opts \\ []) do
     body = Keyword.get(opts, :body)
@@ -103,7 +124,12 @@ defmodule LINEBotSDK.MessagingApi do
       json: body
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.CouponCreateResponse},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -117,8 +143,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuIdResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_rich_menu(client, rich_menu_request, opts \\ []) do
     request_opts = [
@@ -127,7 +153,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuIdResponse}
+    ])
   end
 
   @doc """
@@ -141,8 +171,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def create_rich_menu_alias(client, create_rich_menu_alias_request, opts \\ []) do
     request_opts = [
@@ -151,7 +181,12 @@ defmodule LINEBotSDK.MessagingApi do
       json: create_rich_menu_alias_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -165,8 +200,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def delete_rich_menu(client, rich_menu_id, opts \\ []) do
     request_opts = [
@@ -175,7 +210,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [rich_menu_id: rich_menu_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -189,8 +228,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def delete_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
     request_opts = [
@@ -199,7 +238,12 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [rich_menu_alias_id: rich_menu_alias_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -214,8 +258,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetAggregationUnitNameListResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_aggregation_unit_name_list(client, opts \\ []) do
     limit = Keyword.get(opts, :limit)
@@ -227,7 +271,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"limit", limit}, {"start", start}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetAggregationUnitNameListResponse}
+    ])
   end
 
   @doc """
@@ -240,8 +288,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetAggregationUnitUsageResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_aggregation_unit_usage(client, opts \\ []) do
     request_opts = [
@@ -249,7 +297,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/message/aggregation/info"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetAggregationUnitUsageResponse}
+    ])
   end
 
   @doc """
@@ -262,8 +314,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.BotInfoResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_bot_info(client, opts \\ []) do
     request_opts = [
@@ -271,7 +323,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/info"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.BotInfoResponse}
+    ])
   end
 
   @doc """
@@ -285,8 +341,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.CouponResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_coupon_detail(client, coupon_id, opts \\ []) do
     request_opts = [
@@ -295,7 +351,13 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [coupon_id: coupon_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.CouponResponse},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {404, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -308,8 +370,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuIdResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_default_rich_menu_id(client, opts \\ []) do
     request_opts = [
@@ -317,7 +379,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/user/all/richmenu"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuIdResponse}
+    ])
   end
 
   @doc """
@@ -332,8 +398,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetFollowersResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_followers(client, opts \\ []) do
     start = Keyword.get(opts, :start)
@@ -345,7 +411,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetFollowersResponse}
+    ])
   end
 
   @doc """
@@ -359,8 +429,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GroupMemberCountResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_group_member_count(client, group_id, opts \\ []) do
     request_opts = [
@@ -369,7 +439,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [group_id: group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GroupMemberCountResponse}
+    ])
   end
 
   @doc """
@@ -384,8 +458,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GroupUserProfileResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_group_member_profile(client, group_id, user_id, opts \\ []) do
     request_opts = [
@@ -394,7 +468,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [group_id: group_id, user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GroupUserProfileResponse}
+    ])
   end
 
   @doc """
@@ -409,8 +487,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.MembersIdsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_group_members_ids(client, group_id, opts \\ []) do
     start = Keyword.get(opts, :start)
@@ -422,7 +500,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.MembersIdsResponse}
+    ])
   end
 
   @doc """
@@ -436,8 +518,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GroupSummaryResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_group_summary(client, group_id, opts \\ []) do
     request_opts = [
@@ -446,7 +528,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [group_id: group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GroupSummaryResponse}
+    ])
   end
 
   @doc """
@@ -462,8 +548,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetJoinedMembershipUsersResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_joined_membership_users(client, membership_id, opts \\ []) do
     start = Keyword.get(opts, :start)
@@ -476,7 +562,13 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"start", start}, {"limit", limit}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetJoinedMembershipUsersResponse},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {404, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -489,8 +581,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.MembershipListResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_membership_list(client, opts \\ []) do
     request_opts = [
@@ -498,7 +590,12 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/membership/list"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.MembershipListResponse},
+      {404, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -512,8 +609,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetMembershipSubscriptionResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_membership_subscription(client, user_id, opts \\ []) do
     request_opts = [
@@ -522,7 +619,13 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetMembershipSubscriptionResponse},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {404, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -535,8 +638,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.MessageQuotaResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_quota(client, opts \\ []) do
     request_opts = [
@@ -544,7 +647,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/message/quota"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.MessageQuotaResponse}
+    ])
   end
 
   @doc """
@@ -557,8 +664,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.QuotaConsumptionResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_quota_consumption(client, opts \\ []) do
     request_opts = [
@@ -566,7 +673,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/message/quota/consumption"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.QuotaConsumptionResponse}
+    ])
   end
 
   @doc """
@@ -580,8 +691,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NarrowcastProgressResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_narrowcast_progress(client, request_id, opts \\ []) do
     request_opts = [
@@ -590,7 +701,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NarrowcastProgressResponse}
+    ])
   end
 
   @doc """
@@ -604,8 +719,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_sent_broadcast_messages(client, date, opts \\ []) do
     request_opts = [
@@ -614,7 +729,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+    ])
   end
 
   @doc """
@@ -628,8 +747,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_sent_multicast_messages(client, date, opts \\ []) do
     request_opts = [
@@ -638,7 +757,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+    ])
   end
 
   @doc """
@@ -652,8 +775,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_sent_push_messages(client, date, opts \\ []) do
     request_opts = [
@@ -662,7 +785,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+    ])
   end
 
   @doc """
@@ -676,8 +803,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_number_of_sent_reply_messages(client, date, opts \\ []) do
     request_opts = [
@@ -686,7 +813,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+    ])
   end
 
   @doc """
@@ -700,8 +831,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_pnp_message_statistics(client, date, opts \\ []) do
     request_opts = [
@@ -710,7 +841,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.NumberOfMessagesResponse}
+    ])
   end
 
   @doc """
@@ -724,8 +859,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.UserProfileResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_profile(client, user_id, opts \\ []) do
     request_opts = [
@@ -734,7 +869,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.UserProfileResponse}
+    ])
   end
 
   @doc """
@@ -748,8 +887,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu(client, rich_menu_id, opts \\ []) do
     request_opts = [
@@ -758,7 +897,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [rich_menu_id: rich_menu_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuResponse}
+    ])
   end
 
   @doc """
@@ -772,8 +915,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuAliasResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_alias(client, rich_menu_alias_id, opts \\ []) do
     request_opts = [
@@ -782,7 +925,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [rich_menu_alias_id: rich_menu_alias_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuAliasResponse}
+    ])
   end
 
   @doc """
@@ -795,8 +942,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuAliasListResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_alias_list(client, opts \\ []) do
     request_opts = [
@@ -804,7 +951,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/richmenu/alias/list"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuAliasListResponse}
+    ])
   end
 
   @doc """
@@ -818,8 +969,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuBatchProgressResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_batch_progress(client, request_id, opts \\ []) do
     request_opts = [
@@ -828,7 +979,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"requestId", request_id}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuBatchProgressResponse}
+    ])
   end
 
   @doc """
@@ -842,8 +997,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuIdResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_id_of_user(client, user_id, opts \\ []) do
     request_opts = [
@@ -852,7 +1007,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuIdResponse}
+    ])
   end
 
   @doc """
@@ -865,8 +1024,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RichMenuListResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_list(client, opts \\ []) do
     request_opts = [
@@ -874,7 +1033,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/richmenu/list"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RichMenuListResponse}
+    ])
   end
 
   @doc """
@@ -888,8 +1051,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RoomMemberCountResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_room_member_count(client, room_id, opts \\ []) do
     request_opts = [
@@ -898,7 +1061,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [room_id: room_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RoomMemberCountResponse}
+    ])
   end
 
   @doc """
@@ -913,8 +1080,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.RoomUserProfileResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_room_member_profile(client, room_id, user_id, opts \\ []) do
     request_opts = [
@@ -923,7 +1090,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [room_id: room_id, user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.RoomUserProfileResponse}
+    ])
   end
 
   @doc """
@@ -938,8 +1109,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.MembersIdsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_room_members_ids(client, room_id, opts \\ []) do
     start = Keyword.get(opts, :start)
@@ -951,7 +1122,11 @@ defmodule LINEBotSDK.MessagingApi do
       params: Enum.reject([{"start", start}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.MembersIdsResponse}
+    ])
   end
 
   @doc """
@@ -964,8 +1139,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetWebhookEndpointResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_webhook_endpoint(client, opts \\ []) do
     request_opts = [
@@ -973,7 +1148,11 @@ defmodule LINEBotSDK.MessagingApi do
       url: "/v2/bot/channel/webhook/endpoint"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetWebhookEndpointResponse}
+    ])
   end
 
   @doc """
@@ -987,8 +1166,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.IssueLinkTokenResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def issue_link_token(client, user_id, opts \\ []) do
     request_opts = [
@@ -997,7 +1176,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.IssueLinkTokenResponse}
+    ])
   end
 
   @doc """
@@ -1011,8 +1194,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def leave_group(client, group_id, opts \\ []) do
     request_opts = [
@@ -1021,7 +1204,13 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [group_id: group_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {404, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1035,8 +1224,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def leave_room(client, room_id, opts \\ []) do
     request_opts = [
@@ -1045,7 +1234,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [room_id: room_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1060,8 +1253,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def link_rich_menu_id_to_user(client, user_id, rich_menu_id, opts \\ []) do
     request_opts = [
@@ -1070,7 +1263,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id, rich_menu_id: rich_menu_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1084,8 +1281,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def link_rich_menu_id_to_users(client, rich_menu_bulk_link_request, opts \\ []) do
     request_opts = [
@@ -1094,7 +1291,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_bulk_link_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, false}
+    ])
   end
 
   @doc """
@@ -1110,8 +1311,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.MessagingApiPagerCouponListResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def list_coupon(client, opts \\ []) do
     status = Keyword.get(opts, :status)
@@ -1127,7 +1328,12 @@ defmodule LINEBotSDK.MessagingApi do
         end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.MessagingApiPagerCouponListResponse},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1141,8 +1347,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def mark_messages_as_read(client, mark_messages_as_read_request, opts \\ []) do
     request_opts = [
@@ -1151,7 +1357,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: mark_messages_as_read_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1165,8 +1375,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def mark_messages_as_read_by_token(client, mark_messages_as_read_by_token_request, opts \\ []) do
     request_opts = [
@@ -1175,7 +1385,12 @@ defmodule LINEBotSDK.MessagingApi do
       json: mark_messages_as_read_by_token_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1190,8 +1405,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, map()}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def multicast(client, multicast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :x_line_retry_key)
@@ -1203,7 +1418,15 @@ defmodule LINEBotSDK.MessagingApi do
       headers: Enum.reject([{"x-line-retry-key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, %{}},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {403, LINEBotSDK.Model.ErrorResponse},
+      {409, LINEBotSDK.Model.ErrorResponse},
+      {429, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1218,8 +1441,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, map()}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def narrowcast(client, narrowcast_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :x_line_retry_key)
@@ -1231,7 +1454,15 @@ defmodule LINEBotSDK.MessagingApi do
       headers: Enum.reject([{"x-line-retry-key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, %{}},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {403, LINEBotSDK.Model.ErrorResponse},
+      {409, LINEBotSDK.Model.ErrorResponse},
+      {429, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1246,8 +1477,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.PushMessageResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def push_message(client, push_message_request, opts \\ []) do
     x_line_retry_key = Keyword.get(opts, :x_line_retry_key)
@@ -1259,7 +1490,15 @@ defmodule LINEBotSDK.MessagingApi do
       headers: Enum.reject([{"x-line-retry-key", x_line_retry_key}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.PushMessageResponse},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {403, LINEBotSDK.Model.ErrorResponse},
+      {409, LINEBotSDK.Model.ErrorResponse},
+      {429, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1274,8 +1513,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def push_messages_by_phone(client, pnp_messages_request, opts \\ []) do
     x_line_delivery_tag = Keyword.get(opts, :x_line_delivery_tag)
@@ -1288,7 +1527,12 @@ defmodule LINEBotSDK.MessagingApi do
         Enum.reject([{"x-line-delivery-tag", x_line_delivery_tag}], fn {_, v} -> is_nil(v) end)
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {422, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1302,8 +1546,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.ReplyMessageResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def reply_message(client, reply_message_request, opts \\ []) do
     request_opts = [
@@ -1312,7 +1556,13 @@ defmodule LINEBotSDK.MessagingApi do
       json: reply_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.ReplyMessageResponse},
+      {400, LINEBotSDK.Model.ErrorResponse},
+      {429, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1326,8 +1576,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def rich_menu_batch(client, rich_menu_batch_request, opts \\ []) do
     request_opts = [
@@ -1336,7 +1586,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_batch_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, false}
+    ])
   end
 
   @doc """
@@ -1350,8 +1604,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def set_default_rich_menu(client, rich_menu_id, opts \\ []) do
     request_opts = [
@@ -1360,7 +1614,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [rich_menu_id: rich_menu_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1374,8 +1632,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def set_webhook_endpoint(client, set_webhook_endpoint_request, opts \\ []) do
     request_opts = [
@@ -1384,7 +1642,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: set_webhook_endpoint_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1398,8 +1660,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, map()}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def show_loading_animation(client, show_loading_animation_request, opts \\ []) do
     request_opts = [
@@ -1408,7 +1670,12 @@ defmodule LINEBotSDK.MessagingApi do
       json: show_loading_animation_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, %{}},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1422,8 +1689,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.TestWebhookEndpointResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def test_webhook_endpoint(client, opts \\ []) do
     body = Keyword.get(opts, :body)
@@ -1434,7 +1701,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: body
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.TestWebhookEndpointResponse}
+    ])
   end
 
   @doc """
@@ -1448,8 +1719,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def unlink_rich_menu_id_from_user(client, user_id, opts \\ []) do
     request_opts = [
@@ -1458,7 +1729,11 @@ defmodule LINEBotSDK.MessagingApi do
       path_params: [user_id: user_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1472,8 +1747,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def unlink_rich_menu_id_from_users(client, rich_menu_bulk_unlink_request, opts \\ []) do
     request_opts = [
@@ -1482,7 +1757,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_bulk_unlink_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {202, false}
+    ])
   end
 
   @doc """
@@ -1497,8 +1776,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def update_rich_menu_alias(
         client,
@@ -1513,7 +1792,12 @@ defmodule LINEBotSDK.MessagingApi do
       json: update_rich_menu_alias_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, LINEBotSDK.Model.ErrorResponse}
+    ])
   end
 
   @doc """
@@ -1527,8 +1811,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_broadcast(client, validate_message_request, opts \\ []) do
     request_opts = [
@@ -1537,7 +1821,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: validate_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1551,8 +1839,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_multicast(client, validate_message_request, opts \\ []) do
     request_opts = [
@@ -1561,7 +1849,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: validate_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1575,8 +1867,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_narrowcast(client, validate_message_request, opts \\ []) do
     request_opts = [
@@ -1585,7 +1877,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: validate_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1599,8 +1895,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_push(client, validate_message_request, opts \\ []) do
     request_opts = [
@@ -1609,7 +1905,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: validate_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1623,8 +1923,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_reply(client, validate_message_request, opts \\ []) do
     request_opts = [
@@ -1633,7 +1933,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: validate_message_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1647,8 +1951,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_rich_menu_batch_request(client, rich_menu_batch_request, opts \\ []) do
     request_opts = [
@@ -1657,7 +1961,11 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_batch_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -1671,8 +1979,8 @@ defmodule LINEBotSDK.MessagingApi do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def validate_rich_menu_object(client, rich_menu_request, opts \\ []) do
     request_opts = [
@@ -1681,6 +1989,10 @@ defmodule LINEBotSDK.MessagingApi do
       json: rich_menu_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

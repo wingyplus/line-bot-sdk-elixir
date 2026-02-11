@@ -19,7 +19,16 @@ defmodule LINEBotSDK.ManageAudience.Model.GetSharedAudienceDataResponse do
           :owner => LINEBotSDK.Model.DetailedOwner.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :audienceGroup,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroup
+    )
+    |> Deserializer.deserialize(:jobs, :list, LINEBotSDK.ManageAudience.Model.AudienceGroupJob)
+    |> Deserializer.deserialize(:owner, :struct, LINEBotSDK.ManageAudience.Model.DetailedOwner)
   end
 end

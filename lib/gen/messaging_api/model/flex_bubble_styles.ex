@@ -21,7 +21,13 @@ defmodule LINEBotSDK.MessagingApi.Model.FlexBubbleStyles do
           :footer => LINEBotSDK.Model.FlexBlockStyle.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:header, :struct, LINEBotSDK.MessagingApi.Model.FlexBlockStyle)
+    |> Deserializer.deserialize(:hero, :struct, LINEBotSDK.MessagingApi.Model.FlexBlockStyle)
+    |> Deserializer.deserialize(:body, :struct, LINEBotSDK.MessagingApi.Model.FlexBlockStyle)
+    |> Deserializer.deserialize(:footer, :struct, LINEBotSDK.MessagingApi.Model.FlexBlockStyle)
   end
 end

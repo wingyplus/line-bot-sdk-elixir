@@ -25,7 +25,14 @@ defmodule LINEBotSDK.ManageAudience.Model.GetAudienceGroupsResponse do
           :size => integer() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :audienceGroups,
+      :list,
+      LINEBotSDK.ManageAudience.Model.AudienceGroup
+    )
   end
 end

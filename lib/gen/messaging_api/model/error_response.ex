@@ -19,7 +19,11 @@ defmodule LINEBotSDK.MessagingApi.Model.ErrorResponse do
           :sentMessages => [LINEBotSDK.Model.SentMessage.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:details, :list, LINEBotSDK.MessagingApi.Model.ErrorDetail)
+    |> Deserializer.deserialize(:sentMessages, :list, LINEBotSDK.MessagingApi.Model.SentMessage)
   end
 end

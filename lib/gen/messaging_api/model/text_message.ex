@@ -25,7 +25,12 @@ defmodule LINEBotSDK.MessagingApi.Model.TextMessage do
           :quoteToken => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:quickReply, :struct, LINEBotSDK.MessagingApi.Model.QuickReply)
+    |> Deserializer.deserialize(:sender, :struct, LINEBotSDK.MessagingApi.Model.Sender)
+    |> Deserializer.deserialize(:emojis, :list, LINEBotSDK.MessagingApi.Model.Emoji)
   end
 end

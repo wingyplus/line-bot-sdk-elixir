@@ -6,6 +6,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
   API calls for all endpoints tagged `MessagingApiBlob`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Download image, video, and audio data sent from users.
 
@@ -17,8 +19,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, String.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_content(client, message_id, opts \\ []) do
     request_opts = [
@@ -27,7 +29,11 @@ defmodule LINEBotSDK.MessagingApiBlob do
       path_params: [message_id: message_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -41,8 +47,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, String.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_content_preview(client, message_id, opts \\ []) do
     request_opts = [
@@ -51,7 +57,11 @@ defmodule LINEBotSDK.MessagingApiBlob do
       path_params: [message_id: message_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -65,8 +75,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetMessageContentTranscodingResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_message_content_transcoding_by_message_id(client, message_id, opts \\ []) do
     request_opts = [
@@ -75,7 +85,11 @@ defmodule LINEBotSDK.MessagingApiBlob do
       path_params: [message_id: message_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetMessageContentTranscodingResponse}
+    ])
   end
 
   @doc """
@@ -89,8 +103,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, String.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_rich_menu_image(client, rich_menu_id, opts \\ []) do
     request_opts = [
@@ -99,7 +113,11 @@ defmodule LINEBotSDK.MessagingApiBlob do
       path_params: [rich_menu_id: rich_menu_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
@@ -114,8 +132,8 @@ defmodule LINEBotSDK.MessagingApiBlob do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def set_rich_menu_image(client, rich_menu_id, opts \\ []) do
     body = Keyword.get(opts, :body)
@@ -127,6 +145,10 @@ defmodule LINEBotSDK.MessagingApiBlob do
       json: body
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false}
+    ])
   end
 end

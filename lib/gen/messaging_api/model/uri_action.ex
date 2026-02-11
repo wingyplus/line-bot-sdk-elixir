@@ -21,7 +21,11 @@ defmodule LINEBotSDK.MessagingApi.Model.UriAction do
           :altUri => LINEBotSDK.Model.AltUri.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:uri, :struct, LINEBotSDK.MessagingApi.Model.Uri)
+    |> Deserializer.deserialize(:altUri, :struct, LINEBotSDK.MessagingApi.Model.AltUri)
   end
 end

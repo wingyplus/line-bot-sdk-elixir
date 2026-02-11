@@ -15,7 +15,10 @@ defmodule LINEBotSDK.Webhook.Model.LeftMembers do
           :members => [LINEBotSDK.Model.UserSource.t()]
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:members, :list, LINEBotSDK.Webhook.Model.UserSource)
   end
 end

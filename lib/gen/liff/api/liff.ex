@@ -6,6 +6,8 @@ defmodule LINEBotSDK.Liff do
   API calls for all endpoints tagged `Liff`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Create LIFF app
   Adding the LIFF app to a channel
@@ -18,8 +20,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.AddLiffAppResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def add_liff_app(client, add_liff_app_request, opts \\ []) do
     request_opts = [
@@ -28,7 +30,13 @@ defmodule LINEBotSDK.Liff do
       json: add_liff_app_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.AddLiffAppResponse},
+      {400, false},
+      {401, false}
+    ])
   end
 
   @doc """
@@ -43,8 +51,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def delete_liff_app(client, liff_id, opts \\ []) do
     request_opts = [
@@ -53,7 +61,13 @@ defmodule LINEBotSDK.Liff do
       path_params: [liff_id: liff_id]
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {401, false},
+      {404, false}
+    ])
   end
 
   @doc """
@@ -67,8 +81,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.GetAllLiffAppsResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def get_all_liff_apps(client, opts \\ []) do
     request_opts = [
@@ -76,7 +90,13 @@ defmodule LINEBotSDK.Liff do
       url: "/liff/v1/apps"
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.GetAllLiffAppsResponse},
+      {401, false},
+      {404, false}
+    ])
   end
 
   @doc """
@@ -92,8 +112,8 @@ defmodule LINEBotSDK.Liff do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def update_liff_app(client, liff_id, update_liff_app_request, opts \\ []) do
     request_opts = [
@@ -103,6 +123,13 @@ defmodule LINEBotSDK.Liff do
       json: update_liff_app_request
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, false},
+      {400, false},
+      {401, false},
+      {404, false}
+    ])
   end
 end

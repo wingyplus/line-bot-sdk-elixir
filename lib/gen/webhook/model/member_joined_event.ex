@@ -29,7 +29,17 @@ defmodule LINEBotSDK.Webhook.Model.MemberJoinedEvent do
           :joined => LINEBotSDK.Model.JoinedMembers.t()
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:source, :struct, LINEBotSDK.Webhook.Model.Source)
+    |> Deserializer.deserialize(:mode, :struct, LINEBotSDK.Webhook.Model.EventMode)
+    |> Deserializer.deserialize(
+      :deliveryContext,
+      :struct,
+      LINEBotSDK.Webhook.Model.DeliveryContext
+    )
+    |> Deserializer.deserialize(:joined, :struct, LINEBotSDK.Webhook.Model.JoinedMembers)
   end
 end

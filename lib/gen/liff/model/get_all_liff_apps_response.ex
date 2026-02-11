@@ -15,7 +15,10 @@ defmodule LINEBotSDK.Liff.Model.GetAllLiffAppsResponse do
           :apps => [LINEBotSDK.Model.LiffApp.t()] | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:apps, :list, LINEBotSDK.Liff.Model.LiffApp)
   end
 end

@@ -6,6 +6,8 @@ defmodule LINEBotSDK.LineModuleAttach do
   API calls for all endpoints tagged `LineModuleAttach`.
   """
 
+  alias LINEBotSDK.Deserializer
+
   @doc """
   Attach by operation of the module channel provider
 
@@ -26,8 +28,8 @@ defmodule LINEBotSDK.LineModuleAttach do
 
   ### Returns
 
-  - `{:ok, Req.Response.t()}` on success
-  - `{:error, Exception.t()}` on failure
+  - `{:ok, LINEBotSDK.Model.AttachModuleResponse.t}` on success
+  - `{:error, Req.Response.t()}` on failure
   """
   def attach_module(client, grant_type, code, redirect_uri, opts \\ []) do
     code_verifier = Keyword.get(opts, :code_verifier)
@@ -59,6 +61,10 @@ defmodule LINEBotSDK.LineModuleAttach do
         )
     ]
 
-    Req.request(client, Keyword.merge(request_opts, opts))
+    client
+    |> Req.request(Keyword.merge(request_opts, opts))
+    |> Deserializer.evaluate_response([
+      {200, LINEBotSDK.Model.AttachModuleResponse}
+    ])
   end
 end

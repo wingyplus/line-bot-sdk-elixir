@@ -25,7 +25,13 @@ defmodule LINEBotSDK.Liff.Model.AddLiffAppRequest do
           :botPrompt => LINEBotSDK.Model.LiffBotPrompt.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:view, :struct, LINEBotSDK.Liff.Model.LiffView)
+    |> Deserializer.deserialize(:features, :struct, LINEBotSDK.Liff.Model.LiffFeatures)
+    |> Deserializer.deserialize(:scope, :list, LINEBotSDK.Liff.Model.LiffScope)
+    |> Deserializer.deserialize(:botPrompt, :struct, LINEBotSDK.Liff.Model.LiffBotPrompt)
   end
 end

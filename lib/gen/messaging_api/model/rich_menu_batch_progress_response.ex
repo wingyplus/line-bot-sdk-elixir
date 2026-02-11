@@ -19,7 +19,14 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuBatchProgressResponse do
           :completedTime => DateTime.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :phase,
+      :struct,
+      LINEBotSDK.MessagingApi.Model.RichMenuBatchProgressPhase
+    )
   end
 end

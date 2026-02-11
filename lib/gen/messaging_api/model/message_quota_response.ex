@@ -17,7 +17,10 @@ defmodule LINEBotSDK.MessagingApi.Model.MessageQuotaResponse do
           :value => integer() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:type, :struct, LINEBotSDK.MessagingApi.Model.QuotaType)
   end
 end

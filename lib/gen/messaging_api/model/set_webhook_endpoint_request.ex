@@ -15,7 +15,10 @@ defmodule LINEBotSDK.MessagingApi.Model.SetWebhookEndpointRequest do
           :endpoint => Uri
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:endpoint, :struct, LINEBotSDK.MessagingApi.Model.Uri)
   end
 end

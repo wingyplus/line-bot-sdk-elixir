@@ -19,7 +19,16 @@ defmodule LINEBotSDK.ManageAudience.Model.GetAudienceDataResponse do
           :adaccount => LINEBotSDK.Model.Adaccount.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :audienceGroup,
+      :struct,
+      LINEBotSDK.ManageAudience.Model.AudienceGroup
+    )
+    |> Deserializer.deserialize(:jobs, :list, LINEBotSDK.ManageAudience.Model.AudienceGroupJob)
+    |> Deserializer.deserialize(:adaccount, :struct, LINEBotSDK.ManageAudience.Model.Adaccount)
   end
 end

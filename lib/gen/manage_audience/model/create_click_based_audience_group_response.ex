@@ -33,7 +33,11 @@ defmodule LINEBotSDK.ManageAudience.Model.CreateClickBasedAudienceGroupResponse 
           :isIfaAudience => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:type, :struct, LINEBotSDK.ManageAudience.Model.AudienceGroupType)
+    |> Deserializer.deserialize(:clickUrl, :struct, LINEBotSDK.ManageAudience.Model.Uri)
   end
 end

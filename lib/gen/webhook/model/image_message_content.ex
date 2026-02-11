@@ -25,7 +25,15 @@ defmodule LINEBotSDK.Webhook.Model.ImageMessageContent do
           :markAsReadToken => String.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(
+      :contentProvider,
+      :struct,
+      LINEBotSDK.Webhook.Model.ContentProvider
+    )
+    |> Deserializer.deserialize(:imageSet, :struct, LINEBotSDK.Webhook.Model.ImageSet)
   end
 end

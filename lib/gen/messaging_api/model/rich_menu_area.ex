@@ -17,7 +17,11 @@ defmodule LINEBotSDK.MessagingApi.Model.RichMenuArea do
           :action => LINEBotSDK.Model.Action.t() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:bounds, :struct, LINEBotSDK.MessagingApi.Model.RichMenuBounds)
+    |> Deserializer.deserialize(:action, :struct, LINEBotSDK.MessagingApi.Model.Action)
   end
 end

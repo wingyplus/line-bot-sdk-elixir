@@ -19,7 +19,10 @@ defmodule LINEBotSDK.MessagingApi.Model.ReplyMessageRequest do
           :notificationDisabled => boolean() | nil
         }
 
+  alias LINEBotSDK.Deserializer
+
   def decode(value) do
     value
+    |> Deserializer.deserialize(:messages, :list, LINEBotSDK.MessagingApi.Model.Message)
   end
 end
