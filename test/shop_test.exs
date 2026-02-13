@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
-defmodule LINEBotSDK.ShopTest do
+defmodule LINE.Bot.ShopTest do
   use ExUnit.Case, async: true
 
-  alias LINEBotSDK.Shop
-  alias LINEBotSDK.Shop.Model.MissionStickerRequest
+  alias LINE.Bot.Shop
+  alias LINE.Bot.Shop.Model.MissionStickerRequest
 
   setup do
     bypass = Bypass.open()

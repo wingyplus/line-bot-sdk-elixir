@@ -1,4 +1,4 @@
-defmodule LINEBotSDK.Mixfile do
+defmodule LINE.Bot.Mixfile do
   use Mix.Project
 
   def project do

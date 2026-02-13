@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
-defmodule LINEBotSDK.InsightTest do
+defmodule LINE.Bot.InsightTest do
   use ExUnit.Case, async: true
 
-  alias LINEBotSDK.Insight
+  alias LINE.Bot.Insight
 
   setup do
     bypass = Bypass.open()

@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: Apache-2.0
 
-defmodule LINEBotSDK.LineModuleTest do
+defmodule LINE.Bot.LineModuleTest do
   use ExUnit.Case, async: true
 
-  alias LINEBotSDK.LineModule
-  alias LINEBotSDK.Module.Model.AcquireChatControlRequest
-  alias LINEBotSDK.Module.Model.DetachModuleRequest
+  alias LINE.Bot.LineModule
+  alias LINE.Bot.Module.Model.AcquireChatControlRequest
+  alias LINE.Bot.Module.Model.DetachModuleRequest
 
   setup do
     bypass = Bypass.open()

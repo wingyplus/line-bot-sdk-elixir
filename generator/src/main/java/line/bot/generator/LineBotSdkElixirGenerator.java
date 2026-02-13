@@ -71,9 +71,9 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
     public void preprocessOpenAPI(OpenAPI openAPI) {
         super.preprocessOpenAPI(openAPI);
 
-        // Force all generated modules under the LINEBotSDK namespace.
-        setModuleName("LINEBotSDK");
-        additionalProperties.put("moduleName", "LINEBotSDK");
+        // Force all generated modules under the LINE.Bot namespace.
+        setModuleName("LINE.Bot");
+        additionalProperties.put("moduleName", "LINE.Bot");
 
         // preprocessOpenAPI adds connection.ex, request_builder.ex, deserializer.ex
         // to supportingFiles. Clear them again since we don't need them.
@@ -122,8 +122,8 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
     /**
      * Extended CodegenResponse that includes the package namespace in decodedStruct().
      * This ensures the response type mapping uses the full module path like
-     * LINEBotSDK.ChannelAccessToken.Model.ErrorResponse instead of just
-     * LINEBotSDK.Model.ErrorResponse.
+     * LINE.Bot.ChannelAccessToken.Model.ErrorResponse instead of just
+     * LINE.Bot.Model.ErrorResponse.
      */
     class LineExtendedCodegenResponse extends CodegenResponse {
         private final String packageNamespace;
@@ -197,7 +197,7 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
             }
 
             StringBuilder sb = new StringBuilder();
-            sb.append("LINEBotSDK.");
+            sb.append("LINE.Bot.");
             if (packageNamespace != null && !packageNamespace.isEmpty()) {
                 sb.append(packageNamespace);
                 sb.append(".");

@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
-defmodule LINEBotSDK.LiffTest do
+defmodule LINE.Bot.LiffTest do
   use ExUnit.Case, async: true
 
-  alias LINEBotSDK.Liff
-  alias LINEBotSDK.Liff.Model.AddLiffAppRequest
-  alias LINEBotSDK.Liff.Model.UpdateLiffAppRequest
-  alias LINEBotSDK.Liff.Model.LiffView
-  alias LINEBotSDK.Liff.Model.UpdateLiffView
+  alias LINE.Bot.Liff
+  alias LINE.Bot.Liff.Model.AddLiffAppRequest
+  alias LINE.Bot.Liff.Model.UpdateLiffAppRequest
+  alias LINE.Bot.Liff.Model.LiffView
+  alias LINE.Bot.Liff.Model.UpdateLiffView
 
   setup do
     bypass = Bypass.open()

@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
-defmodule LINEBotSDK.MessagingApiTest do
+defmodule LINE.Bot.MessagingApiTest do
   use ExUnit.Case, async: true
 
-  alias LINEBotSDK.MessagingApi
-  alias LINEBotSDK.MessagingApi.Model.PushMessageRequest
-  alias LINEBotSDK.MessagingApi.Model.BroadcastRequest
-  alias LINEBotSDK.MessagingApi.Model.ReplyMessageRequest
-  alias LINEBotSDK.MessagingApi.Model.TextMessage
+  alias LINE.Bot.MessagingApi
+  alias LINE.Bot.MessagingApi.Model.PushMessageRequest
+  alias LINE.Bot.MessagingApi.Model.BroadcastRequest
+  alias LINE.Bot.MessagingApi.Model.ReplyMessageRequest
+  alias LINE.Bot.MessagingApi.Model.TextMessage
 
   setup do
     bypass = Bypass.open()
