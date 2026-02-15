@@ -105,6 +105,21 @@ defmodule LINE.Bot.Deserializer do
     end
   end
 
+  @doc """
+  Decode a map (or list of maps) into a struct of the given module.
+
+  ## Parameters
+
+  - `value` - A map, list of maps, or nil
+  - `module` - The module to decode into
+
+  ## Returns
+
+  The decoded struct (or list of structs, or nil).
+  """
+  @spec decode_map(map() | [map()] | nil, module()) :: struct() | [struct()] | nil
+  def decode_map(value, module), do: to_struct(value, module)
+
   defp to_struct(value, module)
   defp to_struct(nil, _), do: nil
 
