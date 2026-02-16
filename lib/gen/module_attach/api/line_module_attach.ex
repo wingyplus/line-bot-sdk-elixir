@@ -11,6 +11,38 @@ defmodule LINE.Bot.LineModuleAttach do
 
   alias LINE.Bot.Deserializer
 
+  @version Mix.Project.config()[:version]
+
+  @doc """
+  Create a new `LineModuleAttach` client.
+
+  ### Options
+
+  - `:base_url` - base URL for requests (default: `"https://manager.line.biz"`)
+  - `:channel_token` (required) - channel access token for Bearer authorization
+  - `:plug` - plug to use for testing (see `Req.new/1`)
+  """
+  def new(options \\ []) do
+    base_url = Keyword.get(options, :base_url, "https://manager.line.biz")
+    channel_token = Keyword.fetch!(options, :channel_token)
+
+    opts =
+      [
+        base_url: base_url,
+        auth: {:bearer, channel_token},
+        headers: [{"user-agent", "LINE-BotSDK-Elixir/#{@version}"}]
+      ]
+
+    opts =
+      if plug = Keyword.get(options, :plug) do
+        Keyword.put(opts, :plug, plug)
+      else
+        opts
+      end
+
+    Req.new(opts)
+  end
+
   @doc """
   Attach by operation of the module channel provider
 

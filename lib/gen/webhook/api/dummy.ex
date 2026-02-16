@@ -11,6 +11,35 @@ defmodule LINE.Bot.Dummy do
 
   alias LINE.Bot.Deserializer
 
+  @version Mix.Project.config()[:version]
+
+  @doc """
+  Create a new `Dummy` client.
+
+  ### Options
+
+  - `:base_url` - base URL for requests (default: `"https://example.com"`)
+  - `:plug` - plug to use for testing (see `Req.new/1`)
+  """
+  def new(options \\ []) do
+    base_url = Keyword.get(options, :base_url, "https://example.com")
+
+    opts =
+      [
+        base_url: base_url,
+        headers: [{"user-agent", "LINE-BotSDK-Elixir/#{@version}"}]
+      ]
+
+    opts =
+      if plug = Keyword.get(options, :plug) do
+        Keyword.put(opts, :plug, plug)
+      else
+        opts
+      end
+
+    Req.new(opts)
+  end
+
   @doc """
   This is the dummy endpoint to generate the model classes
 

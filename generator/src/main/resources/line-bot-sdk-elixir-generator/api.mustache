@@ -5,6 +5,43 @@ defmodule {{moduleName}}.{{classname}} do
   """
 
   alias LINE.Bot.Deserializer
+
+  @version Mix.Project.config()[:version]
+
+  @doc """
+  Create a new `{{classname}}` client.
+
+  ### Options
+
+  - `:base_url` - base URL for requests (default: `"{{serverUrl}}"`)
+{{#hasAuth}}
+  - `:channel_token` (required) - channel access token for Bearer authorization
+{{/hasAuth}}
+  - `:plug` - plug to use for testing (see `Req.new/1`)
+  """
+  def new(options \\ []) do
+    base_url = Keyword.get(options, :base_url, "{{serverUrl}}")
+{{#hasAuth}}
+    channel_token = Keyword.fetch!(options, :channel_token)
+{{/hasAuth}}
+    opts =
+      [
+        base_url: base_url,
+{{#hasAuth}}
+        auth: {:bearer, channel_token},
+{{/hasAuth}}
+        headers: [{"user-agent", "LINE-BotSDK-Elixir/#{@version}"}]
+      ]
+
+    opts =
+      if plug = Keyword.get(options, :plug) do
+        Keyword.put(opts, :plug, plug)
+      else
+        opts
+      end
+
+    Req.new(opts)
+  end
 {{#operations}}
 {{#operation}}
 

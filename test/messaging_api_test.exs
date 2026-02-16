@@ -11,7 +11,13 @@ defmodule LINE.Bot.MessagingApiTest do
 
   setup do
     bypass = Bypass.open()
-    client = Req.new(base_url: "http://localhost:#{bypass.port}")
+
+    client =
+      MessagingApi.new(
+        base_url: "http://localhost:#{bypass.port}",
+        channel_token: "test-channel-token"
+      )
+
     {:ok, bypass: bypass, client: client}
   end
 
@@ -19,6 +25,7 @@ defmodule LINE.Bot.MessagingApiTest do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
       Bypass.expect_once(bypass, "POST", "/v2/bot/message/push", fn conn ->
         assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
+        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
 
         conn
         |> Plug.Conn.put_resp_content_type("application/json")
