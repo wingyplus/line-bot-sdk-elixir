@@ -24,6 +24,7 @@ defmodule LINE.Bot.Mixfile do
   defp deps do
     [
       {:req, "~> 0.5"},
+      {:plug, "~> 1.16"},
       {:plug_crypto, "~> 2.0"},
       {:ex_doc, "~> 0.40", only: :docs, runtime: false, warn_if_outdated: true},
       {:bypass, "~> 2.1", only: :test}
