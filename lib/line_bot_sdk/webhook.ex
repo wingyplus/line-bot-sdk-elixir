@@ -4,6 +4,7 @@ defmodule LINE.Bot.Webhook do
       {:ok, decoded} ->
         expected = :crypto.mac(:hmac, :sha256, channel_secret, body)
         Plug.Crypto.secure_compare(expected, decoded)
+
       :error ->
         false
     end

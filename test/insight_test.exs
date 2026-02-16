@@ -7,13 +7,21 @@ defmodule LINE.Bot.InsightTest do
 
   setup do
     bypass = Bypass.open()
-    client = Req.new(base_url: "http://localhost:#{bypass.port}")
+
+    client =
+      Insight.new(
+        base_url: "http://localhost:#{bypass.port}",
+        channel_token: "test-channel-token"
+      )
+
     {:ok, bypass: bypass, client: client}
   end
 
   describe "get_friends_demographics/2" do
     test "sends GET request and returns demographics response", %{bypass: bypass, client: client} do
       Bypass.expect_once(bypass, "GET", "/v2/bot/insight/demographic", fn conn ->
+        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
+
         conn
         |> Plug.Conn.put_resp_content_type("application/json")
         |> Plug.Conn.resp(200, ~s({"available": true}))

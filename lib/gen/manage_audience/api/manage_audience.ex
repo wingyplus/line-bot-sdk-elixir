@@ -11,6 +11,38 @@ defmodule LINE.Bot.ManageAudience do
 
   alias LINE.Bot.Deserializer
 
+  @version Mix.Project.config()[:version]
+
+  @doc """
+  Create a new `ManageAudience` client.
+
+  ### Options
+
+  - `:base_url` - base URL for requests (default: `"https://api.line.me"`)
+  - `:channel_token` (required) - channel access token for Bearer authorization
+  - `:plug` - plug to use for testing (see `Req.new/1`)
+  """
+  def new(options \\ []) do
+    base_url = Keyword.get(options, :base_url, "https://api.line.me")
+    channel_token = Keyword.fetch!(options, :channel_token)
+
+    opts =
+      [
+        base_url: base_url,
+        auth: {:bearer, channel_token},
+        headers: [{"user-agent", "LINE-BotSDK-Elixir/#{@version}"}]
+      ]
+
+    opts =
+      if plug = Keyword.get(options, :plug) do
+        Keyword.put(opts, :plug, plug)
+      else
+        opts
+      end
+
+    Req.new(opts)
+  end
+
   @doc """
   Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 

@@ -75,6 +75,16 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
         setModuleName("LINE.Bot");
         additionalProperties.put("moduleName", "LINE.Bot");
 
+        // Capture the first server URL for the new() function.
+        if (openAPI.getServers() != null && !openAPI.getServers().isEmpty()) {
+            additionalProperties.put("serverUrl", openAPI.getServers().get(0).getUrl());
+        }
+
+        // Check for global security requirements (Bearer auth).
+        if (openAPI.getSecurity() != null && !openAPI.getSecurity().isEmpty()) {
+            additionalProperties.put("hasAuth", true);
+        }
+
         // preprocessOpenAPI adds connection.ex, request_builder.ex, deserializer.ex
         // to supportingFiles. Clear them again since we don't need them.
         supportingFiles.clear();
