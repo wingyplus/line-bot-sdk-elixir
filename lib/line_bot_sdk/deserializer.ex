@@ -10,27 +10,29 @@ defmodule LINE.Bot.Deserializer do
 
   ## Parameters
 
-  - `response` - The Req.Response struct
+  - `response` - The Req.Response struct or a map
   - `module` - The module to decode the response body into (or `false` to skip decoding)
 
   ## Returns
 
-  - `{:ok, struct}` on success
-  - `{:ok, Req.Response.t()}` if module is `false`
-  - `{:error, reason}` on failure
+  The decoded struct, map, or response.
   """
-  @spec decode(Req.Response.t(), module() | false | %{}) ::
-          {:ok, struct() | map() | Req.Response.t()} | {:error, term()}
+  @spec decode(Req.Response.t() | map(), module() | false | %{}) ::
+          struct() | map() | Req.Response.t()
   def decode(%Req.Response{} = response, false) do
-    {:ok, response}
+    response
   end
 
   def decode(%Req.Response{body: body}, %{}) when is_map(body) do
-    {:ok, body}
+    body
   end
 
   def decode(%Req.Response{body: body}, module) when is_atom(module) do
-    {:ok, to_struct(body, module)}
+    to_struct(body, module)
+  end
+
+  def decode(body, module) when is_map(body) and is_atom(module) do
+    to_struct(body, module)
   end
 
   @doc """
@@ -105,21 +107,6 @@ defmodule LINE.Bot.Deserializer do
     end
   end
 
-  @doc """
-  Decode a map (or list of maps) into a struct of the given module.
-
-  ## Parameters
-
-  - `value` - A map, list of maps, or nil
-  - `module` - The module to decode into
-
-  ## Returns
-
-  The decoded struct (or list of structs, or nil).
-  """
-  @spec decode_map(map() | [map()] | nil, module()) :: struct() | [struct()] | nil
-  def decode_map(value, module), do: to_struct(value, module)
-
   defp to_struct(value, module)
   defp to_struct(nil, _), do: nil
 
@@ -173,7 +160,7 @@ defmodule LINE.Bot.Deserializer do
          _
        )
        when status == mapping_status do
-    decode(response, struct)
+    {:ok, decode(response, struct)}
   end
 
   defp resolve_mapping(response, [{:default, struct} | tail], _) do
@@ -186,5 +173,5 @@ defmodule LINE.Bot.Deserializer do
 
   defp resolve_mapping(response, [], nil), do: {:error, response}
 
-  defp resolve_mapping(response, [], struct), do: decode(response, struct)
+  defp resolve_mapping(response, [], struct), do: {:ok, decode(response, struct)}
 end

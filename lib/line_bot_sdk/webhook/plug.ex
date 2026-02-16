@@ -39,12 +39,11 @@ defmodule LINE.Bot.Webhook.Plug do
   def call(conn, %{channel_secret: channel_secret}) do
     channel_secret = resolve_channel_secret(channel_secret)
 
-    with {:ok, body, conn} <- read_body(conn),
-         [signature | _] <- get_req_header(conn, "x-line-signature"),
-         true <- Webhook.signature_valid?(channel_secret, signature, body) do
-      body_params = JSON.decode!(body)
-
-      callback_request = Deserializer.decode_map(body_params, CallbackRequest)
+    with [signature | _] <- get_req_header(conn, "x-line-signature"),
+         {:ok, body, conn} <- read_body(conn),
+         true <- Webhook.signature_valid?(channel_secret, signature, body),
+         {:ok, body_params} <- JSON.decode(body) do
+      callback_request = Deserializer.decode(body_params, CallbackRequest)
 
       conn
       |> Map.put(:body_params, body_params)
