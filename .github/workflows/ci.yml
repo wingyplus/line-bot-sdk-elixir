@@ -9,6 +9,33 @@ on:
       - main
 
 jobs:
+  codegen:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.2.2
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+        with:
+          elixir-version: "1.19"
+          otp-version: "28"
+
+      - name: Run code generation
+        run: elixir generate-code.exs
+
+      - name: Check for uncommitted changes
+        run: |
+          git diff --exit-code || (echo "Generated code has uncommitted changes. Please run 'elixir generate-code.exs' and commit the changes." && exit 1)
+
   test:
     runs-on: ubuntu-latest
 
