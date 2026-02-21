@@ -34,5 +34,15 @@
     value
   end
 {{/hasComplexVars}}
+{{#hasDiscriminatorWithNonEmptyMapping}}
+  def from_json(value) do
+    case Map.get(value, "{{discriminator.propertyName}}") do
+      {{#discriminator.mappedModels}}
+      "{{mappingName}}" -> LINE.Bot.Deserializer.raw_to_struct(value, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{modelName}})
+      {{/discriminator.mappedModels}}
+      _ -> LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
+{{/hasDiscriminatorWithNonEmptyMapping}}
 end
 {{/model}}{{/models}}

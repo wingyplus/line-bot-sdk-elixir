@@ -30,4 +30,44 @@ defmodule LINE.Bot.MessagingApi.Model.Message do
     |> Deserializer.deserialize(:quickReply, :struct, LINE.Bot.MessagingApi.Model.QuickReply)
     |> Deserializer.deserialize(:sender, :struct, LINE.Bot.MessagingApi.Model.Sender)
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "audio" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.AudioMessage)
+
+      "coupon" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.CouponMessage)
+
+      "flex" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexMessage)
+
+      "image" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ImageMessage)
+
+      "imagemap" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ImagemapMessage)
+
+      "location" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.LocationMessage)
+
+      "sticker" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.StickerMessage)
+
+      "template" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.TemplateMessage)
+
+      "text" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.TextMessage)
+
+      "textV2" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.TextMessageV2)
+
+      "video" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.VideoMessage)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

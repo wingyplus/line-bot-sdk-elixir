@@ -22,4 +22,23 @@ defmodule LINE.Bot.MessagingApi.Model.Recipient do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "audience" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.AudienceRecipient)
+
+      "operator" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.OperatorRecipient)
+
+      "redelivery" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.RedeliveryRecipient
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

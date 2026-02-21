@@ -6,6 +6,7 @@ package line.bot.generator;
 import java.io.File;
 import java.util.List;
 
+import org.openapitools.codegen.CodegenModel;
 import org.openapitools.codegen.CodegenOperation;
 import org.openapitools.codegen.CodegenParameter;
 import org.openapitools.codegen.CodegenResponse;
@@ -17,6 +18,7 @@ import static org.openapitools.codegen.utils.StringUtils.camelize;
 import static org.openapitools.codegen.utils.StringUtils.underscore;
 
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 
 import org.slf4j.Logger;
@@ -88,6 +90,22 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
         // preprocessOpenAPI adds connection.ex, request_builder.ex, deserializer.ex
         // to supportingFiles. Clear them again since we don't need them.
         supportingFiles.clear();
+    }
+
+    /**
+     * Override fromModel to fix a bug in ElixirClientCodegen.ExtendedCodegenModel:
+     * its copy constructor copies the {@code discriminator} reference but does not
+     * call {@code setHasDiscriminatorWithNonEmptyMapping}, so that boolean is always
+     * false. We recompute it here so the model.mustache {@code {{#hasDiscriminatorWithNonEmptyMapping}}}
+     * section is rendered correctly.
+     */
+    @Override
+    public CodegenModel fromModel(String name, Schema model) {
+        CodegenModel cm = super.fromModel(name, model);
+        if (cm.discriminator != null && !cm.discriminator.getMappedModels().isEmpty()) {
+            cm.setHasDiscriminatorWithNonEmptyMapping(true);
+        }
+        return cm;
     }
 
     @Override

@@ -107,14 +107,14 @@ defmodule LINE.Bot.Deserializer do
     end
   end
 
-  defp to_struct(value, module)
-  defp to_struct(nil, _), do: nil
+  @doc """
+  Build a struct of `module` from a raw string-keyed map.
 
-  defp to_struct(list, module) when is_list(list) and is_atom(module) do
-    Enum.map(list, &to_struct(&1, module))
-  end
-
-  defp to_struct(map, module) when is_map(map) and is_atom(module) do
+  Used by generated `from_json/1` discriminator dispatch functions to construct
+  a concrete struct without triggering discriminator re-dispatch.
+  """
+  @spec raw_to_struct(map(), module()) :: struct()
+  def raw_to_struct(map, module) when is_map(map) and is_atom(module) do
     model = struct(module)
 
     model
@@ -124,6 +124,21 @@ defmodule LINE.Bot.Deserializer do
       Map.replace(acc, field, Map.get(map, Atom.to_string(field)))
     end)
     |> module.decode()
+  end
+
+  defp to_struct(value, module)
+  defp to_struct(nil, _), do: nil
+
+  defp to_struct(list, module) when is_list(list) and is_atom(module) do
+    Enum.map(list, &to_struct(&1, module))
+  end
+
+  defp to_struct(map, module) when is_map(map) and is_atom(module) do
+    if function_exported?(module, :from_json, 1) do
+      module.from_json(map)
+    else
+      raw_to_struct(map, module)
+    end
   end
 
   defp to_struct(value, module) when is_atom(module) do

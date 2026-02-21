@@ -22,4 +22,29 @@ defmodule LINE.Bot.MessagingApi.Model.AcquisitionConditionResponse do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "lottery" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.LotteryAcquisitionConditionResponse
+        )
+
+      "normal" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.NormalAcquisitionConditionResponse
+        )
+
+      "referral" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.ReferralAcquisitionConditionResponse
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

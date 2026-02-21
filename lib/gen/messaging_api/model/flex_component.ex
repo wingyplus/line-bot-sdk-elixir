@@ -22,4 +22,38 @@ defmodule LINE.Bot.MessagingApi.Model.FlexComponent do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "box" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexBox)
+
+      "button" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexButton)
+
+      "filler" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexFiller)
+
+      "icon" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexIcon)
+
+      "image" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexImage)
+
+      "separator" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSeparator)
+
+      "span" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSpan)
+
+      "text" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexText)
+
+      "video" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexVideo)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

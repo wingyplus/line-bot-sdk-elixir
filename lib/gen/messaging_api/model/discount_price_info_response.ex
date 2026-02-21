@@ -22,4 +22,29 @@ defmodule LINE.Bot.MessagingApi.Model.DiscountPriceInfoResponse do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "explicit" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.DiscountExplicitPriceInfoResponse
+        )
+
+      "fixed" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.DiscountFixedPriceInfoResponse
+        )
+
+      "percentage" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.DiscountPercentagePriceInfoResponse
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

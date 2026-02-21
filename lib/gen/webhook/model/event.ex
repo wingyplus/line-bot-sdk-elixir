@@ -37,4 +37,71 @@ defmodule LINE.Bot.Webhook.Model.Event do
     |> Deserializer.deserialize(:mode, :struct, LINE.Bot.Webhook.Model.EventMode)
     |> Deserializer.deserialize(:deliveryContext, :struct, LINE.Bot.Webhook.Model.DeliveryContext)
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "accountLink" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AccountLinkEvent)
+
+      "activated" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ActivatedEvent)
+
+      "beacon" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.BeaconEvent)
+
+      "botResumed" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.BotResumedEvent)
+
+      "botSuspended" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.BotSuspendedEvent)
+
+      "deactivated" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.DeactivatedEvent)
+
+      "delivery" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.Webhook.Model.PnpDeliveryCompletionEvent
+        )
+
+      "follow" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.FollowEvent)
+
+      "join" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.JoinEvent)
+
+      "leave" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LeaveEvent)
+
+      "memberJoined" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MemberJoinedEvent)
+
+      "memberLeft" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MemberLeftEvent)
+
+      "membership" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MembershipEvent)
+
+      "message" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MessageEvent)
+
+      "module" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ModuleEvent)
+
+      "postback" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.PostbackEvent)
+
+      "unfollow" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.UnfollowEvent)
+
+      "unsend" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.UnsendEvent)
+
+      "videoPlayComplete" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.VideoPlayCompleteEvent)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

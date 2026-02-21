@@ -22,4 +22,41 @@ defmodule LINE.Bot.MessagingApi.Model.CouponRewardRequest do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "cashBack" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.CouponCashBackRewardRequest
+        )
+
+      "discount" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.CouponDiscountRewardRequest
+        )
+
+      "free" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.CouponFreeRewardRequest
+        )
+
+      "gift" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.CouponGiftRewardRequest
+        )
+
+      "others" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.CouponOthersRewardRequest
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

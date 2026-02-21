@@ -24,4 +24,44 @@ defmodule LINE.Bot.MessagingApi.Model.Action do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "camera" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.CameraAction)
+
+      "cameraRoll" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.CameraRollAction)
+
+      "clipboard" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ClipboardAction)
+
+      "datetimepicker" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.DatetimePickerAction
+        )
+
+      "location" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.LocationAction)
+
+      "message" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.MessageAction)
+
+      "postback" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.PostbackAction)
+
+      "richmenuswitch" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.RichMenuSwitchAction
+        )
+
+      "uri" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.UriAction)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

@@ -22,4 +22,26 @@ defmodule LINE.Bot.MessagingApi.Model.Template do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "buttons" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ButtonsTemplate)
+
+      "carousel" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.CarouselTemplate)
+
+      "confirm" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ConfirmTemplate)
+
+      "image_carousel" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.ImageCarouselTemplate
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

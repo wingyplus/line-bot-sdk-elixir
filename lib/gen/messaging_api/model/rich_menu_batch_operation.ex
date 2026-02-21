@@ -22,4 +22,29 @@ defmodule LINE.Bot.MessagingApi.Model.RichMenuBatchOperation do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "link" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.RichMenuBatchLinkOperation
+        )
+
+      "unlink" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.RichMenuBatchUnlinkOperation
+        )
+
+      "unlinkAll" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.MessagingApi.Model.RichMenuBatchUnlinkAllOperation
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

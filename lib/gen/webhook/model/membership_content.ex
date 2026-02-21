@@ -22,4 +22,23 @@ defmodule LINE.Bot.Webhook.Model.MembershipContent do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "joined" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.JoinedMembershipContent)
+
+      "left" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LeftMembershipContent)
+
+      "renewed" ->
+        LINE.Bot.Deserializer.raw_to_struct(
+          value,
+          LINE.Bot.Webhook.Model.RenewedMembershipContent
+        )
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

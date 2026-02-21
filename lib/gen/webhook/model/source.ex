@@ -22,4 +22,13 @@ defmodule LINE.Bot.Webhook.Model.Source do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "group" -> LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.GroupSource)
+      "room" -> LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.RoomSource)
+      "user" -> LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.UserSource)
+      _ -> LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

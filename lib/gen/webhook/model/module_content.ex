@@ -22,4 +22,17 @@ defmodule LINE.Bot.Webhook.Model.ModuleContent do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "attached" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AttachedModuleContent)
+
+      "detached" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.DetachedModuleContent)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end

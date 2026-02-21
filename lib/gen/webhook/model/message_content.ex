@@ -24,4 +24,32 @@ defmodule LINE.Bot.Webhook.Model.MessageContent do
   def decode(value) do
     value
   end
+
+  def from_json(value) do
+    case Map.get(value, "type") do
+      "audio" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AudioMessageContent)
+
+      "file" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.FileMessageContent)
+
+      "image" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ImageMessageContent)
+
+      "location" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LocationMessageContent)
+
+      "sticker" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.StickerMessageContent)
+
+      "text" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.TextMessageContent)
+
+      "video" ->
+        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.VideoMessageContent)
+
+      _ ->
+        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
 end
