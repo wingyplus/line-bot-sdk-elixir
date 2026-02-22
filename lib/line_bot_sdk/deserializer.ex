@@ -118,8 +118,8 @@ defmodule LINE.Bot.Deserializer do
     model = struct(module)
 
     model
+    |> Map.from_struct()
     |> Map.keys()
-    |> List.delete(:__struct__)
     |> Enum.reduce(model, fn field, acc ->
       Map.replace(acc, field, Map.get(map, Atom.to_string(field)))
     end)
