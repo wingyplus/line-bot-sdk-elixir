@@ -134,6 +134,8 @@ defmodule LINE.Bot.Deserializer do
   end
 
   defp to_struct(map, module) when is_map(map) and is_atom(module) do
+    Code.ensure_compiled(module)
+
     if function_exported?(module, :from_json, 1) do
       module.from_json(map)
     else

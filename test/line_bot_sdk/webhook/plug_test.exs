@@ -4,8 +4,10 @@ defmodule LINE.Bot.Webhook.PlugTest do
   alias LINE.Bot.Webhook.Plug, as: WebhookPlug
   alias LINE.Bot.Webhook.Model.CallbackRequest
   alias LINE.Bot.Webhook.Model.DeliveryContext
-  alias LINE.Bot.Webhook.Model.Event
-  alias LINE.Bot.Webhook.Model.Source
+  alias LINE.Bot.Webhook.Model.FollowEvent
+  alias LINE.Bot.Webhook.Model.MessageEvent
+  alias LINE.Bot.Webhook.Model.UnfollowEvent
+  alias LINE.Bot.Webhook.Model.UserSource
 
   @channel_secret "testsecret"
   @body ~s({"destination":"U1234","events":[{"type":"message"}]})
@@ -81,7 +83,7 @@ defmodule LINE.Bot.Webhook.PlugTest do
 
     assert %CallbackRequest{
              destination: "U1234",
-             events: [%Event{type: "message"}]
+             events: [%MessageEvent{type: "message"}]
            } = conn.assigns[:webhook_payload]
 
     refute conn.halted
@@ -113,7 +115,7 @@ defmodule LINE.Bot.Webhook.PlugTest do
 
     assert %CallbackRequest{
              destination: "U1234",
-             events: [%Event{type: "message"}]
+             events: [%MessageEvent{type: "message"}]
            } = conn.assigns[:webhook_payload]
 
     refute conn.halted
@@ -138,29 +140,29 @@ defmodule LINE.Bot.Webhook.PlugTest do
            } = conn.assigns[:webhook_payload]
 
     # Message event
-    assert %Event{
+    assert %MessageEvent{
              type: "message",
              timestamp: 1_625_665_242_211,
              webhookEventId: "01FZ74A0TDDPYRVKNK77XKC3ZR",
-             source: %Source{type: "user"},
+             source: %UserSource{type: "user"},
              deliveryContext: %DeliveryContext{isRedelivery: false}
            } = message_event
 
     # Follow event
-    assert %Event{
+    assert %FollowEvent{
              type: "follow",
              timestamp: 1_625_665_242_214,
              webhookEventId: "01FZ74ASS536FW97EX38NKCZQK",
-             source: %Source{type: "user"},
+             source: %UserSource{type: "user"},
              deliveryContext: %DeliveryContext{isRedelivery: false}
            } = follow_event
 
     # Unfollow event
-    assert %Event{
+    assert %UnfollowEvent{
              type: "unfollow",
              timestamp: 1_625_665_242_215,
              webhookEventId: "01FZ74B5Y0F4TNKA5SCAVKPEDM",
-             source: %Source{type: "user"},
+             source: %UserSource{type: "user"},
              deliveryContext: %DeliveryContext{isRedelivery: false}
            } = unfollow_event
 
