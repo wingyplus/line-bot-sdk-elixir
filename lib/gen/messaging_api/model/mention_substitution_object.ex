@@ -23,6 +23,10 @@ defmodule LINE.Bot.MessagingApi.Model.MentionSubstitutionObject do
 
   alias LINE.Bot.Deserializer
 
+  def decode(value) when is_map(value) and not is_struct(value) do
+    Deserializer.raw_to_struct(value, __MODULE__)
+  end
+
   def decode(value) do
     value
     |> Deserializer.deserialize(:mentionee, :struct, LINE.Bot.MessagingApi.Model.MentionTarget)

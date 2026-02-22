@@ -19,41 +19,24 @@ defmodule LINE.Bot.MessagingApi.Model.FlexComponent do
           :type => String.t()
         }
 
-  def decode(value) do
-    value
+  alias LINE.Bot.Deserializer
+
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "type") do
+      "box" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexBox)
+      "button" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexButton)
+      "filler" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexFiller)
+      "icon" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexIcon)
+      "image" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexImage)
+      "separator" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSeparator)
+      "span" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSpan)
+      "text" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexText)
+      "video" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexVideo)
+      _ -> Deserializer.raw_to_struct(value, __MODULE__)
+    end
   end
 
-  def from_json(value) do
-    case Map.get(value, "type") do
-      "box" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexBox)
-
-      "button" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexButton)
-
-      "filler" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexFiller)
-
-      "icon" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexIcon)
-
-      "image" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexImage)
-
-      "separator" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSeparator)
-
-      "span" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexSpan)
-
-      "text" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexText)
-
-      "video" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexVideo)
-
-      _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
+  def decode(value) do
+    value
   end
 end

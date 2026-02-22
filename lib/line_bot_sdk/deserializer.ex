@@ -110,7 +110,7 @@ defmodule LINE.Bot.Deserializer do
   @doc """
   Build a struct of `module` from a raw string-keyed map.
 
-  Used by generated `from_json/1` discriminator dispatch functions to construct
+  Used by generated `decode/1` discriminator dispatch clause to construct
   a concrete struct without triggering discriminator re-dispatch.
   """
   @spec raw_to_struct(map(), module()) :: struct()
@@ -134,13 +134,7 @@ defmodule LINE.Bot.Deserializer do
   end
 
   defp to_struct(map, module) when is_map(map) and is_atom(module) do
-    Code.ensure_compiled(module)
-
-    if function_exported?(module, :from_json, 1) do
-      module.from_json(map)
-    else
-      raw_to_struct(map, module)
-    end
+    module.decode(map)
   end
 
   defp to_struct(value, module) when is_atom(module) do

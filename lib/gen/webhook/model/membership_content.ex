@@ -19,26 +19,25 @@ defmodule LINE.Bot.Webhook.Model.MembershipContent do
           :type => String.t()
         }
 
-  def decode(value) do
-    value
-  end
+  alias LINE.Bot.Deserializer
 
-  def from_json(value) do
+  def decode(value) when is_map(value) and not is_struct(value) do
     case Map.get(value, "type") do
       "joined" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.JoinedMembershipContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.JoinedMembershipContent)
 
       "left" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LeftMembershipContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LeftMembershipContent)
 
       "renewed" ->
-        LINE.Bot.Deserializer.raw_to_struct(
-          value,
-          LINE.Bot.Webhook.Model.RenewedMembershipContent
-        )
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.RenewedMembershipContent)
 
       _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+        Deserializer.raw_to_struct(value, __MODULE__)
     end
+  end
+
+  def decode(value) do
+    value
   end
 end

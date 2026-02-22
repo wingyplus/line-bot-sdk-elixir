@@ -37,6 +37,10 @@ defmodule LINE.Bot.MessagingApi.Model.ButtonsTemplate do
 
   alias LINE.Bot.Deserializer
 
+  def decode(value) when is_map(value) and not is_struct(value) do
+    Deserializer.raw_to_struct(value, __MODULE__)
+  end
+
   def decode(value) do
     value
     |> Deserializer.deserialize(:thumbnailImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)

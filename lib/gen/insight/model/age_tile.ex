@@ -21,6 +21,12 @@ defmodule LINE.Bot.Insight.Model.AgeTile do
           :percentage => float() | nil
         }
 
+  alias LINE.Bot.Deserializer
+
+  def decode(value) when is_map(value) and not is_struct(value) do
+    Deserializer.raw_to_struct(value, __MODULE__)
+  end
+
   def decode(value) do
     value
   end

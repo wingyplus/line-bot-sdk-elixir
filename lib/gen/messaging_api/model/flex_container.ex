@@ -19,20 +19,17 @@ defmodule LINE.Bot.MessagingApi.Model.FlexContainer do
           :type => String.t()
         }
 
-  def decode(value) do
-    value
+  alias LINE.Bot.Deserializer
+
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "type") do
+      "bubble" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexBubble)
+      "carousel" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexCarousel)
+      _ -> Deserializer.raw_to_struct(value, __MODULE__)
+    end
   end
 
-  def from_json(value) do
-    case Map.get(value, "type") do
-      "bubble" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexBubble)
-
-      "carousel" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.FlexCarousel)
-
-      _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
+  def decode(value) do
+    value
   end
 end

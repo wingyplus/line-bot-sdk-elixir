@@ -21,35 +21,37 @@ defmodule LINE.Bot.Webhook.Model.MessageContent do
           :id => String.t()
         }
 
-  def decode(value) do
-    value
-  end
+  alias LINE.Bot.Deserializer
 
-  def from_json(value) do
+  def decode(value) when is_map(value) and not is_struct(value) do
     case Map.get(value, "type") do
       "audio" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AudioMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AudioMessageContent)
 
       "file" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.FileMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.FileMessageContent)
 
       "image" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ImageMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ImageMessageContent)
 
       "location" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LocationMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.LocationMessageContent)
 
       "sticker" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.StickerMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.StickerMessageContent)
 
       "text" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.TextMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.TextMessageContent)
 
       "video" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.VideoMessageContent)
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.VideoMessageContent)
 
       _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
+        Deserializer.raw_to_struct(value, __MODULE__)
     end
+  end
+
+  def decode(value) do
+    value
   end
 end

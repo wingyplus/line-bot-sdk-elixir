@@ -27,6 +27,10 @@ defmodule LINE.Bot.MessagingApi.Model.PushMessageRequest do
 
   alias LINE.Bot.Deserializer
 
+  def decode(value) when is_map(value) and not is_struct(value) do
+    Deserializer.raw_to_struct(value, __MODULE__)
+  end
+
   def decode(value) do
     value
     |> Deserializer.deserialize(:messages, :list, LINE.Bot.MessagingApi.Model.Message)

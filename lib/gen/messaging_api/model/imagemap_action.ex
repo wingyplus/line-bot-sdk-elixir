@@ -23,30 +23,24 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapAction do
 
   alias LINE.Bot.Deserializer
 
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "type") do
+      "clipboard" ->
+        Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.ClipboardImagemapAction)
+
+      "message" ->
+        Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.MessageImagemapAction)
+
+      "uri" ->
+        Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.UriImagemapAction)
+
+      _ ->
+        Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
+
   def decode(value) do
     value
     |> Deserializer.deserialize(:area, :struct, LINE.Bot.MessagingApi.Model.ImagemapArea)
-  end
-
-  def from_json(value) do
-    case Map.get(value, "type") do
-      "clipboard" ->
-        LINE.Bot.Deserializer.raw_to_struct(
-          value,
-          LINE.Bot.MessagingApi.Model.ClipboardImagemapAction
-        )
-
-      "message" ->
-        LINE.Bot.Deserializer.raw_to_struct(
-          value,
-          LINE.Bot.MessagingApi.Model.MessageImagemapAction
-        )
-
-      "uri" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.UriImagemapAction)
-
-      _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
   end
 end

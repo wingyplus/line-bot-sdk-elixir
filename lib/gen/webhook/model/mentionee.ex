@@ -23,15 +23,17 @@ defmodule LINE.Bot.Webhook.Model.Mentionee do
           :length => integer()
         }
 
-  def decode(value) do
-    value
+  alias LINE.Bot.Deserializer
+
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "type") do
+      "all" -> Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AllMentionee)
+      "user" -> Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.UserMentionee)
+      _ -> Deserializer.raw_to_struct(value, __MODULE__)
+    end
   end
 
-  def from_json(value) do
-    case Map.get(value, "type") do
-      "all" -> LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.AllMentionee)
-      "user" -> LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.UserMentionee)
-      _ -> LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
+  def decode(value) do
+    value
   end
 end

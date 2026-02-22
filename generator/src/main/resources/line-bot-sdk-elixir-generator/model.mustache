@@ -16,9 +16,26 @@
     {{/-last}}{{/vars}}
   }
 
-{{#hasComplexVars}}
   alias LINE.Bot.Deserializer
 
+{{#hasDiscriminatorWithNonEmptyMapping}}
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "{{discriminator.propertyName}}") do
+      {{#discriminator.mappedModels}}
+      "{{mappingName}}" -> Deserializer.raw_to_struct(value, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{modelName}})
+      {{/discriminator.mappedModels}}
+      _ -> Deserializer.raw_to_struct(value, __MODULE__)
+    end
+  end
+
+{{/hasDiscriminatorWithNonEmptyMapping}}
+{{^hasDiscriminatorWithNonEmptyMapping}}
+  def decode(value) when is_map(value) and not is_struct(value) do
+    Deserializer.raw_to_struct(value, __MODULE__)
+  end
+
+{{/hasDiscriminatorWithNonEmptyMapping}}
+{{#hasComplexVars}}
   def decode(value) do
     value
     {{#vars}}
@@ -34,15 +51,5 @@
     value
   end
 {{/hasComplexVars}}
-{{#hasDiscriminatorWithNonEmptyMapping}}
-  def from_json(value) do
-    case Map.get(value, "{{discriminator.propertyName}}") do
-      {{#discriminator.mappedModels}}
-      "{{mappingName}}" -> LINE.Bot.Deserializer.raw_to_struct(value, {{moduleName}}.{{#lambda.pascalcase}}{{packageName}}{{/lambda.pascalcase}}.Model.{{modelName}})
-      {{/discriminator.mappedModels}}
-      _ -> LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
-  end
-{{/hasDiscriminatorWithNonEmptyMapping}}
 end
 {{/model}}{{/models}}

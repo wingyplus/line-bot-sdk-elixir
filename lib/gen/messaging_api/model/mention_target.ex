@@ -19,20 +19,17 @@ defmodule LINE.Bot.MessagingApi.Model.MentionTarget do
           :type => String.t()
         }
 
-  def decode(value) do
-    value
+  alias LINE.Bot.Deserializer
+
+  def decode(value) when is_map(value) and not is_struct(value) do
+    case Map.get(value, "type") do
+      "all" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.AllMentionTarget)
+      "user" -> Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.UserMentionTarget)
+      _ -> Deserializer.raw_to_struct(value, __MODULE__)
+    end
   end
 
-  def from_json(value) do
-    case Map.get(value, "type") do
-      "all" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.AllMentionTarget)
-
-      "user" ->
-        LINE.Bot.Deserializer.raw_to_struct(value, LINE.Bot.MessagingApi.Model.UserMentionTarget)
-
-      _ ->
-        LINE.Bot.Deserializer.raw_to_struct(value, __MODULE__)
-    end
+  def decode(value) do
+    value
   end
 end
