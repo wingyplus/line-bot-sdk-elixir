@@ -862,7 +862,7 @@ defmodule LINE.Bot.MessagingApi do
   end
 
   @doc """
-  Get number of sent LINE notification messages　
+  Get number of sent LINE notification messages
 
   ### Parameters
 

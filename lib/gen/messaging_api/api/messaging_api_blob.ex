@@ -162,8 +162,7 @@ defmodule LINE.Bot.MessagingApiBlob do
 
   - `client` (`t:Req.Request.t/0`): Client to make request with
   - `rich_menu_id` (`t:String.t/0`): The ID of the rich menu to attach the image to
-  - `optional_args` (keyword): Optional parameters
-    - `:body` (`t:String.t/0`): 
+  - `body` (`t:String.t/0`): 
   - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
@@ -171,9 +170,7 @@ defmodule LINE.Bot.MessagingApiBlob do
   - `{:ok, nil}` on success
   - `{:error, Req.Response.t}` on failure
   """
-  def set_rich_menu_image(client, rich_menu_id, optional_args \\ [], client_opts \\ []) do
-    body = Keyword.get(optional_args, :body)
-
+  def set_rich_menu_image(client, rich_menu_id, body, client_opts \\ []) do
     request_opts = [
       method: :post,
       url: "/v2/bot/richmenu/:rich_menu_id/content",

@@ -75,6 +75,9 @@ defmodule LINE.Bot.Webhook.Model.Event do
       "message" ->
         Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MessageEvent)
 
+      "messageEdited" ->
+        Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.MessageEditedEvent)
+
       "module" ->
         Deserializer.raw_to_struct(value, LINE.Bot.Webhook.Model.ModuleEvent)
 
