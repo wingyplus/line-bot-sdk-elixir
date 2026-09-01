@@ -11,6 +11,7 @@ defmodule LINE.Bot.Mixfile do
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
       description: "LINE Messaging API SDK for Elixir.",
+      docs: docs(),
       deps: deps()
     ]
   end
@@ -29,6 +30,22 @@ defmodule LINE.Bot.Mixfile do
       {:plug_crypto, "~> 2.0"},
       {:ex_doc, "~> 0.40", only: :dev, runtime: false, warn_if_outdated: true},
       {:passby, "~> 0.2", only: :test, runtime: false}
+    ]
+  end
+
+  defp docs do
+    [
+      groups_for_modules: [
+        "Messaging API": ~r/^LINE\.Bot\.MessagingApi(Blob)?(\.|$)/,
+        Webhook: ~r/^LINE\.Bot\.(Webhook(\.|$)|Dummy$)/,
+        "Channel Access Token": ~r/^LINE\.Bot\.ChannelAccessToken(\.|$)/,
+        Insight: ~r/^LINE\.Bot\.Insight(\.|$)/,
+        LIFF: ~r/^LINE\.Bot\.Liff(\.|$)/,
+        "Manage Audience": ~r/^LINE\.Bot\.ManageAudience(Blob)?(\.|$)/,
+        "Module Attach": ~r/^LINE\.Bot\.(LineModuleAttach$|ModuleAttach\.)/,
+        Module: ~r/^LINE\.Bot\.(LineModule$|Module\.)/,
+        Shop: ~r/^LINE\.Bot\.Shop(\.|$)/
+      ]
     ]
   end
 
