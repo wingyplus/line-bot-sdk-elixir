@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 defmodule LINE.Bot.Deserializer do
-  @moduledoc """
-  Helper functions for deserializing responses into models.
-  """
+  @moduledoc false
+
+  # Helper functions for deserializing responses into models.
 
   @doc """
   Decode a JSON response body into a struct.
