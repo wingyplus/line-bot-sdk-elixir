@@ -4,7 +4,7 @@ defmodule LINE.Bot.Mixfile do
   def project do
     [
       app: :line_bot_sdk,
-      version: "1.0.0",
+      version: "0.1.0",
       elixir: "~> 1.18",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
