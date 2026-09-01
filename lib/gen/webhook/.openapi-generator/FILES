@@ -39,6 +39,7 @@ model/membership_event.ex
 model/mention.ex
 model/mentionee.ex
 model/message_content.ex
+model/message_edited_event.ex
 model/message_event.ex
 model/module_content.ex
 model/module_event.ex

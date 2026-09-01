@@ -160,6 +160,74 @@ defmodule LINE.Bot.Insight do
   end
 
   @doc """
+  Get rich menu insight daily
+  Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+
+  ### Parameters
+
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `rich_menu_id` (`t:String.t/0`): ID of the rich menu created via the Messaging API.
+  - `from` (`t:String.t/0`): Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+  - `to` (`t:String.t/0`): End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
+
+  ### Returns
+
+  - `{:ok, LINE.Bot.Model.GetRichMenuInsightDailyResponse.t}` on success
+  - `{:error, Req.Response.t}` on failure
+  """
+  def get_rich_menu_insight_daily(client, rich_menu_id, from, to, client_opts \\ []) do
+    request_opts = [
+      method: :get,
+      url: "/v2/bot/insight/richmenu/:rich_menu_id/daily",
+      path_params: [rich_menu_id: rich_menu_id],
+      params: Enum.reject([{"from", from}, {"to", to}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    client
+    |> Req.request(Keyword.merge(request_opts, client_opts))
+    |> Deserializer.evaluate_response([
+      {200, LINE.Bot.Insight.Model.GetRichMenuInsightDailyResponse},
+      {400, LINE.Bot.Insight.Model.ErrorResponse},
+      {404, LINE.Bot.Insight.Model.ErrorResponse}
+    ])
+  end
+
+  @doc """
+  Get rich menu insight summary
+  Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+
+  ### Parameters
+
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `rich_menu_id` (`t:String.t/0`): ID of the rich menu created via the Messaging API.
+  - `from` (`t:String.t/0`): Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+  - `to` (`t:String.t/0`): End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
+
+  ### Returns
+
+  - `{:ok, LINE.Bot.Model.GetRichMenuInsightSummaryResponse.t}` on success
+  - `{:error, Req.Response.t}` on failure
+  """
+  def get_rich_menu_insight_summary(client, rich_menu_id, from, to, client_opts \\ []) do
+    request_opts = [
+      method: :get,
+      url: "/v2/bot/insight/richmenu/:rich_menu_id/summary",
+      path_params: [rich_menu_id: rich_menu_id],
+      params: Enum.reject([{"from", from}, {"to", to}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    client
+    |> Req.request(Keyword.merge(request_opts, client_opts))
+    |> Deserializer.evaluate_response([
+      {200, LINE.Bot.Insight.Model.GetRichMenuInsightSummaryResponse},
+      {400, LINE.Bot.Insight.Model.ErrorResponse},
+      {404, LINE.Bot.Insight.Model.ErrorResponse}
+    ])
+  end
+
+  @doc """
   You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
 
   ### Parameters

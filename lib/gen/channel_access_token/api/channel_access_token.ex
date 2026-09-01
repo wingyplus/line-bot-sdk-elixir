@@ -219,7 +219,7 @@ defmodule LINE.Bot.ChannelAccessToken do
   ### Parameters
 
   - `client` (`t:Req.Request.t/0`): Client to make request with
-  - `access_token` (`t:String.t/0`): Channel access token
+  - `access_token` (`t:String.t/0`): A short-lived or long-lived channel access token.
   - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
 
   ### Returns
