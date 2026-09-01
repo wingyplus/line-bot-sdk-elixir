@@ -6,6 +6,7 @@ defmodule LINE.Bot.LineModuleTest do
   alias LINE.Bot.LineModule
   alias LINE.Bot.Module.Model.AcquireChatControlRequest
   alias LINE.Bot.Module.Model.DetachModuleRequest
+  alias LINE.Bot.Module.Model.GetModulesResponse
 
   describe "acquire_chat_control/3" do
     test "sends POST request with chat_id path parameter and JSON body", %{
@@ -23,7 +24,7 @@ defmodule LINE.Bot.LineModuleTest do
 
       request = %AcquireChatControlRequest{expired: false}
 
-      assert {:ok, _response} =
+      assert {:ok, %Req.Response{}} =
                LineModule.acquire_chat_control(client, "test-chat-id", body: request)
     end
   end
@@ -40,7 +41,7 @@ defmodule LINE.Bot.LineModuleTest do
 
       request = %DetachModuleRequest{botId: "test-bot-id"}
 
-      assert {:ok, _response} = LineModule.detach_module(client, body: request)
+      assert {:ok, %Req.Response{}} = LineModule.detach_module(client, body: request)
     end
   end
 
@@ -52,7 +53,7 @@ defmodule LINE.Bot.LineModuleTest do
         |> Passby.resp(200, ~s({"bots": []}))
       end)
 
-      assert {:ok, response} = LineModule.get_modules(client)
+      assert {:ok, %GetModulesResponse{} = response} = LineModule.get_modules(client)
       assert response.bots == []
     end
 
@@ -69,7 +70,8 @@ defmodule LINE.Bot.LineModuleTest do
         |> Passby.resp(200, ~s({"bots": []}))
       end)
 
-      assert {:ok, _response} = LineModule.get_modules(client, start: "abc", limit: 10)
+      assert {:ok, %GetModulesResponse{}} =
+               LineModule.get_modules(client, start: "abc", limit: 10)
     end
   end
 
@@ -81,7 +83,7 @@ defmodule LINE.Bot.LineModuleTest do
         |> Passby.resp(200, "{}")
       end)
 
-      assert {:ok, _response} = LineModule.release_chat_control(client, "test-chat-id")
+      assert {:ok, %Req.Response{}} = LineModule.release_chat_control(client, "test-chat-id")
     end
   end
 end

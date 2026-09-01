@@ -24,7 +24,7 @@ defmodule LINE.Bot.ShopTest do
         sendPresentMessage: true
       }
 
-      assert {:ok, _response} = Shop.mission_sticker_v3(client, request)
+      assert {:ok, %Req.Response{}} = Shop.mission_sticker_v3(client, request)
     end
   end
 end

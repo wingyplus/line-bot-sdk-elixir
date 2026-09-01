@@ -15,7 +15,9 @@ defmodule LINE.Bot.InsightTest do
         |> Passby.resp(200, ~s({"available": true}))
       end)
 
-      assert {:ok, response} = Insight.get_friends_demographics(client)
+      assert {:ok, %Insight.Model.GetFriendsDemographicsResponse{} = response} =
+               Insight.get_friends_demographics(client)
+
       assert response.available == true
     end
   end
@@ -30,7 +32,8 @@ defmodule LINE.Bot.InsightTest do
         |> Passby.resp(200, ~s({"overview": {}}))
       end)
 
-      assert {:ok, _response} = Insight.get_message_event(client, "test-request-id")
+      assert {:ok, %Insight.Model.GetMessageEventResponse{}} =
+               Insight.get_message_event(client, "test-request-id")
     end
   end
 
@@ -44,7 +47,9 @@ defmodule LINE.Bot.InsightTest do
         |> Passby.resp(200, ~s({"status": "ready", "followers": 1000}))
       end)
 
-      assert {:ok, response} = Insight.get_number_of_followers(client, date: "20231201")
+      assert {:ok, %Insight.Model.GetNumberOfFollowersResponse{} = response} =
+               Insight.get_number_of_followers(client, date: "20231201")
+
       assert response.status == "ready"
       assert response.followers == 1000
     end
@@ -60,7 +65,9 @@ defmodule LINE.Bot.InsightTest do
         |> Passby.resp(200, ~s({"status": "ready", "broadcast": 100}))
       end)
 
-      assert {:ok, response} = Insight.get_number_of_message_deliveries(client, "20231201")
+      assert {:ok, %Insight.Model.GetNumberOfMessageDeliveriesResponse{} = response} =
+               Insight.get_number_of_message_deliveries(client, "20231201")
+
       assert response.status == "ready"
       assert response.broadcast == 100
     end
@@ -81,7 +88,7 @@ defmodule LINE.Bot.InsightTest do
         |> Passby.resp(200, ~s({"overview": {}}))
       end)
 
-      assert {:ok, _response} =
+      assert {:ok, %Insight.Model.GetStatisticsPerUnitResponse{}} =
                Insight.get_statistics_per_unit(client, "promotion_a", "20231201", "20231231")
     end
   end

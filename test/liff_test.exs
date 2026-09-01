@@ -5,6 +5,8 @@ defmodule LINE.Bot.LiffTest do
 
   alias LINE.Bot.Liff
   alias LINE.Bot.Liff.Model.AddLiffAppRequest
+  alias LINE.Bot.Liff.Model.AddLiffAppResponse
+  alias LINE.Bot.Liff.Model.GetAllLiffAppsResponse
   alias LINE.Bot.Liff.Model.UpdateLiffAppRequest
   alias LINE.Bot.Liff.Model.LiffView
   alias LINE.Bot.Liff.Model.UpdateLiffView
@@ -24,7 +26,7 @@ defmodule LINE.Bot.LiffTest do
         view: %LiffView{type: "full", url: "https://example.com"}
       }
 
-      assert {:ok, response} = Liff.add_liff_app(client, request)
+      assert {:ok, %AddLiffAppResponse{} = response} = Liff.add_liff_app(client, request)
       assert response.liffId == "1234567890-abcdefgh"
     end
   end
@@ -37,7 +39,7 @@ defmodule LINE.Bot.LiffTest do
         |> Passby.resp(200, "{}")
       end)
 
-      assert {:ok, _response} = Liff.delete_liff_app(client, "test-liff-id")
+      assert {:ok, %Req.Response{}} = Liff.delete_liff_app(client, "test-liff-id")
     end
   end
 
@@ -49,7 +51,7 @@ defmodule LINE.Bot.LiffTest do
         |> Passby.resp(200, ~s({"apps": []}))
       end)
 
-      assert {:ok, response} = Liff.get_all_liff_apps(client)
+      assert {:ok, %GetAllLiffAppsResponse{} = response} = Liff.get_all_liff_apps(client)
       assert response.apps == []
     end
   end
@@ -71,7 +73,7 @@ defmodule LINE.Bot.LiffTest do
         view: %UpdateLiffView{url: "https://example.com/updated"}
       }
 
-      assert {:ok, _response} = Liff.update_liff_app(client, "test-liff-id", request)
+      assert {:ok, %Req.Response{}} = Liff.update_liff_app(client, "test-liff-id", request)
     end
   end
 end
