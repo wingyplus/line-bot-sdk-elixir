@@ -1,25 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 defmodule LINE.Bot.LiffTest do
-  use ExUnit.Case, async: true
+  use LINE.Bot.ClientCase, async: true, client: LINE.Bot.Liff
 
   alias LINE.Bot.Liff
   alias LINE.Bot.Liff.Model.AddLiffAppRequest
   alias LINE.Bot.Liff.Model.UpdateLiffAppRequest
   alias LINE.Bot.Liff.Model.LiffView
   alias LINE.Bot.Liff.Model.UpdateLiffView
-
-  setup do
-    bypass = Passby.open()
-
-    client =
-      Liff.new(
-        base_url: "http://localhost:#{bypass.port}",
-        channel_token: "test-channel-token"
-      )
-
-    {:ok, bypass: bypass, client: client}
-  end
 
   describe "add_liff_app/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do

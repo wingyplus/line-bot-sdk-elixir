@@ -1,21 +1,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 defmodule LINE.Bot.InsightTest do
-  use ExUnit.Case, async: true
+  use LINE.Bot.ClientCase, async: true, client: LINE.Bot.Insight
 
   alias LINE.Bot.Insight
-
-  setup do
-    bypass = Passby.open()
-
-    client =
-      Insight.new(
-        base_url: "http://localhost:#{bypass.port}",
-        channel_token: "test-channel-token"
-      )
-
-    {:ok, bypass: bypass, client: client}
-  end
 
   describe "get_friends_demographics/2" do
     test "sends GET request and returns demographics response", %{bypass: bypass, client: client} do

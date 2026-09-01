@@ -1,22 +1,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 defmodule LINE.Bot.ShopTest do
-  use ExUnit.Case, async: true
+  use LINE.Bot.ClientCase, async: true, client: LINE.Bot.Shop
 
   alias LINE.Bot.Shop
   alias LINE.Bot.Shop.Model.MissionStickerRequest
-
-  setup do
-    bypass = Passby.open()
-
-    client =
-      Shop.new(
-        base_url: "http://localhost:#{bypass.port}",
-        channel_token: "test-channel-token"
-      )
-
-    {:ok, bypass: bypass, client: client}
-  end
 
   describe "mission_sticker_v3/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do

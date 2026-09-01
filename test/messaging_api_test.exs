@@ -1,25 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 defmodule LINE.Bot.MessagingApiTest do
-  use ExUnit.Case, async: true
+  use LINE.Bot.ClientCase, async: true, client: LINE.Bot.MessagingApi
 
   alias LINE.Bot.MessagingApi
   alias LINE.Bot.MessagingApi.Model.PushMessageRequest
   alias LINE.Bot.MessagingApi.Model.BroadcastRequest
   alias LINE.Bot.MessagingApi.Model.ReplyMessageRequest
   alias LINE.Bot.MessagingApi.Model.TextMessage
-
-  setup do
-    bypass = Passby.open()
-
-    client =
-      MessagingApi.new(
-        base_url: "http://localhost:#{bypass.port}",
-        channel_token: "test-channel-token"
-      )
-
-    {:ok, bypass: bypass, client: client}
-  end
 
   describe "push_message/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
