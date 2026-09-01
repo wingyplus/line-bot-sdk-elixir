@@ -27,7 +27,7 @@ defmodule LINE.Bot.Mixfile do
       {:plug, "~> 1.16"},
       {:plug_crypto, "~> 2.0"},
       {:ex_doc, "~> 0.40", only: :docs, runtime: false, warn_if_outdated: true},
-      {:bypass, "~> 2.1", only: :test}
+      {:passby, "~> 0.2", only: :test, runtime: false}
     ]
   end
 

@@ -6,7 +6,7 @@ defmodule LINE.Bot.InsightTest do
   alias LINE.Bot.Insight
 
   setup do
-    bypass = Bypass.open()
+    bypass = Passby.open()
 
     client =
       Insight.new(
@@ -19,12 +19,12 @@ defmodule LINE.Bot.InsightTest do
 
   describe "get_friends_demographics/2" do
     test "sends GET request and returns demographics response", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/insight/demographic", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
+      Passby.expect_once(bypass, "GET", "/v2/bot/insight/demographic", fn conn ->
+        assert Passby.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"available": true}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"available": true}))
       end)
 
       assert {:ok, response} = Insight.get_friends_demographics(client)
@@ -34,12 +34,12 @@ defmodule LINE.Bot.InsightTest do
 
   describe "get_message_event/3" do
     test "sends GET request with requestId query parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/insight/message/event", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/insight/message/event", fn conn ->
         assert conn.query_string =~ "requestId=test-request-id"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"overview": {}}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"overview": {}}))
       end)
 
       assert {:ok, _response} = Insight.get_message_event(client, "test-request-id")
@@ -48,12 +48,12 @@ defmodule LINE.Bot.InsightTest do
 
   describe "get_number_of_followers/2" do
     test "sends GET request with date query parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/insight/followers", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/insight/followers", fn conn ->
         assert conn.query_string =~ "date=20231201"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"status": "ready", "followers": 1000}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"status": "ready", "followers": 1000}))
       end)
 
       assert {:ok, response} = Insight.get_number_of_followers(client, date: "20231201")
@@ -64,12 +64,12 @@ defmodule LINE.Bot.InsightTest do
 
   describe "get_number_of_message_deliveries/3" do
     test "sends GET request with date query parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/insight/message/delivery", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/insight/message/delivery", fn conn ->
         assert conn.query_string =~ "date=20231201"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"status": "ready", "broadcast": 100}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"status": "ready", "broadcast": 100}))
       end)
 
       assert {:ok, response} = Insight.get_number_of_message_deliveries(client, "20231201")
@@ -83,14 +83,14 @@ defmodule LINE.Bot.InsightTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/insight/message/event/aggregation", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/insight/message/event/aggregation", fn conn ->
         assert conn.query_string =~ "customAggregationUnit=promotion_a"
         assert conn.query_string =~ "from=20231201"
         assert conn.query_string =~ "to=20231231"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"overview": {}}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"overview": {}}))
       end)
 
       assert {:ok, _response} =

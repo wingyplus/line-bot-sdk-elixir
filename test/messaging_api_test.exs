@@ -10,7 +10,7 @@ defmodule LINE.Bot.MessagingApiTest do
   alias LINE.Bot.MessagingApi.Model.TextMessage
 
   setup do
-    bypass = Bypass.open()
+    bypass = Passby.open()
 
     client =
       MessagingApi.new(
@@ -23,13 +23,13 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "push_message/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/message/push", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
-        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
+      Passby.expect_once(bypass, "POST", "/v2/bot/message/push", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
+        assert Passby.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"sentMessages": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"sentMessages": []}))
       end)
 
       request = %PushMessageRequest{
@@ -47,12 +47,12 @@ defmodule LINE.Bot.MessagingApiTest do
     } do
       retry_key = "123e4567-e89b-12d3-a456-426614174000"
 
-      Bypass.expect_once(bypass, "POST", "/v2/bot/message/push", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "x-line-retry-key") == [retry_key]
+      Passby.expect_once(bypass, "POST", "/v2/bot/message/push", fn conn ->
+        assert Passby.get_req_header(conn, "x-line-retry-key") == [retry_key]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"sentMessages": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"sentMessages": []}))
       end)
 
       request = %PushMessageRequest{
@@ -70,13 +70,13 @@ defmodule LINE.Bot.MessagingApiTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/followers/ids", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/followers/ids", fn conn ->
         assert conn.query_string =~ "start=some-start"
         assert conn.query_string =~ "limit=1000"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"userIds": [], "next": "abcdef"}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"userIds": [], "next": "abcdef"}))
       end)
 
       assert {:ok, response} =
@@ -89,10 +89,10 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "get_group_members_ids/3" do
     test "sends GET request with group_id path parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"memberIds": ["member1", "member2"], "next": "abcdef"}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"memberIds": ["member1", "member2"], "next": "abcdef"}))
       end)
 
       assert {:ok, response} = MessagingApi.get_group_members_ids(client, "test-group-id")
@@ -104,12 +104,12 @@ defmodule LINE.Bot.MessagingApiTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
         assert conn.query_string =~ "start=token123"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"memberIds": [], "next": null}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"memberIds": [], "next": null}))
       end)
 
       assert {:ok, _response} =
@@ -120,12 +120,12 @@ defmodule LINE.Bot.MessagingApiTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/group/test-group-id/members/ids", fn conn ->
         refute conn.query_string =~ "start="
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"memberIds": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"memberIds": []}))
       end)
 
       assert {:ok, _response} = MessagingApi.get_group_members_ids(client, "test-group-id")
@@ -134,10 +134,10 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "get_bot_info/2" do
     test "sends GET request and returns bot info", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/info", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/info", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(
           200,
           ~s({"userId": "U12345", "basicId": "@bot", "displayName": "Test Bot"})
         )
@@ -152,10 +152,10 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "get_profile/3" do
     test "sends GET request with user_id path parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/profile/U12345", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/profile/U12345", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"userId": "U12345", "displayName": "Test User"}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"userId": "U12345", "displayName": "Test User"}))
       end)
 
       assert {:ok, response} = MessagingApi.get_profile(client, "U12345")
@@ -166,12 +166,12 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "broadcast/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/message/broadcast", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
+      Passby.expect_once(bypass, "POST", "/v2/bot/message/broadcast", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, "{}")
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, "{}")
       end)
 
       request = %BroadcastRequest{
@@ -184,12 +184,12 @@ defmodule LINE.Bot.MessagingApiTest do
 
   describe "reply_message/3" do
     test "sends POST request with replyToken and messages", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/message/reply", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
+      Passby.expect_once(bypass, "POST", "/v2/bot/message/reply", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"sentMessages": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"sentMessages": []}))
       end)
 
       request = %ReplyMessageRequest{
@@ -207,10 +207,10 @@ defmodule LINE.Bot.MessagingApiTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect(bypass, "POST", "/v2/bot/message/push", fn conn ->
+      Passby.expect(bypass, "POST", "/v2/bot/message/push", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"sentMessages": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"sentMessages": []}))
       end)
 
       request = %PushMessageRequest{

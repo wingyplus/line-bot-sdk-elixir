@@ -7,7 +7,7 @@ defmodule LINE.Bot.ShopTest do
   alias LINE.Bot.Shop.Model.MissionStickerRequest
 
   setup do
-    bypass = Bypass.open()
+    bypass = Passby.open()
 
     client =
       Shop.new(
@@ -20,13 +20,13 @@ defmodule LINE.Bot.ShopTest do
 
   describe "mission_sticker_v3/3" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/shop/v3/mission", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
-        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
+      Passby.expect_once(bypass, "POST", "/shop/v3/mission", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
+        assert Passby.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, "{}")
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, "{}")
       end)
 
       request = %MissionStickerRequest{

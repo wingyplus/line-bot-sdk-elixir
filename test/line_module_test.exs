@@ -8,7 +8,7 @@ defmodule LINE.Bot.LineModuleTest do
   alias LINE.Bot.Module.Model.DetachModuleRequest
 
   setup do
-    bypass = Bypass.open()
+    bypass = Passby.open()
 
     client =
       LineModule.new(
@@ -24,13 +24,13 @@ defmodule LINE.Bot.LineModuleTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/chat/test-chat-id/control/acquire", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
-        assert Plug.Conn.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
+      Passby.expect_once(bypass, "POST", "/v2/bot/chat/test-chat-id/control/acquire", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
+        assert Passby.get_req_header(conn, "authorization") == ["Bearer test-channel-token"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, "{}")
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, "{}")
       end)
 
       request = %AcquireChatControlRequest{expired: false}
@@ -42,12 +42,12 @@ defmodule LINE.Bot.LineModuleTest do
 
   describe "detach_module/2" do
     test "sends POST request with JSON body", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/channel/detach", fn conn ->
-        assert Plug.Conn.get_req_header(conn, "content-type") == ["application/json"]
+      Passby.expect_once(bypass, "POST", "/v2/bot/channel/detach", fn conn ->
+        assert Passby.get_req_header(conn, "content-type") == ["application/json"]
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, "{}")
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, "{}")
       end)
 
       request = %DetachModuleRequest{botId: "test-bot-id"}
@@ -58,10 +58,10 @@ defmodule LINE.Bot.LineModuleTest do
 
   describe "get_modules/2" do
     test "sends GET request and returns list of modules", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/list", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/list", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"bots": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"bots": []}))
       end)
 
       assert {:ok, response} = LineModule.get_modules(client)
@@ -72,13 +72,13 @@ defmodule LINE.Bot.LineModuleTest do
       bypass: bypass,
       client: client
     } do
-      Bypass.expect_once(bypass, "GET", "/v2/bot/list", fn conn ->
+      Passby.expect_once(bypass, "GET", "/v2/bot/list", fn conn ->
         assert conn.query_string =~ "start=abc"
         assert conn.query_string =~ "limit=10"
 
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, ~s({"bots": []}))
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, ~s({"bots": []}))
       end)
 
       assert {:ok, _response} = LineModule.get_modules(client, start: "abc", limit: 10)
@@ -87,10 +87,10 @@ defmodule LINE.Bot.LineModuleTest do
 
   describe "release_chat_control/3" do
     test "sends POST request with chat_id path parameter", %{bypass: bypass, client: client} do
-      Bypass.expect_once(bypass, "POST", "/v2/bot/chat/test-chat-id/control/release", fn conn ->
+      Passby.expect_once(bypass, "POST", "/v2/bot/chat/test-chat-id/control/release", fn conn ->
         conn
-        |> Plug.Conn.put_resp_content_type("application/json")
-        |> Plug.Conn.resp(200, "{}")
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(200, "{}")
       end)
 
       assert {:ok, _response} = LineModule.release_chat_control(client, "test-chat-id")
