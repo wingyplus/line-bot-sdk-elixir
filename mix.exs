@@ -10,15 +10,12 @@ defmodule LINE.Bot.Mixfile do
       start_permanent: Mix.env() == :prod,
       package: package(),
       elixirc_paths: elixirc_paths(Mix.env()),
-      description: """
-      This document describes LINE Mission Stickers API.
-      """,
+      description: "LINE Messaging API SDK for Elixir.",
       deps: deps()
     ]
   end
 
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger]]
   end
 
@@ -30,7 +27,7 @@ defmodule LINE.Bot.Mixfile do
       {:req, "~> 0.5"},
       {:plug, "~> 1.16"},
       {:plug_crypto, "~> 2.0"},
-      {:ex_doc, "~> 0.40", only: :docs, runtime: false, warn_if_outdated: true},
+      {:ex_doc, "~> 0.40", only: :dev, runtime: false, warn_if_outdated: true},
       {:passby, "~> 0.2", only: :test, runtime: false}
     ]
   end
@@ -38,7 +35,11 @@ defmodule LINE.Bot.Mixfile do
   defp package do
     [
       name: "line_bot_sdk",
-      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*)
+      licenses: ["Apache-2.0"],
+      links: %{
+        "GitHub" => "https://github.com/wingyplus/line-bot-sdk-elixir"
+      },
+      files: ~w(.formatter.exs lib mix.exs README* LICENSE*)
     ]
   end
 end
