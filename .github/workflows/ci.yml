@@ -32,6 +32,13 @@ jobs:
       - name: Run code generation
         run: elixir generate-code.exs
 
+      - name: Validate LINE OpenAPI specifications
+        run: |
+          for spec in line-openapi/*.yml; do
+            java -cp ./generator/target/line-bot-sdk-elixir-generator-openapi-generator-1.0.0.jar \
+              org.openapitools.codegen.OpenAPIGenerator validate -i "$spec"
+          done
+
       - name: Check for uncommitted changes
         run: |
           git diff --exit-code || (echo "Generated code has uncommitted changes. Please run 'elixir generate-code.exs' and commit the changes." && exit 1)
