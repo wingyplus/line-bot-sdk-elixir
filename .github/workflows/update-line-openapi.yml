@@ -1,0 +1,44 @@
+name: update-line-openapi
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.2.2
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
+        with:
+          elixir-version: "1.19"
+          otp-version: "28"
+
+      - name: Update line-openapi submodule
+        run: git submodule update --remote line-openapi
+
+      - name: Run code generation
+        run: elixir generate-code.exs
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        with:
+          branch: chore/update-line-openapi
+          commit-message: "chore: update line-openapi and regenerate code"
+          title: "chore: update line-openapi and regenerate code"
+          body: |
+            Automated update of the `line-openapi` submodule and regenerated code via `elixir generate-code.exs`.
+          delete-branch: true
