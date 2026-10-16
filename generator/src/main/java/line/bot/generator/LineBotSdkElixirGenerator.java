@@ -34,9 +34,10 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
         super();
         embeddedTemplateDir = templateDir = "line-bot-sdk-elixir-generator";
 
-        // `type: string, format: uri` resolves to the "URI" schema type, which
-        // ElixirClientCodegen does not map (it only maps lowercase "uri"). Without
-        // this it is treated as a reference to a non-existent `Uri` model.
+        // openapi-generator resolves `type: string, format: uri` to the internal
+        // type name "URI", but ElixirClientCodegen only maps lowercase "uri".
+        // Without this it falls through to toModelName and is treated as a
+        // reference to a non-existent `Uri` model.
         typeMapping.put("URI", "String.t");
     }
 
