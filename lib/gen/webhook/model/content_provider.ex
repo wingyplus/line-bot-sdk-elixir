@@ -19,8 +19,8 @@ defmodule LINE.Bot.Webhook.Model.ContentProvider do
 
   @type t :: %__MODULE__{
           :type => String.t(),
-          :originalContentUrl => Uri | nil,
-          :previewImageUrl => Uri | nil
+          :originalContentUrl => String.t() | nil,
+          :previewImageUrl => String.t() | nil
         }
 
   alias LINE.Bot.Deserializer
@@ -31,7 +31,5 @@ defmodule LINE.Bot.Webhook.Model.ContentProvider do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:originalContentUrl, :struct, LINE.Bot.Webhook.Model.Uri)
-    |> Deserializer.deserialize(:previewImageUrl, :struct, LINE.Bot.Webhook.Model.Uri)
   end
 end

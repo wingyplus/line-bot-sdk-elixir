@@ -167,6 +167,20 @@ defmodule LINE.Bot.MessagingApiTest do
       assert response.userId == "U12345"
       assert response.displayName == "Test User"
     end
+
+    test "decodes format: uri fields as strings", %{bypass: bypass, client: client} do
+      Passby.expect_once(bypass, "GET", "/v2/bot/profile/U12345", fn conn ->
+        conn
+        |> Passby.put_resp_header("content-type", "application/json")
+        |> Passby.resp(
+          200,
+          ~s({"userId": "U12345", "displayName": "Test User", "pictureUrl": "https://example.com/p.jpg"})
+        )
+      end)
+
+      assert {:ok, %UserProfileResponse{} = response} = MessagingApi.get_profile(client, "U12345")
+      assert response.pictureUrl == "https://example.com/p.jpg"
+    end
   end
 
   describe "broadcast/3" do

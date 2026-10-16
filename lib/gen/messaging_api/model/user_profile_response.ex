@@ -22,7 +22,7 @@ defmodule LINE.Bot.MessagingApi.Model.UserProfileResponse do
   @type t :: %__MODULE__{
           :displayName => String.t(),
           :userId => String.t(),
-          :pictureUrl => Uri | nil,
+          :pictureUrl => String.t() | nil,
           :statusMessage => String.t() | nil,
           :language => String.t() | nil
         }
@@ -35,6 +35,5 @@ defmodule LINE.Bot.MessagingApi.Model.UserProfileResponse do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:pictureUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

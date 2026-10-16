@@ -17,7 +17,7 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapExternalLink do
   ]
 
   @type t :: %__MODULE__{
-          :linkUri => Uri | nil,
+          :linkUri => String.t() | nil,
           :label => String.t() | nil
         }
 
@@ -29,6 +29,5 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapExternalLink do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:linkUri, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

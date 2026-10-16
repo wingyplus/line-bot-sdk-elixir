@@ -22,8 +22,8 @@ defmodule LINE.Bot.MessagingApi.Model.FlexVideo do
 
   @type t :: %__MODULE__{
           :type => String.t(),
-          :url => Uri,
-          :previewUrl => Uri,
+          :url => String.t(),
+          :previewUrl => String.t(),
           :altContent => LINE.Bot.Model.FlexComponent.t(),
           :aspectRatio => String.t() | nil,
           :action => LINE.Bot.Model.Action.t() | nil
@@ -37,8 +37,6 @@ defmodule LINE.Bot.MessagingApi.Model.FlexVideo do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:url, :struct, LINE.Bot.MessagingApi.Model.Uri)
-    |> Deserializer.deserialize(:previewUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:altContent, :struct, LINE.Bot.MessagingApi.Model.FlexComponent)
     |> Deserializer.deserialize(:action, :struct, LINE.Bot.MessagingApi.Model.Action)
   end

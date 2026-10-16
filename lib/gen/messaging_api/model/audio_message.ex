@@ -23,7 +23,7 @@ defmodule LINE.Bot.MessagingApi.Model.AudioMessage do
           :type => String.t(),
           :quickReply => LINE.Bot.Model.QuickReply.t() | nil,
           :sender => LINE.Bot.Model.Sender.t() | nil,
-          :originalContentUrl => Uri,
+          :originalContentUrl => String.t(),
           :duration => integer()
         }
 
@@ -37,6 +37,5 @@ defmodule LINE.Bot.MessagingApi.Model.AudioMessage do
     value
     |> Deserializer.deserialize(:quickReply, :struct, LINE.Bot.MessagingApi.Model.QuickReply)
     |> Deserializer.deserialize(:sender, :struct, LINE.Bot.MessagingApi.Model.Sender)
-    |> Deserializer.deserialize(:originalContentUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

@@ -25,7 +25,7 @@ defmodule LINE.Bot.MessagingApi.Model.ButtonsTemplate do
 
   @type t :: %__MODULE__{
           :type => String.t(),
-          :thumbnailImageUrl => Uri | nil,
+          :thumbnailImageUrl => String.t() | nil,
           :imageAspectRatio => String.t() | nil,
           :imageSize => String.t() | nil,
           :imageBackgroundColor => String.t() | nil,
@@ -43,7 +43,6 @@ defmodule LINE.Bot.MessagingApi.Model.ButtonsTemplate do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:thumbnailImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:defaultAction, :struct, LINE.Bot.MessagingApi.Model.Action)
     |> Deserializer.deserialize(:actions, :list, LINE.Bot.MessagingApi.Model.Action)
   end

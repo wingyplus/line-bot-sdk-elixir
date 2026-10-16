@@ -21,7 +21,7 @@ defmodule LINE.Bot.MessagingApi.Model.UriAction do
   @type t :: %__MODULE__{
           :type => String.t() | nil,
           :label => String.t() | nil,
-          :uri => Uri | nil,
+          :uri => String.t() | nil,
           :altUri => LINE.Bot.Model.AltUri.t() | nil
         }
 
@@ -33,7 +33,6 @@ defmodule LINE.Bot.MessagingApi.Model.UriAction do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:uri, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:altUri, :struct, LINE.Bot.MessagingApi.Model.AltUri)
   end
 end

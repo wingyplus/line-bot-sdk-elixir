@@ -33,7 +33,7 @@ defmodule LINE.Bot.MessagingApi.Model.FlexImage do
 
   @type t :: %__MODULE__{
           :type => String.t(),
-          :url => Uri,
+          :url => String.t(),
           :flex => integer() | nil,
           :margin => String.t() | nil,
           :position => String.t() | nil,
@@ -59,7 +59,6 @@ defmodule LINE.Bot.MessagingApi.Model.FlexImage do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:url, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:action, :struct, LINE.Bot.MessagingApi.Model.Action)
   end
 end

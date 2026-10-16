@@ -33,6 +33,11 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
     public LineBotSdkElixirGenerator() {
         super();
         embeddedTemplateDir = templateDir = "line-bot-sdk-elixir-generator";
+
+        // `type: string, format: uri` resolves to the "URI" schema type, which
+        // ElixirClientCodegen does not map (it only maps lowercase "uri"). Without
+        // this it is treated as a reference to a non-existent `Uri` model.
+        typeMapping.put("URI", "String.t");
     }
 
     @Override

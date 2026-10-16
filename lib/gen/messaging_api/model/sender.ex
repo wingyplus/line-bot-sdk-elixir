@@ -18,7 +18,7 @@ defmodule LINE.Bot.MessagingApi.Model.Sender do
 
   @type t :: %__MODULE__{
           :name => String.t() | nil,
-          :iconUrl => Uri | nil
+          :iconUrl => String.t() | nil
         }
 
   alias LINE.Bot.Deserializer
@@ -29,6 +29,5 @@ defmodule LINE.Bot.MessagingApi.Model.Sender do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:iconUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

@@ -23,4 +23,24 @@ defmodule LINE.Bot.WebhookTest do
     body = ~s({"events":[{"type":"tampered"}]})
     assert Webhook.signature_valid?(@channel_secret, sig, body) == false
   end
+
+  test "decodes format: uri fields as strings" do
+    message =
+      LINE.Bot.Deserializer.decode(
+        %{
+          "type" => "image",
+          "id" => "1",
+          "quoteToken" => "q",
+          "contentProvider" => %{
+            "type" => "external",
+            "originalContentUrl" => "https://example.com/a.jpg",
+            "previewImageUrl" => "https://example.com/p.jpg"
+          }
+        },
+        Webhook.Model.ImageMessageContent
+      )
+
+    assert message.contentProvider.originalContentUrl == "https://example.com/a.jpg"
+    assert message.contentProvider.previewImageUrl == "https://example.com/p.jpg"
+  end
 end

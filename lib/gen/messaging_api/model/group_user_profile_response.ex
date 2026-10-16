@@ -20,7 +20,7 @@ defmodule LINE.Bot.MessagingApi.Model.GroupUserProfileResponse do
   @type t :: %__MODULE__{
           :displayName => String.t(),
           :userId => String.t(),
-          :pictureUrl => Uri | nil
+          :pictureUrl => String.t() | nil
         }
 
   alias LINE.Bot.Deserializer
@@ -31,6 +31,5 @@ defmodule LINE.Bot.MessagingApi.Model.GroupUserProfileResponse do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:pictureUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

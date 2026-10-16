@@ -23,8 +23,8 @@ defmodule LINE.Bot.MessagingApi.Model.ImageMessage do
           :type => String.t(),
           :quickReply => LINE.Bot.Model.QuickReply.t() | nil,
           :sender => LINE.Bot.Model.Sender.t() | nil,
-          :originalContentUrl => Uri,
-          :previewImageUrl => Uri
+          :originalContentUrl => String.t(),
+          :previewImageUrl => String.t()
         }
 
   alias LINE.Bot.Deserializer
@@ -37,7 +37,5 @@ defmodule LINE.Bot.MessagingApi.Model.ImageMessage do
     value
     |> Deserializer.deserialize(:quickReply, :struct, LINE.Bot.MessagingApi.Model.QuickReply)
     |> Deserializer.deserialize(:sender, :struct, LINE.Bot.MessagingApi.Model.Sender)
-    |> Deserializer.deserialize(:originalContentUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
-    |> Deserializer.deserialize(:previewImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

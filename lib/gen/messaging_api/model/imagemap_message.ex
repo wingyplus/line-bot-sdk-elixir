@@ -26,7 +26,7 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapMessage do
           :type => String.t(),
           :quickReply => LINE.Bot.Model.QuickReply.t() | nil,
           :sender => LINE.Bot.Model.Sender.t() | nil,
-          :baseUrl => Uri,
+          :baseUrl => String.t(),
           :altText => String.t(),
           :baseSize => LINE.Bot.Model.ImagemapBaseSize.t(),
           :actions => [LINE.Bot.Model.ImagemapAction.t()],
@@ -43,7 +43,6 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapMessage do
     value
     |> Deserializer.deserialize(:quickReply, :struct, LINE.Bot.MessagingApi.Model.QuickReply)
     |> Deserializer.deserialize(:sender, :struct, LINE.Bot.MessagingApi.Model.Sender)
-    |> Deserializer.deserialize(:baseUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:baseSize, :struct, LINE.Bot.MessagingApi.Model.ImagemapBaseSize)
     |> Deserializer.deserialize(:actions, :list, LINE.Bot.MessagingApi.Model.ImagemapAction)
     |> Deserializer.deserialize(:video, :struct, LINE.Bot.MessagingApi.Model.ImagemapVideo)

@@ -19,8 +19,8 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapVideo do
   ]
 
   @type t :: %__MODULE__{
-          :originalContentUrl => Uri | nil,
-          :previewImageUrl => Uri | nil,
+          :originalContentUrl => String.t() | nil,
+          :previewImageUrl => String.t() | nil,
           :area => LINE.Bot.Model.ImagemapArea.t() | nil,
           :externalLink => LINE.Bot.Model.ImagemapExternalLink.t() | nil
         }
@@ -33,8 +33,6 @@ defmodule LINE.Bot.MessagingApi.Model.ImagemapVideo do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:originalContentUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
-    |> Deserializer.deserialize(:previewImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:area, :struct, LINE.Bot.MessagingApi.Model.ImagemapArea)
     |> Deserializer.deserialize(
       :externalLink,
