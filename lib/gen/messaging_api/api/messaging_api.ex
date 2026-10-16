@@ -890,6 +890,34 @@ defmodule LINE.Bot.MessagingApi do
   end
 
   @doc """
+  Get number of sent LINE notification messages (template)
+
+  ### Parameters
+
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `date` (`t:String.t/0`): Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
+
+  ### Returns
+
+  - `{:ok, LINE.Bot.Model.NumberOfMessagesResponse.t}` on success
+  - `{:error, Req.Response.t}` on failure
+  """
+  def get_pnp_templated_message_statistics(client, date, client_opts \\ []) do
+    request_opts = [
+      method: :get,
+      url: "/v2/bot/message/delivery/pnp/templated",
+      params: Enum.reject([{"date", date}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    client
+    |> Req.request(Keyword.merge(request_opts, client_opts))
+    |> Deserializer.evaluate_response([
+      {200, LINE.Bot.MessagingApi.Model.NumberOfMessagesResponse}
+    ])
+  end
+
+  @doc """
   Get profile
 
   ### Parameters
@@ -1582,6 +1610,46 @@ defmodule LINE.Bot.MessagingApi do
     |> Req.request(Keyword.merge(request_opts, client_opts))
     |> Deserializer.evaluate_response([
       {200, false},
+      {422, LINE.Bot.MessagingApi.Model.ErrorResponse}
+    ])
+  end
+
+  @doc """
+  Send LINE notification message (template)
+
+  ### Parameters
+
+  - `client` (`t:Req.Request.t/0`): Client to make request with
+  - `pnp_templated_message_request` (`t:PnpTemplatedMessageRequest/0`): 
+  - `optional_args` (keyword): Optional parameters
+    - `:x_line_delivery_tag` (`t:String.t/0`): String returned in the delivery.data property of the delivery completion event via Webhook.
+  - `client_opts` (`t:keyword/0`): Options to pass to `Req.request`
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Req.Response.t}` on failure
+  """
+  def push_templated_messages_by_phone(
+        client,
+        pnp_templated_message_request,
+        optional_args \\ [],
+        client_opts \\ []
+      ) do
+    x_line_delivery_tag = Keyword.get(optional_args, :x_line_delivery_tag)
+
+    request_opts = [
+      method: :post,
+      url: "/v2/bot/message/pnp/templated/push",
+      json: pnp_templated_message_request,
+      headers:
+        Enum.reject([{"x-line-delivery-tag", x_line_delivery_tag}], fn {_, v} -> is_nil(v) end)
+    ]
+
+    client
+    |> Req.request(Keyword.merge(request_opts, client_opts))
+    |> Deserializer.evaluate_response([
+      {202, false},
       {422, LINE.Bot.MessagingApi.Model.ErrorResponse}
     ])
   end

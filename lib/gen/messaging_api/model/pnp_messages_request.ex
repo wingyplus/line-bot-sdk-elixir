@@ -14,13 +14,15 @@ defmodule LINE.Bot.MessagingApi.Model.PnpMessagesRequest do
   defstruct [
     :messages,
     :to,
-    :notificationDisabled
+    :notificationDisabled,
+    :customAggregationUnits
   ]
 
   @type t :: %__MODULE__{
           :messages => [LINE.Bot.Model.Message.t()],
           :to => String.t(),
-          :notificationDisabled => boolean() | nil
+          :notificationDisabled => boolean() | nil,
+          :customAggregationUnits => [String.t()] | nil
         }
 
   alias LINE.Bot.Deserializer
