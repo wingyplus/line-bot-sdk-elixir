@@ -5,15 +5,20 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: update-line-openapi
+  cancel-in-progress: true
+
 jobs:
   update:
+    if: github.repository == 'wingyplus/line-bot-sdk-elixir'
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v4.2.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           submodules: recursive
 
@@ -21,6 +26,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+          cache: maven
 
       - uses: erlef/setup-beam@e6d7c94229049569db56a7ad5a540c051a010af9 # v1.20.4
         with:
@@ -28,17 +34,32 @@ jobs:
           otp-version: "28"
 
       - name: Update line-openapi submodule
-        run: git submodule update --remote line-openapi
+        id: openapi
+        run: |
+          echo "old=$(git -C line-openapi rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+          git submodule update --remote line-openapi
+          echo "new=$(git -C line-openapi rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Run code generation
         run: elixir generate-code.exs
 
+      # PRs opened with GITHUB_TOKEN do not trigger the ci workflow,
+      # so verify the generated code here before opening the PR.
+      - name: Compile and test
+        run: |
+          mix deps.get
+          mix compile --warnings-as-errors
+          mix test --color
+
       - name: Create pull request
         uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
+          token: ${{ secrets.UPDATE_LINE_OPENAPI_TOKEN || github.token }}
           branch: chore/update-line-openapi
-          commit-message: "chore: update line-openapi and regenerate code"
-          title: "chore: update line-openapi and regenerate code"
+          commit-message: "Update line-openapi and regenerate code"
+          title: "Update line-openapi and regenerate code"
           body: |
             Automated update of the `line-openapi` submodule and regenerated code via `elixir generate-code.exs`.
+
+            Upstream changes: https://github.com/line/line-openapi/compare/${{ steps.openapi.outputs.old }}...${{ steps.openapi.outputs.new }}
           delete-branch: true
