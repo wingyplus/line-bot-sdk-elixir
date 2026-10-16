@@ -140,6 +140,11 @@ model/number_of_messages_response.ex
 model/operator_demographic_filter.ex
 model/operator_recipient.ex
 model/pnp_messages_request.ex
+model/pnp_templated_button.ex
+model/pnp_templated_emphasized_item.ex
+model/pnp_templated_item.ex
+model/pnp_templated_message_body.ex
+model/pnp_templated_message_request.ex
 model/postback_action.ex
 model/push_message_request.ex
 model/push_message_response.ex
