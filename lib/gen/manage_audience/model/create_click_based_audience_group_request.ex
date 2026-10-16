@@ -20,7 +20,7 @@ defmodule LINE.Bot.ManageAudience.Model.CreateClickBasedAudienceGroupRequest do
   @type t :: %__MODULE__{
           :description => String.t() | nil,
           :requestId => String.t() | nil,
-          :clickUrl => Uri | nil
+          :clickUrl => String.t() | nil
         }
 
   alias LINE.Bot.Deserializer
@@ -31,6 +31,5 @@ defmodule LINE.Bot.ManageAudience.Model.CreateClickBasedAudienceGroupRequest do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:clickUrl, :struct, LINE.Bot.ManageAudience.Model.Uri)
   end
 end

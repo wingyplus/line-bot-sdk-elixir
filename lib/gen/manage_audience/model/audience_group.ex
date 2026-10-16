@@ -35,7 +35,7 @@ defmodule LINE.Bot.ManageAudience.Model.AudienceGroup do
           :audienceCount => integer() | nil,
           :created => integer() | nil,
           :requestId => String.t() | nil,
-          :clickUrl => Uri | nil,
+          :clickUrl => String.t() | nil,
           :isIfaAudience => boolean() | nil,
           :permission => LINE.Bot.Model.AudienceGroupPermission.t() | nil,
           :createRoute => LINE.Bot.Model.AudienceGroupCreateRoute.t() | nil
@@ -60,7 +60,6 @@ defmodule LINE.Bot.ManageAudience.Model.AudienceGroup do
       :struct,
       LINE.Bot.ManageAudience.Model.AudienceGroupFailedType
     )
-    |> Deserializer.deserialize(:clickUrl, :struct, LINE.Bot.ManageAudience.Model.Uri)
     |> Deserializer.deserialize(
       :permission,
       :struct,

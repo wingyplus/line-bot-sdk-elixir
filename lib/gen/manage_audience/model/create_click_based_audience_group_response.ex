@@ -30,7 +30,7 @@ defmodule LINE.Bot.ManageAudience.Model.CreateClickBasedAudienceGroupResponse do
           :description => String.t() | nil,
           :created => integer() | nil,
           :requestId => String.t() | nil,
-          :clickUrl => Uri | nil,
+          :clickUrl => String.t() | nil,
           :createRoute => String.t() | nil,
           :permission => String.t() | nil,
           :expireTimestamp => integer() | nil,
@@ -46,6 +46,5 @@ defmodule LINE.Bot.ManageAudience.Model.CreateClickBasedAudienceGroupResponse do
   def decode(value) do
     value
     |> Deserializer.deserialize(:type, :struct, LINE.Bot.ManageAudience.Model.AudienceGroupType)
-    |> Deserializer.deserialize(:clickUrl, :struct, LINE.Bot.ManageAudience.Model.Uri)
   end
 end

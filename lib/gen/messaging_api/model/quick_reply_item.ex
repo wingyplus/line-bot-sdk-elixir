@@ -18,7 +18,7 @@ defmodule LINE.Bot.MessagingApi.Model.QuickReplyItem do
   ]
 
   @type t :: %__MODULE__{
-          :imageUrl => Uri | nil,
+          :imageUrl => String.t() | nil,
           :action => LINE.Bot.Model.Action.t() | nil,
           :type => String.t() | nil
         }
@@ -31,7 +31,6 @@ defmodule LINE.Bot.MessagingApi.Model.QuickReplyItem do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:imageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:action, :struct, LINE.Bot.MessagingApi.Model.Action)
   end
 end

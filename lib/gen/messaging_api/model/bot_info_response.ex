@@ -26,7 +26,7 @@ defmodule LINE.Bot.MessagingApi.Model.BotInfoResponse do
           :basicId => String.t(),
           :premiumId => String.t() | nil,
           :displayName => String.t(),
-          :pictureUrl => Uri | nil,
+          :pictureUrl => String.t() | nil,
           :chatMode => String.t(),
           :markAsReadMode => String.t()
         }
@@ -39,6 +39,5 @@ defmodule LINE.Bot.MessagingApi.Model.BotInfoResponse do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:pictureUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

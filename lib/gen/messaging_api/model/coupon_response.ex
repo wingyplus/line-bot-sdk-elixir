@@ -34,11 +34,11 @@ defmodule LINE.Bot.MessagingApi.Model.CouponResponse do
 
   @type t :: %__MODULE__{
           :acquisitionCondition => LINE.Bot.Model.AcquisitionConditionResponse.t() | nil,
-          :barcodeImageUrl => Uri | nil,
+          :barcodeImageUrl => String.t() | nil,
           :couponCode => String.t() | nil,
           :description => String.t() | nil,
           :endTimestamp => integer() | nil,
-          :imageUrl => Uri | nil,
+          :imageUrl => String.t() | nil,
           :maxAcquireCount => integer() | nil,
           :maxUseCountPerTicket => integer() | nil,
           :maxTicketPerUser => integer() | nil,
@@ -66,8 +66,6 @@ defmodule LINE.Bot.MessagingApi.Model.CouponResponse do
       :struct,
       LINE.Bot.MessagingApi.Model.AcquisitionConditionResponse
     )
-    |> Deserializer.deserialize(:barcodeImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
-    |> Deserializer.deserialize(:imageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(
       :reward,
       :struct,

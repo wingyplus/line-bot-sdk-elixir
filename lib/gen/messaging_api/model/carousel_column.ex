@@ -21,7 +21,7 @@ defmodule LINE.Bot.MessagingApi.Model.CarouselColumn do
   ]
 
   @type t :: %__MODULE__{
-          :thumbnailImageUrl => Uri | nil,
+          :thumbnailImageUrl => String.t() | nil,
           :imageBackgroundColor => String.t() | nil,
           :title => String.t() | nil,
           :text => String.t(),
@@ -37,7 +37,6 @@ defmodule LINE.Bot.MessagingApi.Model.CarouselColumn do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:thumbnailImageUrl, :struct, LINE.Bot.MessagingApi.Model.Uri)
     |> Deserializer.deserialize(:defaultAction, :struct, LINE.Bot.MessagingApi.Model.Action)
     |> Deserializer.deserialize(:actions, :list, LINE.Bot.MessagingApi.Model.Action)
   end

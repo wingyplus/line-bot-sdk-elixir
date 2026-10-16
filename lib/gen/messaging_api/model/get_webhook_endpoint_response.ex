@@ -17,7 +17,7 @@ defmodule LINE.Bot.MessagingApi.Model.GetWebhookEndpointResponse do
   ]
 
   @type t :: %__MODULE__{
-          :endpoint => Uri,
+          :endpoint => String.t(),
           :active => boolean()
         }
 
@@ -29,6 +29,5 @@ defmodule LINE.Bot.MessagingApi.Model.GetWebhookEndpointResponse do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:endpoint, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end

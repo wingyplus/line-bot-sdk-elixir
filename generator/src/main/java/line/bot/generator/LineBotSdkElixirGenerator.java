@@ -33,6 +33,12 @@ public class LineBotSdkElixirGenerator extends ElixirClientCodegen {
     public LineBotSdkElixirGenerator() {
         super();
         embeddedTemplateDir = templateDir = "line-bot-sdk-elixir-generator";
+
+        // openapi-generator resolves `type: string, format: uri` to the internal
+        // type name "URI", but ElixirClientCodegen only maps lowercase "uri".
+        // Without this it falls through to toModelName and is treated as a
+        // reference to a non-existent `Uri` model.
+        typeMapping.put("URI", "String.t");
     }
 
     @Override

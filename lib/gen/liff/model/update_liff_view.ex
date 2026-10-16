@@ -19,7 +19,7 @@ defmodule LINE.Bot.Liff.Model.UpdateLiffView do
 
   @type t :: %__MODULE__{
           :type => String.t() | nil,
-          :url => Uri | nil,
+          :url => String.t() | nil,
           :moduleMode => boolean() | nil
         }
 
@@ -31,6 +31,5 @@ defmodule LINE.Bot.Liff.Model.UpdateLiffView do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:url, :struct, LINE.Bot.Liff.Model.Uri)
   end
 end

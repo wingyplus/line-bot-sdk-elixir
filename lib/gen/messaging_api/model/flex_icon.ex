@@ -27,7 +27,7 @@ defmodule LINE.Bot.MessagingApi.Model.FlexIcon do
 
   @type t :: %__MODULE__{
           :type => String.t(),
-          :url => Uri,
+          :url => String.t(),
           :size => String.t() | nil,
           :aspectRatio => String.t() | nil,
           :margin => String.t() | nil,
@@ -47,6 +47,5 @@ defmodule LINE.Bot.MessagingApi.Model.FlexIcon do
 
   def decode(value) do
     value
-    |> Deserializer.deserialize(:url, :struct, LINE.Bot.MessagingApi.Model.Uri)
   end
 end
