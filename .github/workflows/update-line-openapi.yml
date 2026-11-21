@@ -12,7 +12,7 @@ concurrency:
 jobs:
   update:
     if: github.repository == 'wingyplus/line-bot-sdk-elixir'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: write
       pull-requests: write
